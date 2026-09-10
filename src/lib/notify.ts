@@ -34,7 +34,6 @@ export interface LeadAgendamiento extends LeadBase {
   tipo: 'agendamiento';
   modalidad: 'empresa' | 'taller' | 'domicilio';
   nombre: string;
-  correo: string;
   telefono: string;
   fecha: string;
   /** Campos variables según la modalidad. */

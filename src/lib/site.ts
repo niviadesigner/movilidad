@@ -14,9 +14,9 @@ export const SITE = {
   idioma: 'es-CO',
   ogLocale: 'es_CO',
 
-  // Contacto único — leído de entorno, con marcador visible si falta.
-  tel: import.meta.env.PUBLIC_TEL || '+57 000 000 0000', // TODO: dato real
-  whatsapp: import.meta.env.PUBLIC_WHATSAPP || '573000000000', // TODO: dato real
+  // Contacto único (regla §8). Un solo número, el mismo para llamar y para WhatsApp.
+  tel: import.meta.env.PUBLIC_TEL || '+57 305 713 4994',
+  whatsapp: import.meta.env.PUBLIC_WHATSAPP || '573057134994',
   correo: 'contacto@solucionesdemovilidad.com.co', // TODO: confirmar
 
   // Autoría (no se muestra en el sitio, solo referencia interna).

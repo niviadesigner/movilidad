@@ -19,7 +19,6 @@ export const POST: APIRoute = async ({ request }) => {
     tipo: 'agendamiento',
     modalidad: datos.modalidad,
     nombre: datos.nombre,
-    correo: datos.correo,
     telefono: datos.telefono,
     fecha: datos.fecha,
     detalle: datos.detalle,

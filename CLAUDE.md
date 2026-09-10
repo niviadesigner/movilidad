@@ -49,6 +49,11 @@ Cada línea es una autopista independiente con rampas de acceso entre ellas.
 11. **Logo:** `brand/` guarda los PNG originales; `public/logo/logo.png` (horizontal) y
    `public/logo/isotipo.png` (símbolo) son los de uso web. Favicons en `public/favicon-*.png`.
    Header corporativo usa el logo horizontal; header de tienda usa el isotipo + "Tienda".
+12. **Agendamiento de mantenimiento = handoff a WhatsApp.** El agendador de 4 pasos recoge
+   los datos y termina abriendo WhatsApp con el resumen; no confirma ni cobra en el acto.
+   En segundo plano registra el lead en `/api/agendar`. Decidido en Fase 3.
+13. **Contacto único: `305 713 4994`** (`573057134994`), el mismo para llamar y WhatsApp.
+   Valor por defecto en `src/lib/site.ts`; `PUBLIC_TEL`/`PUBLIC_WHATSAPP` lo sobrescriben.
 
 ---
 

@@ -5,8 +5,8 @@ import CTA from '../../../components/ui/CTA.astro';
 import { SITE, whatsappUrl } from '../../../lib/site';
 
 const seo = {
-  titulo: 'Agendamiento confirmado',
-  descripcion: 'Tu solicitud de mantenimiento quedó registrada.',
+  titulo: 'Solicitud enviada a WhatsApp',
+  descripcion: 'Tu solicitud de mantenimiento salió por WhatsApp.',
   ruta: '/mantenimiento/agendar/confirmado',
   noIndex: true,
 };
@@ -15,19 +15,21 @@ const seo = {
 <SiteLayout seo={seo} migasOverrides={{ '/mantenimiento/agendar/confirmado': 'Confirmación' }}>
   <Section espaciado="amplio" ancho="estrecho">
     <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-primary-700)]">
-      Agendamiento recibido
+      Solicitud enviada
     </p>
-    <h1 class="mt-3 text-[var(--text-4xl)]">Listo, lo tenemos</h1>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Termina el envío en WhatsApp</h1>
 
     <p class="mt-4 text-[var(--text-lg)] text-[var(--color-text-muted)]" data-mensaje>
-      Registramos tu solicitud. Te contactamos para confirmar los detalles.
+      Abrimos WhatsApp con el resumen de tu solicitud. Envía ese mensaje y te respondemos para
+      cerrar los detalles.
     </p>
 
     <div class="mt-8 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-subtle)] p-6">
-      <p class="text-[var(--text-base)] font-semibold">¿Necesitas ajustar algo?</p>
+      <p class="text-[var(--text-base)] font-semibold">¿No se abrió WhatsApp?</p>
       <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
-        Llama al {SITE.tel} o escríbenos por
-        <a class="underline" href={whatsappUrl('mantenimiento')} target="_blank" rel="noopener noreferrer"> WhatsApp</a>.
+        Escríbenos por
+        <a class="underline" href={whatsappUrl('mantenimiento')} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        o llama al {SITE.tel} con los datos de tu solicitud.
       </p>
     </div>
 
@@ -41,11 +43,11 @@ const seo = {
 <script>
   const mensajes: Record<string, string> = {
     empresa:
-      'Registramos tu solicitud de jornada en sede. Un coordinador te escribe para cerrar el cronograma según el número de bicicletas.',
+      'Abrimos WhatsApp con el resumen de tu jornada en sede. Envía el mensaje y un coordinador cierra el cronograma contigo.',
     taller:
-      'Registramos tu cita en el taller. Te confirmamos por correo el turno y qué llevar.',
+      'Abrimos WhatsApp con los datos de tu cita en el taller. Envía el mensaje y te confirmamos el turno.',
     domicilio:
-      'Registramos tu solicitud a domicilio en una zona con cobertura. Te confirmamos la ventana horaria y el técnico asignado.',
+      'Abrimos WhatsApp con tu solicitud a domicilio en una zona con cobertura. Envía el mensaje y te confirmamos la ventana horaria.',
   };
   const m = new URLSearchParams(location.search).get('m');
   const el = document.querySelector('[data-mensaje]');

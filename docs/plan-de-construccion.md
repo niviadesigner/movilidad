@@ -80,9 +80,11 @@ modalidad y validación de cobertura ANTES de pedir datos personales; endpoint s
 página de confirmación con mensaje por modalidad. Contenido en `src/data/mantenimiento.ts`.
 Probado de punta a punta en la ruta domicilio.
 
-Pendiente antes de cerrar: precios reales de los planes, zonas de cobertura definitivas,
-URL de `N8N_WEBHOOK_AGENDAMIENTOS`, y decidir si el agendador confirma o cobra en el acto
-(hoy solo registra la solicitud).
+Cierre del agendamiento: **handoff a WhatsApp** (`305 713 4994`). El agendador recoge los
+datos y abre WhatsApp con el resumen; `/api/agendar` registra el lead en segundo plano.
+
+Pendiente antes de cerrar: precios reales de los planes, zonas de cobertura definitivas y
+—opcional— URL de `N8N_WEBHOOK_AGENDAMIENTOS` para además guardar el lead.
 
 - Hub y páginas de las 3 modalidades
 - Comparativo de planes

@@ -79,7 +79,6 @@ type ModalidadAgenda = (typeof MODALIDADES)[number];
 export interface DatosAgendamiento {
   modalidad: ModalidadAgenda;
   nombre: string;
-  correo: string;
   telefono: string;
   fecha: string;
   detalle: Record<string, string>;
@@ -94,7 +93,6 @@ export function validarAgendamiento(fd: FormData): ResultadoValidacion<DatosAgen
   const datos: DatosAgendamiento = {
     modalidad,
     nombre: limpio(fd.get('nombre')),
-    correo: limpio(fd.get('correo')),
     telefono: limpio(fd.get('telefono')),
     fecha: limpio(fd.get('fecha')),
     detalle: {},
@@ -103,7 +101,6 @@ export function validarAgendamiento(fd: FormData): ResultadoValidacion<DatosAgen
   const errores: Record<string, string> = {};
   if (!MODALIDADES.includes(modalidad)) errores.modalidad = 'Modalidad no válida.';
   if (datos.nombre.length < 2) errores.nombre = 'Escribe tu nombre.';
-  if (!RE_CORREO.test(datos.correo)) errores.correo = 'Revisa el correo.';
   if (!RE_TEL.test(datos.telefono)) errores.telefono = 'Revisa el teléfono.';
   if (!/^\d{4}-\d{2}-\d{2}$/.test(datos.fecha)) errores.fecha = 'Falta la fecha.';
 
