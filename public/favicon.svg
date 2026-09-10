@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Provisional; se reemplaza por el favicon del logo definitivo -->
-  <rect width="32" height="32" rx="7" fill="#0a302d"/>
-  <g fill="none" stroke="#67b3a9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="10" cy="21" r="5"/>
-    <circle cx="22" cy="21" r="5"/>
-    <path d="M10 21l5-9h5l3 9M15 12l-2-4h-3"/>
-  </g>
-</svg>

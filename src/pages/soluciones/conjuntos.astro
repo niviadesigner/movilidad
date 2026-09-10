@@ -1,25 +1,16 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import HubLinea from '../../components/plantillas/HubLinea.astro';
+import { SOLUCIONES } from '../../data/soluciones';
 
 const seo = {
   titulo: 'Soluciones de movilidad para conjuntos residenciales',
   descripcion:
-    'Biciparqueaderos para propiedad horizontal: aprovecha sótanos, cumple la norma y suma un beneficio para los residentes.',
+    'Biciparqueaderos para propiedad horizontal: aprovecha el sótano, cumple el POT y suma un beneficio para los residentes.',
   ruta: '/soluciones/conjuntos',
 };
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Para conjuntos residenciales"
-    intro="Landing transversal. Decisor: administración y consejo. Argumentos de valorización, cumplimiento y satisfacción de residentes."
-    plantilla="Especial"
-    fase="Fase 2"
-    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
-    relacionados={[
-      { label: 'Biciparqueaderos residenciales y PH', href: '/biciparqueaderos/residencial' },
-      { label: 'Mantenimiento a domicilio', href: '/mantenimiento/domicilio' },
-    ]}
-  />
+  <HubLinea {...SOLUCIONES.conjuntos} />
 </SiteLayout>

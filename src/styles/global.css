@@ -1,56 +1,57 @@
 @import 'tailwindcss';
 
 /* =========================================================================
-   SISTEMA DE DISEÑO — Soluciones de Movilidad (v1)
-   Dirección A: petróleo + acero + ámbar señal.
+   SISTEMA DE DISEÑO — Soluciones de Movilidad (v2)
+   Identidad tomada del logo: azul petróleo #06364E + amarillo señal #FCF618
+   + casi negro azulado #1E242A.
    Fuentes: Archivo (títulos) + IBM Plex Sans (cuerpo) + IBM Plex Mono (datos),
    autoalojadas vía @fontsource (sin CDN, regla §6).
-   Se coordina con el logo definitivo del cliente; ajustes = solo este archivo.
+   Ajustes de marca = solo este archivo.
    ========================================================================= */
 
 @theme {
-  /* ----- Neutro: grafito acero frío (leve sesgo verde, nunca gris puro) ----- */
+  /* ----- Neutro: gris azulado, casi negro de marca en el 900 ----- */
   --color-neutral-0: #ffffff;
-  --color-neutral-50: #f4f6f6;
-  --color-neutral-100: #eceff0;
-  --color-neutral-200: #dbe1e2;
-  --color-neutral-300: #c0c9ca;
-  --color-neutral-400: #94a0a1;
-  --color-neutral-500: #697779;
-  --color-neutral-600: #4f5c5e;
-  --color-neutral-700: #3a4547;
-  --color-neutral-800: #262f30;
-  --color-neutral-900: #171e1f;
-  --color-neutral-950: #0e1314;
+  --color-neutral-50: #f3f5f7;
+  --color-neutral-100: #e8ecef;
+  --color-neutral-200: #d6dde2;
+  --color-neutral-300: #bac4cb;
+  --color-neutral-400: #8b97a0;
+  --color-neutral-500: #616d77;
+  --color-neutral-600: #47525b;
+  --color-neutral-700: #333c44;
+  --color-neutral-800: #232a31;
+  --color-neutral-900: #1e242a;
+  --color-neutral-950: #12161a;
 
-  /* ----- Primario: petróleo profundo (acero + sostenibilidad, serio) ----- */
-  --color-primary-50: #e9f4f2;
-  --color-primary-100: #c9e5e1;
-  --color-primary-200: #9bcfc8;
-  --color-primary-300: #67b3a9;
-  --color-primary-400: #38938a;
-  --color-primary-500: #1c7a70;
-  --color-primary-600: #166a62;
-  --color-primary-700: #0f4d47;
-  --color-primary-800: #0c3d39;
-  --color-primary-900: #0a302d;
+  /* ----- Primario: azul petróleo del logo (#06364E ≈ 700) ----- */
+  --color-primary-50: #e9f1f5;
+  --color-primary-100: #c8dde7;
+  --color-primary-200: #97bccd;
+  --color-primary-300: #5f97b0;
+  --color-primary-400: #327693;
+  --color-primary-500: #145d7b;
+  --color-primary-600: #0a4863;
+  --color-primary-700: #06364e;
+  --color-primary-800: #052b3e;
+  --color-primary-900: #041f2e;
 
-  /* ----- Acento ámbar señal: SOLO para el CTA primario ----- */
-  --color-accent-50: #fdf1e3;
-  --color-accent-100: #fadfc0;
-  --color-accent-200: #f5c088;
-  --color-accent-300: #efa04f;
-  --color-accent-400: #ea8a26;
-  --color-accent-500: #e8760b;
-  --color-accent-600: #c25f08;
-  --color-accent-700: #98490a;
+  /* ----- Acento amarillo señal del logo: SOLO para el CTA primario y remates ----- */
+  --color-accent-50: #fefce0;
+  --color-accent-100: #fdf9b0;
+  --color-accent-200: #fcf571;
+  --color-accent-300: #fcf618; /* amarillo de marca — relleno del CTA */
+  --color-accent-400: #ece400; /* hover del CTA */
+  --color-accent-500: #d4cc00;
+  --color-accent-600: #a8a100;
+  --color-accent-700: #7c7700;
 
-  /* ----- Semánticos ----- */
+  /* ----- Semánticos (distintos del amarillo de marca) ----- */
   --color-success-500: #1a8f5c;
   --color-success-50: #e6f3ec;
-  --color-warning-500: #bd7d10;
-  --color-warning-50: #f9efdb;
-  --color-danger-500: #bf3a2e;
+  --color-warning-500: #c2701a;
+  --color-warning-50: #f7ede0;
+  --color-danger-500: #c0392c;
   --color-danger-50: #f7e7e5;
   --color-info-500: #1c6f8f;
   --color-info-50: #e4f0f4;

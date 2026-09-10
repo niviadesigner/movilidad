@@ -1,26 +1,16 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import HubLinea from '../../components/plantillas/HubLinea.astro';
+import { SOLUCIONES } from '../../data/soluciones';
 
 const seo = {
   titulo: 'Soluciones de movilidad para empresas',
   descripcion:
-    'Biciparqueaderos, mantenimiento en sede y accesorios para equipos: todo lo que tu empresa necesita para que sus colaboradores lleguen en bici.',
+    'Biciparqueaderos, mantenimiento en sede y accesorios por volumen: todo lo que tu empresa necesita para su plan de movilidad y el PESV.',
   ruta: '/soluciones/empresas',
 };
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Para empresas"
-    intro="Landing transversal por audiencia. Cruza las tres líneas desde la mirada de RRHH y sostenibilidad. Califica y convierte."
-    plantilla="Especial"
-    fase="Fase 2"
-    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
-    relacionados={[
-      { label: 'Biciparqueaderos corporativos', href: '/biciparqueaderos/corporativo' },
-      { label: 'Jornadas de mantenimiento en sede', href: '/mantenimiento/jornadas-empresariales' },
-      { label: 'Compra por volumen en la tienda', href: '/tienda/corporativo' },
-    ]}
-  />
+  <HubLinea {...SOLUCIONES.empresas} />
 </SiteLayout>

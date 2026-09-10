@@ -1,0 +1,81 @@
+---
+/**
+ * Formulario de cotización de 5 campos (regla §7). Reutilizable:
+ * página /cotizar y bloque de cierre de la home.
+ * Progresivo: POST nativo a /api/cotizar → redirección a /gracias.
+ */
+interface Props {
+  /** Ruta desde la que se envía, para trazar el origen del lead. */
+  origen: string;
+  /** Muestra el aviso de error (?error=1 en /cotizar). */
+  conError?: boolean;
+  /** id base para los campos, por si hay dos formularios en una página. */
+  idPrefijo?: string;
+}
+const { origen, conError = false, idPrefijo = 'cot' } = Astro.props;
+
+type Campo = {
+  id: string;
+  label: string;
+  type: 'text' | 'email' | 'tel' | 'number';
+  autocomplete: string;
+  inputmode?: 'numeric' | 'tel';
+  hint?: string;
+};
+const campos: Campo[] = [
+  { id: 'nombre', label: 'Nombre', type: 'text', autocomplete: 'name' },
+  { id: 'empresa', label: 'Empresa', type: 'text', autocomplete: 'organization' },
+  { id: 'correo', label: 'Correo', type: 'email', autocomplete: 'email' },
+  { id: 'telefono', label: 'Teléfono', type: 'tel', autocomplete: 'tel', inputmode: 'tel' },
+  {
+    id: 'cupos',
+    label: 'Número aproximado de cupos',
+    type: 'number',
+    autocomplete: 'off',
+    inputmode: 'numeric',
+    hint: 'Un estimado sirve. Lo afinamos en la visita técnica.',
+  },
+];
+---
+
+{conError && (
+  <p role="alert" class="mb-6 rounded-[var(--radius-md)] border border-[var(--color-danger-500)] bg-[var(--color-danger-50)] px-4 py-3 text-[var(--text-sm)] text-[var(--color-danger-500)]">
+    Faltó algún dato o hubo un error. Revisa los campos e inténtalo de nuevo.
+  </p>
+)}
+
+<form method="post" action="/api/cotizar" class="grid gap-5" novalidate>
+  <input type="hidden" name="origen" value={origen} />
+  <!-- trampa anti-bots: debe quedar vacío -->
+  <input type="text" name="empresa_web" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+  {campos.map((c) => (
+    <div class="grid gap-1.5">
+      <label for={`${idPrefijo}-${c.id}`} class="text-[var(--text-sm)] font-semibold">{c.label}</label>
+      <input
+        id={`${idPrefijo}-${c.id}`}
+        name={c.id}
+        type={c.type}
+        inputmode={c.inputmode}
+        autocomplete={c.autocomplete}
+        required
+        min={c.type === 'number' ? '1' : undefined}
+        class="h-11 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-[var(--text-base)]"
+      />
+      {c.hint && <p class="text-[var(--text-xs)] text-[var(--color-text-muted)]">{c.hint}</p>}
+    </div>
+  ))}
+
+  <button
+    type="submit"
+    class="inline-flex min-h-11 w-fit items-center rounded-[var(--radius-md)] bg-[var(--color-accent-300)] px-7 py-3 font-semibold text-[var(--color-neutral-900)] transition-colors hover:bg-[var(--color-accent-400)]"
+  >
+    Enviar solicitud
+  </button>
+
+  <p class="text-[var(--text-xs)] text-[var(--color-text-muted)]">
+    Al enviar aceptas la
+    <a class="underline" href="/legal/tratamiento-datos">política de tratamiento de datos</a>.
+    Un ingeniero te contactará por correo o teléfono.
+  </p>
+</form>

@@ -16,14 +16,8 @@ const activo = (href: string) => aqui === href || aqui.startsWith(href + '/');
 <header class="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-surface)]/95 backdrop-blur">
   <Container>
     <div class="flex h-[var(--spacing-header)] items-center justify-between gap-4">
-      <a href="/" class="flex items-center gap-2 font-bold text-[var(--color-primary-700)]" aria-label={`${SITE.nombre} — inicio`}>
-        <!-- TODO: reemplazar por el logo definitivo del cliente -->
-        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" fill="none">
-          <circle cx="8" cy="20" r="5" stroke="currentColor" stroke-width="2" />
-          <circle cx="20" cy="20" r="5" stroke="currentColor" stroke-width="2" />
-          <path d="M8 20l5-9h5l3 9M13 11l-2-4H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <span class="text-[var(--text-sm)] leading-tight">Soluciones<br />de Movilidad</span>
+      <a href="/" class="flex items-center" aria-label={`${SITE.nombre} — inicio`}>
+        <img src="/logo/logo.png" alt={SITE.nombre} width="509" height="160" class="h-12 w-auto" />
       </a>
 
       <nav aria-label="Principal" class="hidden lg:block">
@@ -53,7 +47,7 @@ const activo = (href: string) => aqui === href || aqui.startsWith(href + '/');
       <div class="flex items-center gap-2">
         <a
           href={CTA_CORPORATIVO.href}
-          class="hidden min-h-11 items-center rounded-[var(--radius-md)] bg-[var(--color-accent-500)] px-5 py-2.5 text-[var(--text-sm)] font-semibold text-white transition-colors hover:bg-[var(--color-accent-600)] sm:inline-flex"
+          class="hidden min-h-11 items-center rounded-[var(--radius-md)] bg-[var(--color-accent-300)] px-5 py-2.5 text-[var(--text-sm)] font-semibold text-[var(--color-neutral-900)] transition-colors hover:bg-[var(--color-accent-400)] sm:inline-flex"
         >
           {CTA_CORPORATIVO.label}
         </a>

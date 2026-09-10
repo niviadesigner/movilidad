@@ -19,3 +19,5 @@ node_modules/
 Thumbs.db
 *.log
 npm-debug.log*
+
+brand/

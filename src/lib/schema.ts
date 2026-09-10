@@ -13,8 +13,7 @@ export function organizationSchema() {
     legalName: SITE.nombreLegal,
     url: SITE.dominio,
     description: SITE.descripcion,
-    // TODO: reemplazar con logo real cuando exista la identidad visual.
-    logo: `${SITE.dominio}/logo.svg`,
+    logo: `${SITE.dominio}/logo/isotipo.png`,
     areaServed: 'CO',
     address: {
       '@type': 'PostalAddress',

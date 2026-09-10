@@ -50,7 +50,16 @@ Pendiente antes de cerrar la fase:
 
 ---
 
-## Fase 2 — Home y landings por segmento
+## Fase 2 — Home y landings por segmento — 🔨 ESTRUCTURA LISTA
+
+Estado: identidad v2 aplicada desde el logo real (azul petróleo + amarillo señal + casi
+negro); logo en los dos headers y favicons. Home con los 11 bloques en orden. Las 4 landings
+de `/soluciones/*` con Plantilla A y contenido en `src/data/soluciones.ts`. TopBar con puerta
+a la tienda y barra inferior móvil ya venían de Fase 0. Formulario de 5 campos extraído a
+`FormularioCotizacion` y reutilizado en `/cotizar` y el bloque 11 de la home.
+
+Pendiente antes de cerrar: copy final, logos reales de clientes y aliados, un caso de estudio
+real para el bloque 5, versión clara del logo para fondos oscuros e imagen `og-default`.
 
 - Home con los 11 bloques en el orden definido
 - Las 4 landings de `/soluciones/*`

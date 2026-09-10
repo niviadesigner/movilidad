@@ -41,20 +41,22 @@ Cada línea es una autopista independiente con rampas de acceso entre ellas.
    interactividad. Deploy en Vercel (adapter `@astrojs/vercel`). Decidido en Fase 0.
 8. **Pasarela de pago: Wompi.** El checkout se construye sobre una capa de pago abstracta
    para no acoplar el resto del código a Wompi. Decidido en Fase 0.
-9. **Paleta: Dirección A — petróleo + acero + ámbar señal.** Primario petróleo
-   (`#0F4D47`/`#166A62`), neutros grafito acero frío, acento ámbar `#E8760B` SOLO en el CTA
-   primario. Definida en tokens v1 de `src/styles/global.css`. Se coordina con el logo; los
-   ajustes finos van solo en ese archivo.
+9. **Paleta (v2, tomada del logo):** azul petróleo `#06364E` (primario), amarillo señal
+   `#FCF618` (acento — SOLO relleno del CTA primario y remates), casi negro azulado `#1E242A`.
+   El CTA primario es amarillo con texto casi negro. Tokens en `src/styles/global.css`.
 10. **Tipografía: Archivo (títulos) + IBM Plex Sans (cuerpo) + IBM Plex Mono (datos/specs).**
    Autoalojadas vía `@fontsource`, importadas en `BaseLayout.astro`. Sin CDN (regla §6).
+11. **Logo:** `brand/` guarda los PNG originales; `public/logo/logo.png` (horizontal) y
+   `public/logo/isotipo.png` (símbolo) son los de uso web. Favicons en `public/favicon-*.png`.
+   Header corporativo usa el logo horizontal; header de tienda usa el isotipo + "Tienda".
 
 ---
 
 ## 3. DECISIONES PENDIENTES — PREGUNTA ANTES DE ASUMIR
 
 - [ ] **Operador logístico y tabla de envíos** (bloquea el cálculo de envío del checkout).
-- [ ] **Logo definitivo del cliente** (en construcción). Al llegar: favicon, logo del header
-      y ajuste fino de la paleta si hace falta.
+- [ ] **Versión clara del logo** para fondos oscuros (footer usa texto blanco por ahora) e
+      imagen social `og-default` (1200×630).
 - [ ] **Copy final** de home y hubs (se está redactando aparte, ver `docs/copy/`).
 - [ ] **Catálogo real**: SKUs, precios, fotos, stock inicial.
 

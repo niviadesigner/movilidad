@@ -1,25 +1,16 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import HubLinea from '../../components/plantillas/HubLinea.astro';
+import { SOLUCIONES } from '../../data/soluciones';
 
 const seo = {
   titulo: 'Soluciones de movilidad para universidades',
   descripcion:
-    'Biciparqueaderos de alto volumen para campus, con foco en seguridad, aforo y programas de movilidad sostenible.',
+    'Biciparqueaderos de alto volumen para campus: cupos a escala, modelos de doble altura e instalación por fases.',
   ruta: '/soluciones/universidades',
 };
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Para universidades"
-    intro="Landing transversal para campus. Volumen de cupos, seguridad, integración con programas de movilidad y bienestar."
-    plantilla="Especial"
-    fase="Fase 2"
-    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
-    relacionados={[
-      { label: 'Biciparqueaderos institucionales y educativos', href: '/biciparqueaderos/institucional' },
-      { label: 'Proyectos', href: '/proyectos' },
-    ]}
-  />
+  <HubLinea {...SOLUCIONES.universidades} />
 </SiteLayout>

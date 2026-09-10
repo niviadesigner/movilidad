@@ -1,95 +1,187 @@
 ---
 /**
- * HOME B2B. Le habla primero a empresas y constructoras.
- * El orden real de los 11 bloques se arma en Fase 2 (docs/plan §Fase 2).
- * Aquí: esqueleto con las tres líneas y su peso visual relativo.
+ * HOME B2B — 11 bloques en el orden de docs/arquitectura-informacion.md §5.
+ * Le habla primero a empresas y constructoras. La tienda entra por bloque, no por el hero.
+ * Sin cifras ni nombres de clientes inventados: el dato duro del hero es la Ley 1811 (real
+ * y citable); el caso destacado se conecta cuando exista uno verificable.
  */
 import SiteLayout from '../layouts/SiteLayout.astro';
 import Section from '../components/ui/Section.astro';
 import Card from '../components/ui/Card.astro';
 import CTA from '../components/ui/CTA.astro';
 import LogoBar from '../components/ui/LogoBar.astro';
+import Pasos from '../components/ui/Pasos.astro';
+import FormularioCotizacion from '../components/ui/FormularioCotizacion.astro';
 import { SEGMENTOS } from '../lib/nav';
 
 const seo = {
   titulo: 'Soluciones de Movilidad — Infraestructura para movilidad en bicicleta',
   descripcion:
-    'Biciparqueaderos para empresas y constructoras, mantenimiento de bicicletas y tienda de accesorios. Cotiza tu proyecto y un ingeniero te responde en menos de 24 h.',
+    'Biciparqueaderos para empresas, constructoras y conjuntos, mantenimiento de bicicletas y tienda de accesorios. Cotiza y un ingeniero te responde en menos de 24 h.',
   ruta: '/',
 };
+
+const pasosTrabajo = [
+  { titulo: 'Nos cuentas', texto: 'Envías la solicitud con tu espacio y cuántos cupos calculas.' },
+  { titulo: 'Visita técnica', texto: 'Un ingeniero mide en sitio y evalúa accesos, pisos y anclajes.' },
+  { titulo: 'Propuesta', texto: 'Recibes modelo sugerido, distribución de cupos y valor estimado.' },
+  { titulo: 'Instalación', texto: 'Fabricamos e instalamos, y entregamos con acta y garantía.' },
+];
 ---
 
 <SiteLayout seo={seo} sinMigas>
-  <!-- 1 · Hero -->
+  {/* 1 · Hero — dato duro + promesa + CTA */}
   <Section fondo="subtle" espaciado="amplio">
-    <p class="text-[var(--text-xs)] font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
-      Esqueleto navegable · la home se arma en Fase 2
-    </p>
-    <h1 class="mt-3 max-w-[20ch] text-[var(--text-5xl)]">
-      Infraestructura para que tu equipo llegue en bici
-    </h1>
-    <p class="mt-5 max-w-[52ch] text-[var(--text-lg)] text-[var(--color-text-muted)]">
-      {/* TODO: reemplazar con dato duro real + promesa (regla §8). */}
-      Diseñamos, instalamos y mantenemos biciparqueaderos para empresas, constructoras y
-      conjuntos. Cifra de respaldo pendiente de fuente verificable.
-    </p>
-    <div class="mt-8 flex flex-wrap items-center gap-4">
-      <CTA href="/cotizar" variante="primario" tamano="lg">Cotizar en 24 h</CTA>
-      <CTA href="/recursos/calculadora-cupos" variante="secundario">Calcular cupos</CTA>
+    <div class="max-w-[46rem]">
+      <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
+        La Ley 1811 de 2016 obliga a empresas y entidades a promover el uso de la bicicleta
+      </p>
+      <h1 class="mt-3 text-[var(--text-5xl)]">
+        Infraestructura para que tu equipo llegue en bici, y para cumplir la norma
+      </h1>
+      <p class="mt-5 text-[var(--text-lg)] text-[var(--color-text-muted)]">
+        Diseñamos, fabricamos e instalamos biciparqueaderos para empresas, constructoras y
+        conjuntos. Un solo proveedor, de la visita técnica a la entrega.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <CTA href="/cotizar" variante="primario" tamano="lg">Cotizar en 24 h</CTA>
+        <CTA href="/recursos/calculadora-cupos" variante="secundario">Calcular cupos que necesito</CTA>
+      </div>
+      <p class="mt-4 font-mono text-[var(--text-xs)] text-[var(--color-text-muted)]">
+        Fuente: Ley 1811 de 2016, Congreso de Colombia.
+      </p>
     </div>
   </Section>
 
-  <!-- 2 · Logos de clientes (parte alta, regla §8) -->
+  {/* 2 · Barra de logos de clientes (parte alta, regla §8) */}
   <Section espaciado="compacto">
     <LogoBar />
   </Section>
 
-  <!-- 3 · Selector de sector -->
+  {/* 3 · Selector de sector → /soluciones/* */}
   <Section fondo="subtle">
     <h2 class="text-[var(--text-2xl)]">¿Desde dónde nos escribes?</h2>
+    <p class="mt-2 text-[var(--color-text-muted)]">Cada audiencia tiene su recorrido.</p>
     <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {SEGMENTOS.map((s) => (
-        <Card href={s.href} titulo={s.label}>
-          Ruta transversal para {s.label.toLowerCase()}.
-        </Card>
+        <Card href={s.href} titulo={s.label}>Solución transversal para {s.label.toLowerCase()}.</Card>
       ))}
     </div>
   </Section>
 
-  <!-- 4 · Línea 1 · Biciparqueaderos (doble peso visual) -->
-  <Section>
+  {/* 4 · Línea 1 · Biciparqueaderos — bloque grande, doble peso visual */}
+  <Section espaciado="amplio">
     <div class="rounded-[var(--radius-lg)] border-2 border-[var(--color-primary-200)] bg-[var(--color-primary-50)] p-8 sm:p-12">
-      <p class="text-[var(--text-xs)] font-semibold uppercase tracking-wide text-[var(--color-primary-700)]">
+      <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-primary-700)]">
         Línea 1 · la que factura
       </p>
       <h2 class="mt-2 text-[var(--text-3xl)]">Biciparqueaderos</h2>
       <p class="mt-3 max-w-[54ch] text-[var(--color-text-muted)]">
-        Proyecto B2B de ticket alto. Decisión por comité: RRHH, sostenibilidad y compras.
+        Proyecto B2B: se cotiza tras la decisión de un comité de RRHH, sostenibilidad y compras.
+        Diseño de distribución, fabricación en acero e instalación llave en mano.
       </p>
-      <div class="mt-6 flex flex-wrap gap-4">
-        <CTA href="/biciparqueaderos" variante="primario">Ver la línea</CTA>
-        <CTA href="/biciparqueaderos/modelos" variante="texto">Ver modelos</CTA>
+      <ul class="mt-6 grid gap-x-8 gap-y-2 text-[var(--text-sm)] text-[var(--color-text-muted)] sm:grid-cols-2">
+        <li>· Modelos para sótano, patio, fachada y espacio público</li>
+        <li>· Distribución modular: empiezas con pocos cupos y amplías</li>
+        <li>· Cumplimiento de Ley 1811 y PESV documentado por modelo</li>
+        <li>· Ficha técnica en PDF de cada modelo</li>
+      </ul>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <CTA href="/biciparqueaderos" variante="primario" tamano="lg">Ver la línea</CTA>
+        <CTA href="/biciparqueaderos/modelos" variante="texto">Comparar modelos</CTA>
       </div>
     </div>
   </Section>
 
-  <!-- 7 · Línea 2 · Mantenimiento / 8 · Línea 3 · Tienda (peso medio) -->
+  {/* 5 · Caso destacado — sin métricas inventadas: enlaza a proyectos verificables */}
   <Section fondo="subtle">
-    <div class="grid gap-6 lg:grid-cols-2">
-      <Card titulo="Mantenimiento" href="/mantenimiento" eyebrow="Línea 2 · servicio recurrente">
-        Jornadas en sede, taller propio y a domicilio. Cierra con agendamiento.
-      </Card>
-      <Card titulo="Tienda" href="/tienda" eyebrow="Línea 3 · ecommerce">
-        Soportes, morrales, guayas y accesorios con precio público y carrito.
-      </Card>
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="max-w-[46ch]">
+        <h2 class="text-[var(--text-2xl)]">Casos con métricas verificables</h2>
+        <p class="mt-2 text-[var(--color-text-muted)]">
+          Cada caso muestra cupos instalados, área recuperada y adopción, con la fuente del dato.
+        </p>
+      </div>
+      <CTA href="/proyectos" variante="secundario">Ver proyectos</CTA>
     </div>
   </Section>
 
-  <!-- Bloques 5, 6, 9, 10, 11 se agregan en Fase 2 -->
+  {/* 6 · Bloque normativo → /recursos/normativa */}
   <Section>
-    <p class="text-[var(--text-sm)] text-[var(--color-text-muted)]">
-      Pendientes para Fase 2: caso destacado con métricas, bloque normativo,
-      cómo trabajamos, aliados y certificaciones, y el formulario final de 5 campos.
-    </p>
+    <h2 class="text-[var(--text-2xl)]">¿Estás obligado a tener biciparqueadero?</h2>
+    <div class="mt-6 grid gap-4 sm:grid-cols-3">
+      <div class="rounded-[var(--radius-md)] border border-[var(--color-border)] p-5">
+        <p class="font-semibold">Ley 1811 de 2016</p>
+        <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">Promoción del uso de la bicicleta y estímulos para entidades y empresas.</p>
+      </div>
+      <div class="rounded-[var(--radius-md)] border border-[var(--color-border)] p-5">
+        <p class="font-semibold">PESV</p>
+        <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">El Plan Estratégico de Seguridad Vial contempla infraestructura para modos activos.</p>
+      </div>
+      <div class="rounded-[var(--radius-md)] border border-[var(--color-border)] p-5">
+        <p class="font-semibold">POT municipal</p>
+        <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">Los planes de ordenamiento fijan cupos mínimos de estacionamiento de bicicletas.</p>
+      </div>
+    </div>
+    <div class="mt-6">
+      <CTA href="/recursos/normativa" variante="secundario">Ver qué te aplica</CTA>
+    </div>
+  </Section>
+
+  {/* 7 · Línea 2 · Mantenimiento — bloque medio, 3 modalidades, CTA Agendar */}
+  <Section fondo="subtle">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Línea 2 · servicio recurrente</p>
+    <h2 class="mt-2 text-[var(--text-2xl)]">Mantenimiento de bicicletas</h2>
+    <div class="mt-6 grid gap-4 sm:grid-cols-3">
+      <Card href="/mantenimiento/jornadas-empresariales" titulo="Jornadas en sede">Llevamos el taller a tu empresa un día pactado.</Card>
+      <Card href="/mantenimiento/taller" titulo="Taller">Dejas tu bici y la recoges lista.</Card>
+      <Card href="/mantenimiento/domicilio" titulo="A domicilio">Un técnico va a tu casa, previa validación de cobertura.</Card>
+    </div>
+    <div class="mt-6">
+      <CTA href="/mantenimiento/agendar" variante="primario">Agendar</CTA>
+    </div>
+  </Section>
+
+  {/* 8 · Línea 3 · Tienda — bloque medio, categorías con precio público → /tienda */}
+  <Section>
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Línea 3 · ecommerce</p>
+    <h2 class="mt-2 text-[var(--text-2xl)]">Tienda de accesorios</h2>
+    <p class="mt-2 text-[var(--color-text-muted)]">Precio público, carrito y envío calculado antes de pagar.</p>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <Card href="/tienda/soportes" titulo="Soportes">De pared, piso y techo.</Card>
+      <Card href="/tienda/morrales-maletines" titulo="Morrales y maletines">Impermeables y alforjas.</Card>
+      <Card href="/tienda/seguridad" titulo="Seguridad">Guayas y candados de U.</Card>
+      <Card href="/tienda/accesorios" titulo="Accesorios">Luces, timbres, guardabarros.</Card>
+    </div>
+    <div class="mt-6">
+      <CTA href="/tienda" variante="secundario">Ir a la tienda</CTA>
+    </div>
+  </Section>
+
+  {/* 9 · Cómo trabajamos, en 4 pasos */}
+  <Section fondo="subtle">
+    <Pasos titulo="Cómo trabajamos" pasos={pasosTrabajo} />
+  </Section>
+
+  {/* 10 · Aliados y certificaciones */}
+  <Section espaciado="compacto">
+    <LogoBar titulo="Aliados y certificaciones" />
+  </Section>
+
+  {/* 11 · CTA final con formulario de 5 campos */}
+  <Section fondo="primario" espaciado="amplio">
+    <div class="grid gap-10 lg:grid-cols-2">
+      <div class="max-w-[42ch]">
+        <h2 class="text-[var(--text-3xl)] text-[var(--color-text-inverse)]">
+          Cuéntanos tu espacio y te devolvemos una propuesta
+        </h2>
+        <p class="mt-3 text-[var(--color-primary-100)]">
+          Cinco campos, sin compromiso. Un ingeniero te responde en menos de 24 h.
+        </p>
+      </div>
+      <div class="rounded-[var(--radius-lg)] bg-[var(--color-surface)] p-6 sm:p-8">
+        <FormularioCotizacion origen="/" idPrefijo="home" />
+      </div>
+    </div>
   </Section>
 </SiteLayout>
