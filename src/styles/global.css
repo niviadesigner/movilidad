@@ -1,58 +1,59 @@
 @import 'tailwindcss';
 
 /* =========================================================================
-   SISTEMA DE DISEÑO — Soluciones de Movilidad (v0, identidad desde cero)
-   Todos los valores son provisionales y están pensados para iterar sin
-   tocar componentes. Cambiar aquí = cambiar en todo el sitio.
-   TODO: reemplazar con la identidad visual definitiva del cliente.
+   SISTEMA DE DISEÑO — Soluciones de Movilidad (v1)
+   Dirección A: petróleo + acero + ámbar señal.
+   Fuentes: Archivo (títulos) + IBM Plex Sans (cuerpo) + IBM Plex Mono (datos),
+   autoalojadas vía @fontsource (sin CDN, regla §6).
+   Se coordina con el logo definitivo del cliente; ajustes = solo este archivo.
    ========================================================================= */
 
 @theme {
-  /* ----- Color: neutro frío como base ----- */
+  /* ----- Neutro: grafito acero frío (leve sesgo verde, nunca gris puro) ----- */
   --color-neutral-0: #ffffff;
-  --color-neutral-50: #f6f8f9;
-  --color-neutral-100: #eef1f3;
-  --color-neutral-200: #dde3e7;
-  --color-neutral-300: #c2ccd2;
-  --color-neutral-400: #97a5ae;
-  --color-neutral-500: #6c7d88;
-  --color-neutral-600: #52626c;
-  --color-neutral-700: #3d4a52;
-  --color-neutral-800: #2a343a;
-  --color-neutral-900: #1a2126;
-  --color-neutral-950: #0f1417;
+  --color-neutral-50: #f4f6f6;
+  --color-neutral-100: #eceff0;
+  --color-neutral-200: #dbe1e2;
+  --color-neutral-300: #c0c9ca;
+  --color-neutral-400: #94a0a1;
+  --color-neutral-500: #697779;
+  --color-neutral-600: #4f5c5e;
+  --color-neutral-700: #3a4547;
+  --color-neutral-800: #262f30;
+  --color-neutral-900: #171e1f;
+  --color-neutral-950: #0e1314;
 
-  /* ----- Primario: verde-azulado profundo (infraestructura + bici, serio) ----- */
-  --color-primary-50: #e8f4f2;
-  --color-primary-100: #c7e6e1;
-  --color-primary-200: #94cec6;
-  --color-primary-300: #5fb0a6;
-  --color-primary-400: #369187;
-  --color-primary-500: #1f766c;
-  --color-primary-600: #175d56;
-  --color-primary-700: #124a45;
-  --color-primary-800: #0f3b37;
-  --color-primary-900: #0b2d2a;
+  /* ----- Primario: petróleo profundo (acero + sostenibilidad, serio) ----- */
+  --color-primary-50: #e9f4f2;
+  --color-primary-100: #c9e5e1;
+  --color-primary-200: #9bcfc8;
+  --color-primary-300: #67b3a9;
+  --color-primary-400: #38938a;
+  --color-primary-500: #1c7a70;
+  --color-primary-600: #166a62;
+  --color-primary-700: #0f4d47;
+  --color-primary-800: #0c3d39;
+  --color-primary-900: #0a302d;
 
-  /* ----- Acento cálido: SOLO para CTA primario ----- */
-  --color-accent-50: #fff4e6;
-  --color-accent-100: #ffe3bf;
-  --color-accent-200: #ffc785;
-  --color-accent-300: #ffa94d;
-  --color-accent-400: #fb8f22;
+  /* ----- Acento ámbar señal: SOLO para el CTA primario ----- */
+  --color-accent-50: #fdf1e3;
+  --color-accent-100: #fadfc0;
+  --color-accent-200: #f5c088;
+  --color-accent-300: #efa04f;
+  --color-accent-400: #ea8a26;
   --color-accent-500: #e8760b;
   --color-accent-600: #c25f08;
-  --color-accent-700: #99490a;
+  --color-accent-700: #98490a;
 
   /* ----- Semánticos ----- */
-  --color-success-500: #1f915a;
-  --color-success-50: #e6f4ec;
-  --color-warning-500: #c98a12;
-  --color-warning-50: #fbf1dd;
-  --color-danger-500: #c0362c;
-  --color-danger-50: #f8e7e5;
-  --color-info-500: #1f6f9c;
-  --color-info-50: #e5f0f7;
+  --color-success-500: #1a8f5c;
+  --color-success-50: #e6f3ec;
+  --color-warning-500: #bd7d10;
+  --color-warning-50: #f9efdb;
+  --color-danger-500: #bf3a2e;
+  --color-danger-50: #f7e7e5;
+  --color-info-500: #1c6f8f;
+  --color-info-50: #e4f0f4;
 
   /* ----- Roles semánticos (los que usan los componentes) ----- */
   --color-bg: var(--color-neutral-0);
@@ -67,11 +68,10 @@
   --color-link: var(--color-primary-600);
   --color-link-hover: var(--color-primary-700);
 
-  /* ----- Tipografía ----- */
-  /* TODO: reemplazar por fuentes de marca autoalojadas (WebFont local, sin CDN). */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-display: var(--font-sans);
-  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  /* ----- Tipografía (autoalojada vía @fontsource en BaseLayout) ----- */
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Archivo', 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
 
   /* Escala tipográfica — razón 1.2 (menor tercera), base 16px */
   --text-xs: 0.83rem;
@@ -104,8 +104,8 @@
   --radius-full: 9999px;
 
   /* ----- Sombras (solo dos: sutil y media) ----- */
-  --shadow-sm: 0 1px 2px 0 rgb(15 20 23 / 0.06), 0 1px 3px 0 rgb(15 20 23 / 0.08);
-  --shadow-md: 0 4px 12px -2px rgb(15 20 23 / 0.10), 0 2px 6px -2px rgb(15 20 23 / 0.08);
+  --shadow-sm: 0 1px 2px 0 rgb(14 19 20 / 0.06), 0 1px 3px 0 rgb(14 19 20 / 0.08);
+  --shadow-md: 0 4px 12px -2px rgb(14 19 20 / 0.10), 0 2px 6px -2px rgb(14 19 20 / 0.08);
 
   /* ----- Layout ----- */
   --container-page: 80rem; /* 1280px: ancho máximo del contenido */

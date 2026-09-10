@@ -24,7 +24,20 @@ Estado: proyecto Astro 5 inicializado, esqueleto navegable de 59 páginas, `astr
 
 ---
 
-## Fase 1 — Línea 1: Biciparqueaderos (la que factura)
+## Fase 1 — Línea 1: Biciparqueaderos (la que factura) — 🔨 ESTRUCTURA LISTA
+
+Estado: plantillas A y B construidas como componentes reutilizables; hub y 4 sectores
+funcionando; listado y ficha de modelo; captura de correo para ficha PDF; formulario de
+cotización de 5 campos con endpoint serverless, validación, honeypot y redirección a
+`/gracias`; notificación de lead vía `notificarLead()` (webhook n8n con fallback a log).
+Identidad v1 aplicada (paleta Dirección A + fuentes Archivo/IBM Plex).
+
+Pendiente antes de cerrar la fase:
+- Copy final de hub y sectores (se redacta aparte, `docs/copy/`).
+- Modelos reales: specs, fotos, PDF de ficha técnica (hoy hay 3 de ejemplo, `borrador: true`).
+- URL real del webhook de n8n en `.env` (`N8N_WEBHOOK_COTIZACIONES`).
+- Portafolio real en PDF para `/gracias`.
+- Un caso de estudio real para el bloque de prueba social.
 
 - Plantilla A aplicada al hub `/biciparqueaderos`
 - Las 4 páginas de sector

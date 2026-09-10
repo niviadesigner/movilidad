@@ -1,0 +1,128 @@
+---
+/**
+ * PLANTILLA B — Ficha de modelo (docs/CLAUDE.md §6).
+ * Galería · nombre y código · specs · normativa · ficha PDF (capta correo) ·
+ * precio o cotizar · relacionados · servicio de instalación/mantenimiento asociado.
+ */
+import Section from '../ui/Section.astro';
+import CTA from '../ui/CTA.astro';
+import CapturaCorreo from '../ui/CapturaCorreo.astro';
+import { formatoCOP } from '../../lib/pricing';
+
+interface ModeloData {
+  nombre: string;
+  codigo: string;
+  familia: string;
+  cupos: number;
+  material: string;
+  dimensiones: string;
+  normativa: string[];
+  fichaPdf?: string;
+  precioDesde?: number;
+  imagenPrincipal?: string;
+  resumen: string;
+}
+interface Props {
+  id: string;
+  data: ModeloData;
+}
+const { id, data } = Astro.props;
+
+const familias: Record<string, { label: string; href: string }> = {
+  corporativo: { label: 'Corporativo', href: '/biciparqueaderos/corporativo' },
+  institucional: { label: 'Institucional y educativo', href: '/biciparqueaderos/institucional' },
+  residencial: { label: 'Residencial y PH', href: '/biciparqueaderos/residencial' },
+  'mobiliario-urbano': { label: 'Mobiliario urbano', href: '/biciparqueaderos/mobiliario-urbano' },
+};
+const familia = familias[data.familia];
+---
+
+<Section espaciado="amplio">
+  <div class="grid gap-10 lg:grid-cols-2">
+    <!-- Galería -->
+    <div>
+      {data.imagenPrincipal ? (
+        <img
+          src={data.imagenPrincipal}
+          alt={`Biciparqueadero ${data.nombre}, modelo ${data.codigo}`}
+          width="720"
+          height="540"
+          class="w-full rounded-[var(--radius-lg)] border border-[var(--color-border)] object-cover"
+        />
+      ) : (
+        <div class="flex aspect-[4/3] w-full items-center justify-center rounded-[var(--radius-lg)] border border-dashed border-[var(--color-border-strong)] bg-[var(--color-bg-subtle)] text-[var(--text-sm)] text-[var(--color-text-muted)]">
+          Foto del modelo pendiente
+        </div>
+      )}
+    </div>
+
+    <!-- Datos -->
+    <div>
+      {familia && (
+        <a href={familia.href} class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-link)] hover:underline">
+          {familia.label}
+        </a>
+      )}
+      <h1 class="mt-2 text-[var(--text-4xl)]">{data.nombre}</h1>
+      <p class="mt-1 font-mono text-[var(--text-sm)] text-[var(--color-text-muted)]">Código {data.codigo}</p>
+      <p class="mt-4 text-[var(--text-base)] text-[var(--color-text-muted)]">{data.resumen}</p>
+
+      <dl class="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+        <div>
+          <dt class="font-mono text-[var(--text-xs)] uppercase text-[var(--color-text-muted)]">Cupos</dt>
+          <dd class="text-[var(--text-base)]">{data.cupos}</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-[var(--text-xs)] uppercase text-[var(--color-text-muted)]">Material</dt>
+          <dd class="text-[var(--text-base)]">{data.material}</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-[var(--text-xs)] uppercase text-[var(--color-text-muted)]">Dimensiones</dt>
+          <dd class="text-[var(--text-base)]">{data.dimensiones}</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-[var(--text-xs)] uppercase text-[var(--color-text-muted)]">Normativa</dt>
+          <dd class="text-[var(--text-base)]">{data.normativa.length ? data.normativa.join(', ') : '—'}</dd>
+        </div>
+      </dl>
+
+      <div class="mt-6 rounded-[var(--radius-md)] border border-[var(--color-border)] p-4">
+        {data.precioDesde ? (
+          <p class="text-[var(--text-base)]">
+            Desde <strong class="text-[var(--text-lg)]">{formatoCOP(data.precioDesde)}</strong>
+            <span class="text-[var(--text-sm)] text-[var(--color-text-muted)]"> + IVA, según cantidad e instalación</span>
+          </p>
+        ) : (
+          <p class="text-[var(--text-sm)] text-[var(--color-text-muted)]">
+            El precio depende de la cantidad de cupos y la instalación. Te lo pasamos en la cotización.
+          </p>
+        )}
+        <div class="mt-3 flex flex-wrap gap-3">
+          <CTA href="/cotizar" variante="primario">Cotizar este modelo</CTA>
+          <CTA href="/biciparqueaderos/diseno-instalacion" variante="secundario">Diseño e instalación</CTA>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Descripción larga del modelo (cuerpo de la colección) -->
+  <div class="prose mt-12 max-w-[42rem] text-[var(--color-text-muted)]">
+    <slot />
+  </div>
+
+  <!-- Ficha técnica PDF con captura de correo -->
+  <div class="mt-12 max-w-[42rem]">
+    <CapturaCorreo modeloId={id} modeloNombre={data.nombre} pdfUrl={data.fichaPdf} />
+  </div>
+
+  <!-- Enlazado interno obligatorio (docs/arquitectura §8) -->
+  <nav aria-label="Relacionados" class="mt-14 border-t border-[var(--color-border)] pt-8">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Relacionados</p>
+    <ul class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 text-[var(--text-sm)]">
+      <li><a class="block rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-3 hover:border-[var(--color-primary-400)]" href="/biciparqueaderos/modelos">Ver todos los modelos</a></li>
+      <li><a class="block rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-3 hover:border-[var(--color-primary-400)]" href="/biciparqueaderos/diseno-instalacion">Diseño e instalación</a></li>
+      <li><a class="block rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-3 hover:border-[var(--color-primary-400)]" href="/mantenimiento/flotas">Mantenimiento para flotas</a></li>
+      <li><a class="block rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-3 hover:border-[var(--color-primary-400)]" href="/tienda/seguridad">Guayas y candados</a></li>
+    </ul>
+  </nav>
+</Section>

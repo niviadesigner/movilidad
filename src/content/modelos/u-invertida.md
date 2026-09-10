@@ -1,17 +1,18 @@
 ---
-nombre: "U invertida (ejemplo)"
-codigo: "MOD-EJEMPLO-001"
-familia: "corporativo"
+nombre: "U invertida"
+codigo: "BP-U2"
+familia: "mobiliario-urbano"
 cupos: 2
-material: "Acero al carbono con recubrimiento en polvo"
-dimensiones: "800 mm x 750 mm"
+material: "Acero al carbono con recubrimiento en polvo (pintura electrostática)"
+dimensiones: "800 × 750 mm (alto × ancho)"
 normativa:
   - "Ley 1811 de 2016"
-  - "NTC (por confirmar)"
-resumen: "Entrada de ejemplo para validar la Plantilla B. Reemplazar con datos reales del catálogo."
+resumen: "El anclaje más simple y robusto: soporta la bici por el cuadro y admite dos candados. Datos de ejemplo para la plantilla; specs definitivas pendientes."
 borrador: true
 ---
 
-<!-- TODO: reemplazar con contenido real del modelo cuando exista el catálogo. -->
+<!-- TODO Fase 1: reemplazar con contenido real del modelo (specs verificadas, fotos). -->
 
-Contenido de ejemplo del modelo. No usar en producción.
+Estructura de un solo arco anclada a piso. Cada arco atiende dos bicicletas, una a
+cada lado, sujetas por el cuadro. Es la opción estándar para espacio público y
+fachadas de comercio.

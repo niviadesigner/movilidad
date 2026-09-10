@@ -1,26 +1,45 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import HubLinea from '../../components/plantillas/HubLinea.astro';
 
 const seo = {
   titulo: 'Diseño e instalación de biciparqueaderos',
   descripcion:
-    'Levantamiento en sitio, diseño de distribución, fabricación e instalación llave en mano de biciparqueaderos.',
+    'Servicio llave en mano: visita técnica, diseño de distribución de cupos, fabricación e instalación con acta y garantía.',
   ruta: '/biciparqueaderos/diseno-instalacion',
+};
+
+const contenido = {
+  eyebrow: 'Biciparqueaderos · Servicio',
+  titulo: 'Diseño e instalación llave en mano',
+  intro:
+    'Un solo responsable de la visita a la entrega. Medimos, proponemos la distribución que cumple la norma, fabricamos e instalamos.',
+  ctaPrimario: { label: 'Cotizar en 24 h', href: '/cotizar' },
+  ctaSecundario: { label: 'Calcular cupos que necesito', href: '/recursos/calculadora-cupos' },
+  pasos: {
+    titulo: 'Cómo funciona',
+    items: [
+      { titulo: 'Visita técnica', texto: 'Medimos el espacio y evaluamos pisos, accesos y anclajes.' },
+      { titulo: 'Diseño de distribución', texto: 'Definimos modelo y número de cupos que caben y cumplen la norma.' },
+      { titulo: 'Fabricación', texto: 'Producimos la estructura en acero con acabado para intemperie.' },
+      { titulo: 'Instalación y entrega', texto: 'Montamos en sitio y entregamos con acta y garantía.' },
+    ],
+  },
+  ventaCruzada: {
+    items: [
+      { label: 'Ver todos los modelos', texto: 'Compara capacidad, material y normativa antes de la visita.', href: '/biciparqueaderos/modelos' },
+      { label: 'Mantenimiento para flotas', texto: 'Deja el parqueadero funcionando y las bicicletas rodando.', href: '/mantenimiento/flotas' },
+      { label: 'Proyectos', texto: 'Instalaciones anteriores por sector.', href: '/proyectos' },
+    ],
+  },
+  cierre: {
+    titulo: 'Agenda la visita técnica',
+    texto: 'Cotiza y un ingeniero coordina la visita y te devuelve una propuesta en menos de 24 h.',
+    cta: { label: 'Cotizar en 24 h', href: '/cotizar' },
+  },
 };
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Diseño e instalación"
-    intro="Servicio llave en mano: visita técnica, diseño de distribución de cupos, fabricación e instalación. Enlace obligado desde cada ficha de modelo."
-    plantilla="A — Hub de línea"
-    fase="Fase 1"
-    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
-    relacionados={[
-      { label: 'Ver todos los modelos', href: '/biciparqueaderos/modelos' },
-      { label: 'Calculadora de cupos', href: '/recursos/calculadora-cupos' },
-      { label: 'Proyectos', href: '/proyectos' },
-    ]}
-  />
+  <HubLinea {...contenido} />
 </SiteLayout>

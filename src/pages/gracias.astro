@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import Placeholder from '../components/ui/Placeholder.astro';
+import Section from '../components/ui/Section.astro';
+import CTA from '../components/ui/CTA.astro';
 
 const seo = {
   titulo: 'Gracias, recibimos tu solicitud',
@@ -8,19 +9,53 @@ const seo = {
   ruta: '/gracias',
   noIndex: true,
 };
+
+// TODO: reemplazar por el portafolio real en PDF.
+const PORTAFOLIO_URL = '/portafolio-soluciones-de-movilidad.pdf';
 ---
 
 <SiteLayout seo={seo} sinMigas>
-  <Placeholder
-    titulo="Recibimos tu solicitud"
-    intro="Página de gracias real, para medir conversiones. Muestra el próximo paso y ofrece la descarga del portafolio."
-    plantilla="Especial"
-    fase="Fase 1"
-    ctaPrimario={{ label: 'Volver al inicio', href: '/' }}
-    ctaSecundario={{ label: 'Ver modelos mientras tanto', href: '/biciparqueaderos/modelos' }}
-    relacionados={[
-      { label: 'Proyectos', href: '/proyectos' },
-      { label: 'Normativa', href: '/recursos/normativa' },
-    ]}
-  />
+  <Section espaciado="amplio" ancho="estrecho">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-primary-700)]">
+      Solicitud recibida
+    </p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Gracias. Un ingeniero te responde en menos de 24 h</h1>
+
+    <ol class="mt-8 grid gap-4">
+      <li class="flex gap-3">
+        <span class="font-mono text-[var(--text-sm)] font-medium text-[var(--color-primary-600)]">01</span>
+        <p class="text-[var(--text-base)] text-[var(--color-text-muted)]">
+          Revisamos tu solicitud y preparamos una propuesta con modelo sugerido, cupos y valor estimado.
+        </p>
+      </li>
+      <li class="flex gap-3">
+        <span class="font-mono text-[var(--text-sm)] font-medium text-[var(--color-primary-600)]">02</span>
+        <p class="text-[var(--text-base)] text-[var(--color-text-muted)]">
+          Te contactamos por correo o teléfono para coordinar la visita técnica.
+        </p>
+      </li>
+      <li class="flex gap-3">
+        <span class="font-mono text-[var(--text-sm)] font-medium text-[var(--color-primary-600)]">03</span>
+        <p class="text-[var(--text-base)] text-[var(--color-text-muted)]">
+          Con la visita hecha, recibes la cotización formal.
+        </p>
+      </li>
+    </ol>
+
+    <div class="mt-10 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-subtle)] p-6">
+      <p class="text-[var(--text-base)] font-semibold">Mientras tanto, mira lo que hemos hecho</p>
+      <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+        Descarga el portafolio con proyectos y modelos.
+      </p>
+      <div class="mt-4">
+        <CTA href={PORTAFOLIO_URL} variante="secundario">Descargar portafolio (PDF)</CTA>
+      </div>
+    </div>
+
+    <nav aria-label="Continuar" class="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[var(--text-sm)]">
+      <a class="font-semibold hover:underline" href="/biciparqueaderos/modelos">Ver modelos</a>
+      <a class="font-semibold hover:underline" href="/proyectos">Ver proyectos</a>
+      <a class="font-semibold hover:underline" href="/recursos/normativa">Normativa Ley 1811 y PESV</a>
+    </nav>
+  </Section>
 </SiteLayout>

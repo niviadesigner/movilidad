@@ -1,0 +1,92 @@
+---
+/**
+ * Captura de correo para descargar una ficha técnica en PDF (Plantilla B).
+ * Progresivo: el POST nativo a /api/ficha-tecnica funciona sin JS (el lead se
+ * registra igual). La confirmación en la misma página se resuelve en cliente,
+ * porque la ficha de modelo es estática y no puede leer el querystring en build.
+ * Estados: ?ficha=enviada · ?ficha=error
+ */
+interface Props {
+  modeloId: string;
+  modeloNombre: string;
+  pdfUrl?: string;
+}
+const { modeloId, modeloNombre, pdfUrl } = Astro.props;
+---
+
+<div class="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-subtle)] p-6" data-captura>
+  <div data-captura-ok hidden>
+    <p class="text-[var(--text-base)] font-semibold text-[var(--color-primary-700)]">
+      Listo, te enviamos la ficha técnica a tu correo.
+    </p>
+    <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      Revisa también la carpeta de spam.
+      {pdfUrl && (
+        <>
+          {' '}También puedes <a class="font-semibold text-[var(--color-link)] underline" href={pdfUrl}>descargarla aquí</a>.
+        </>
+      )}
+    </p>
+  </div>
+
+  <form method="post" action="/api/ficha-tecnica" class="grid gap-3" data-captura-form>
+    <div>
+      <p class="text-[var(--text-base)] font-semibold">Descarga la ficha técnica</p>
+      <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+        {modeloNombre} — PDF con dimensiones, materiales y normativa. Te lo enviamos al correo.
+      </p>
+    </div>
+
+    <p role="alert" hidden data-captura-error class="text-[var(--text-sm)] text-[var(--color-danger-500)]">
+      No pudimos procesar la solicitud. Revisa el correo e inténtalo de nuevo.
+    </p>
+
+    <input type="hidden" name="modeloId" value={modeloId} />
+    <input type="hidden" name="modeloNombre" value={modeloNombre} />
+    <input type="hidden" name="origen" value={Astro.url.pathname} />
+    <!-- trampa anti-bots: debe quedar vacío -->
+    <input type="text" name="empresa_web" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+    <div class="flex flex-col gap-2 sm:flex-row">
+      <label for="ficha-correo" class="sr-only">Tu correo</label>
+      <input
+        id="ficha-correo"
+        name="correo"
+        type="email"
+        required
+        autocomplete="email"
+        placeholder="tucorreo@empresa.com"
+        class="h-11 flex-1 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-[var(--text-base)]"
+      />
+      <button
+        type="submit"
+        class="inline-flex min-h-11 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-accent-500)] px-5 font-semibold text-white transition-colors hover:bg-[var(--color-accent-600)]"
+      >
+        Enviarme la ficha
+      </button>
+    </div>
+    <p class="text-[var(--text-xs)] text-[var(--color-text-muted)]">
+      Al enviar aceptas la <a class="underline" href="/legal/tratamiento-datos">política de tratamiento de datos</a>.
+    </p>
+  </form>
+</div>
+
+<script>
+  const raiz = document.querySelector('[data-captura]');
+  if (raiz) {
+    const params = new URLSearchParams(window.location.search);
+    const estado = params.get('ficha');
+    if (estado === 'enviada') {
+      raiz.querySelector('[data-captura-form]')?.setAttribute('hidden', '');
+      raiz.querySelector('[data-captura-ok]')?.removeAttribute('hidden');
+      raiz.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    } else if (estado === 'error') {
+      raiz.querySelector('[data-captura-error]')?.removeAttribute('hidden');
+    }
+    if (estado) {
+      params.delete('ficha');
+      const qs = params.toString();
+      history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
+    }
+  }
+</script>

@@ -1,27 +1,16 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import HubLinea from '../../components/plantillas/HubLinea.astro';
+import { SECTORES } from '../../data/biciparqueaderos';
 
 const seo = {
   titulo: 'Biciparqueaderos corporativos',
   descripcion:
-    'Biciparqueaderos para sedes empresariales: cumplimiento de PESV, recuperación de área y adopción de la bici entre colaboradores.',
+    'Biciparqueaderos para sedes empresariales: cumplimiento del PESV, recuperación de área y soporte al plan de movilidad.',
   ruta: '/biciparqueaderos/corporativo',
 };
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Biciparqueaderos corporativos"
-    intro="Página de sector dentro de la línea de biciparqueaderos. Habla el lenguaje de RRHH, sostenibilidad y compras."
-    plantilla="A — Hub de línea"
-    fase="Fase 1"
-    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
-    relacionados={[
-      { label: 'Ver modelos', href: '/biciparqueaderos/modelos' },
-      { label: 'Diseño e instalación', href: '/biciparqueaderos/diseno-instalacion' },
-      { label: 'Normativa: Ley 1811 y PESV', href: '/recursos/normativa' },
-      { label: 'Para empresas', href: '/soluciones/empresas' },
-    ]}
-  />
+  <HubLinea {...SECTORES.corporativo} />
 </SiteLayout>

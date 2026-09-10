@@ -9,35 +9,56 @@ const seo = {
   ruta: '/cotizar',
 };
 
-// Estructura del formulario (5 campos máximo, regla §7).
-// El envío real, la validación y /gracias se implementan en Fase 1.
+const hayError = Astro.url.searchParams.get('error') === '1';
+
 type Campo = {
   id: string;
   label: string;
   type: 'text' | 'email' | 'tel' | 'number';
   autocomplete: string;
+  inputmode?: 'numeric' | 'tel';
+  hint?: string;
 };
 const campos: Campo[] = [
   { id: 'nombre', label: 'Nombre', type: 'text', autocomplete: 'name' },
   { id: 'empresa', label: 'Empresa', type: 'text', autocomplete: 'organization' },
   { id: 'correo', label: 'Correo', type: 'email', autocomplete: 'email' },
-  { id: 'telefono', label: 'Teléfono', type: 'tel', autocomplete: 'tel' },
-  { id: 'cupos', label: 'Número aproximado de cupos', type: 'number', autocomplete: 'off' },
+  { id: 'telefono', label: 'Teléfono', type: 'tel', autocomplete: 'tel', inputmode: 'tel' },
+  {
+    id: 'cupos',
+    label: 'Número aproximado de cupos',
+    type: 'number',
+    autocomplete: 'off',
+    inputmode: 'numeric',
+    hint: 'Un estimado sirve. Lo afinamos en la visita técnica.',
+  },
 ];
 ---
 
-<SiteLayout seo={seo}>
+<SiteLayout seo={seo} sinMigas>
   <Section espaciado="amplio" ancho="estrecho">
-    <p class="text-[var(--text-xs)] font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
-      Esqueleto navegable · el envío se conecta en Fase 1
-    </p>
-    <h1 class="mt-3 text-[var(--text-4xl)]">Cotiza y un ingeniero te responde en menos de 24 h</h1>
+    <h1 class="text-[var(--text-4xl)]">Cotiza y un ingeniero te responde en menos de 24 h</h1>
     <p class="mt-4 text-[var(--text-lg)] text-[var(--color-text-muted)]">
       Cinco campos, sin compromiso. Con esto preparamos una propuesta con cupos, modelo
       sugerido y valor estimado.
     </p>
 
-    <form class="mt-10 grid gap-5" aria-describedby="cotizar-nota" method="post" action="/cotizar">
+    {hayError && (
+      <p role="alert" class="mt-6 rounded-[var(--radius-md)] border border-[var(--color-danger-500)] bg-[var(--color-danger-50)] px-4 py-3 text-[var(--text-sm)] text-[var(--color-danger-500)]">
+        Faltó algún dato o hubo un error. Revisa los campos e inténtalo de nuevo.
+      </p>
+    )}
+
+    <form
+      method="post"
+      action="/api/cotizar"
+      class="mt-10 grid gap-5"
+      novalidate
+    >
+      <input type="hidden" name="origen" value="/cotizar" />
+      <!-- trampa anti-bots: debe quedar vacío -->
+      <input type="text" name="empresa_web" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
       {campos.map((c) => (
         <div class="grid gap-1.5">
           <label for={c.id} class="text-[var(--text-sm)] font-semibold">{c.label}</label>
@@ -45,23 +66,28 @@ const campos: Campo[] = [
             id={c.id}
             name={c.id}
             type={c.type}
+            inputmode={c.inputmode}
             autocomplete={c.autocomplete}
             required
-            class="h-11 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg)] px-3 text-[var(--text-base)]"
+            min={c.type === 'number' ? '1' : undefined}
+            class="h-11 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-[var(--text-base)]"
           />
+          {c.hint && <p class="text-[var(--text-xs)] text-[var(--color-text-muted)]">{c.hint}</p>}
         </div>
       ))}
-      <p id="cotizar-nota" class="text-[var(--text-xs)] text-[var(--color-text-muted)]">
-        Formulario no operativo en el esqueleto. La validación, el envío por n8n/correo y la
-        página <a class="underline" href="/gracias">/gracias</a> se construyen en Fase 1.
-      </p>
+
       <button
         type="submit"
-        disabled
-        class="inline-flex min-h-11 w-fit items-center rounded-[var(--radius-md)] bg-[var(--color-accent-500)] px-7 py-3 font-semibold text-white opacity-60"
+        class="inline-flex min-h-11 w-fit items-center rounded-[var(--radius-md)] bg-[var(--color-accent-500)] px-7 py-3 font-semibold text-white transition-colors hover:bg-[var(--color-accent-600)]"
       >
         Enviar solicitud
       </button>
+
+      <p class="text-[var(--text-xs)] text-[var(--color-text-muted)]">
+        Al enviar aceptas la
+        <a class="underline" href="/legal/tratamiento-datos">política de tratamiento de datos</a>.
+        Un ingeniero te contactará por correo o teléfono.
+      </p>
     </form>
   </Section>
 </SiteLayout>

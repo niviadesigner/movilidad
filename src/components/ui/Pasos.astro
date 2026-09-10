@@ -1,0 +1,29 @@
+---
+/**
+ * "Cómo funciona" en 3-4 pasos. La numeración es real: es una secuencia.
+ */
+export interface Paso {
+  titulo: string;
+  texto: string;
+}
+interface Props {
+  titulo?: string;
+  pasos: Paso[];
+}
+const { titulo = 'Cómo funciona', pasos } = Astro.props;
+---
+
+<div>
+  {titulo && <h2 class="text-[var(--text-2xl)]">{titulo}</h2>}
+  <ol class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {pasos.map((p, i) => (
+      <li class="border-t-2 border-[var(--color-primary-600)] pt-4">
+        <span class="font-mono text-[var(--text-sm)] font-medium text-[var(--color-primary-600)]">
+          {String(i + 1).padStart(2, '0')}
+        </span>
+        <h3 class="mt-1 text-[var(--text-lg)] font-semibold">{p.titulo}</h3>
+        <p class="mt-1.5 text-[var(--text-sm)] text-[var(--color-text-muted)]">{p.texto}</p>
+      </li>
+    ))}
+  </ol>
+</div>

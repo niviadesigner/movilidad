@@ -41,17 +41,20 @@ Cada línea es una autopista independiente con rampas de acceso entre ellas.
    interactividad. Deploy en Vercel (adapter `@astrojs/vercel`). Decidido en Fase 0.
 8. **Pasarela de pago: Wompi.** El checkout se construye sobre una capa de pago abstracta
    para no acoplar el resto del código a Wompi. Decidido en Fase 0.
-9. **Identidad visual: se crea desde cero.** Arranca con el sistema de tokens v0 en
-   `src/styles/global.css` (paleta verde-azulado + acento cálido, tipografía de sistema),
-   todo provisional y marcado `TODO`. Se reemplaza sin tocar componentes. Decidido en Fase 0.
+9. **Paleta: Dirección A — petróleo + acero + ámbar señal.** Primario petróleo
+   (`#0F4D47`/`#166A62`), neutros grafito acero frío, acento ámbar `#E8760B` SOLO en el CTA
+   primario. Definida en tokens v1 de `src/styles/global.css`. Se coordina con el logo; los
+   ajustes finos van solo en ese archivo.
+10. **Tipografía: Archivo (títulos) + IBM Plex Sans (cuerpo) + IBM Plex Mono (datos/specs).**
+   Autoalojadas vía `@fontsource`, importadas en `BaseLayout.astro`. Sin CDN (regla §6).
 
 ---
 
 ## 3. DECISIONES PENDIENTES — PREGUNTA ANTES DE ASUMIR
 
 - [ ] **Operador logístico y tabla de envíos** (bloquea el cálculo de envío del checkout).
-- [ ] **Identidad visual definitiva**: valores reales de paleta, tipografías autoalojadas y
-      logo del cliente, para reemplazar los tokens v0.
+- [ ] **Logo definitivo del cliente** (en construcción). Al llegar: favicon, logo del header
+      y ajuste fino de la paleta si hace falta.
 - [ ] **Copy final** de home y hubs (se está redactando aparte, ver `docs/copy/`).
 - [ ] **Catálogo real**: SKUs, precios, fotos, stock inicial.
 

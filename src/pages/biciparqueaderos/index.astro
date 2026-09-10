@@ -1,30 +1,16 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import HubLinea from '../../components/plantillas/HubLinea.astro';
+import { HUB } from '../../data/biciparqueaderos';
 
 const seo = {
   titulo: 'Biciparqueaderos para empresas, instituciones y conjuntos',
   descripcion:
-    'Diseño, fabricación e instalación de biciparqueaderos. Cotiza tu proyecto y un ingeniero te responde en menos de 24 h.',
+    'Diseño, fabricación e instalación de biciparqueaderos que cumplen la Ley 1811 y el PESV. Cotiza y un ingeniero te responde en menos de 24 h.',
   ruta: '/biciparqueaderos',
 };
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Biciparqueaderos"
-    intro="La línea que factura. Proyecto B2B de ticket alto que se cierra con cotización tras la decisión de un comité de compras."
-    plantilla="A — Hub de línea"
-    fase="Fase 1"
-    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
-    ctaSecundario={{ label: 'Calcular cupos', href: '/recursos/calculadora-cupos' }}
-    relacionados={[
-      { label: 'Corporativo', href: '/biciparqueaderos/corporativo' },
-      { label: 'Institucional y educativo', href: '/biciparqueaderos/institucional' },
-      { label: 'Residencial y PH', href: '/biciparqueaderos/residencial' },
-      { label: 'Mobiliario urbano', href: '/biciparqueaderos/mobiliario-urbano' },
-      { label: 'Ver todos los modelos', href: '/biciparqueaderos/modelos' },
-      { label: 'Diseño e instalación', href: '/biciparqueaderos/diseno-instalacion' },
-    ]}
-  />
+  <HubLinea {...HUB} />
 </SiteLayout>
