@@ -65,6 +65,7 @@ export const LABELS: Record<string, string> = {
 
   '/mi-cuenta': 'Mi cuenta',
   '/mi-cuenta/pedidos': 'Mis pedidos',
+  '/mi-cuenta/pedidos/detalle': 'Detalle',
   '/mi-cuenta/direcciones': 'Direcciones',
 
   '/legal/terminos': 'Términos',

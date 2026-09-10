@@ -1,6 +1,6 @@
 ---
 import TiendaLayout from '../../layouts/TiendaLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
 
 const seo = {
   titulo: 'Cambios y devoluciones',
@@ -11,14 +11,32 @@ const seo = {
 ---
 
 <TiendaLayout seo={seo}>
-  <Placeholder
-    titulo="Cambios y devoluciones"
-    intro="Política de cambios y devoluciones alineada con el Estatuto del Consumidor (retracto de 5 días hábiles). Texto pendiente de revisión legal."
-    plantilla="Especial"
-    fase="Fase 4"
-    relacionados={[
-      { label: 'Envíos y entregas', href: '/tienda/envios' },
-      { label: 'Garantía', href: '/tienda/garantia' },
-    ]}
-  />
+  <Section espaciado="amplio" ancho="estrecho">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Tienda</p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Cambios y devoluciones</h1>
+
+    <p class="mt-6 font-mono text-[var(--text-xs)] text-[var(--color-text-muted)]">
+      Texto guía, pendiente de revisión legal antes de publicar.
+    </p>
+
+    <h2 class="mt-8 font-display text-[var(--text-xl)] font-bold">Derecho de retracto</h2>
+    <p class="mt-2 text-[var(--color-text-muted)]">
+      Según el Estatuto del Consumidor (Ley 1480 de 2011), en compras a distancia tienes hasta
+      5 días hábiles después de recibir el producto para retractarte, siempre que no lo hayas usado
+      y esté en su empaque original. El reembolso se hace a más tardar en 30 días calendario.
+    </p>
+
+    <h2 class="mt-8 font-display text-[var(--text-xl)] font-bold">Cambios</h2>
+    <p class="mt-2 text-[var(--color-text-muted)]">
+      Si el producto llegó con defecto de fabricación o no corresponde a lo pedido, lo cambiamos
+      sin costo. Escríbenos con tu número de pedido y una foto.
+    </p>
+
+    <h2 class="mt-8 font-display text-[var(--text-xl)] font-bold">Cómo iniciar el proceso</h2>
+    <ol class="mt-2 grid gap-2 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      <li>1. Contáctanos con el número de pedido dentro del plazo.</li>
+      <li>2. Coordinamos la recogida o el punto de entrega.</li>
+      <li>3. Revisamos el producto y procesamos el cambio o el reembolso.</li>
+    </ol>
+  </Section>
 </TiendaLayout>

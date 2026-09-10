@@ -1,6 +1,8 @@
 ---
 import TiendaLayout from '../../layouts/TiendaLayout.astro';
 import Section from '../../components/ui/Section.astro';
+import BuscadorTienda from '../../components/islands/BuscadorTienda.tsx';
+import { CATEGORIAS, getProductos, categoriaMeta, rutaProducto } from '../../lib/tienda';
 
 const seo = {
   titulo: 'Buscar en la tienda',
@@ -10,30 +12,32 @@ const seo = {
 };
 
 const q = Astro.url.searchParams.get('q') ?? '';
+
+const catalogo = (await getProductos()).map((p) => ({
+  id: p.id,
+  nombre: p.data.nombre,
+  sku: p.data.sku,
+  categoria: p.data.categoria,
+  categoriaNombre: categoriaMeta(p.data.categoria)?.nombre ?? p.data.categoria,
+  precio: p.data.precio,
+  precioAntes: p.data.precioAntes,
+  stock: p.data.stock,
+  resumen: p.data.resumen,
+  ruta: rutaProducto(p),
+  imagen: p.data.imagenes[0],
+}));
 ---
 
 <TiendaLayout seo={seo}>
   <Section espaciado="amplio">
     <h1 class="text-[var(--text-3xl)]">Buscar en la tienda</h1>
-    <form role="search" method="get" action="/tienda/buscar" class="mt-6 flex max-w-[36rem] gap-2">
-      <label for="q" class="sr-only">Términos de búsqueda</label>
-      <input
-        id="q"
-        name="q"
-        type="search"
-        value={q}
-        placeholder="Ej.: candado de U, morral impermeable"
-        class="h-11 flex-1 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg)] px-3"
+    <div class="mt-8">
+      <BuscadorTienda
+        client:load
+        catalogo={catalogo}
+        categorias={CATEGORIAS.map((c) => ({ slug: c.slug, nombre: c.nombre }))}
+        consultaInicial={q}
       />
-      <button type="submit" class="min-h-11 rounded-[var(--radius-md)] bg-[var(--color-primary-600)] px-5 font-semibold text-white">
-        Buscar
-      </button>
-    </form>
-
-    <p class="mt-8 text-[var(--text-sm)] text-[var(--color-text-muted)]">
-      {q
-        ? `El buscador con resultados reales se implementa en Fase 4. Consulta: "${q}".`
-        : 'El buscador con resultados reales se implementa en Fase 4.'}
-    </p>
+    </div>
   </Section>
 </TiendaLayout>

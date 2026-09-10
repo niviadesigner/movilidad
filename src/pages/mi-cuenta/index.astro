@@ -1,6 +1,7 @@
 ---
 import TiendaLayout from '../../layouts/TiendaLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import Card from '../../components/ui/Card.astro';
 
 const seo = {
   titulo: 'Mi cuenta',
@@ -11,14 +12,16 @@ const seo = {
 ---
 
 <TiendaLayout seo={seo}>
-  <Placeholder
-    titulo="Mi cuenta"
-    intro="Área privada del cliente de la tienda. La cuenta es opcional: se ofrece al final del checkout, no antes."
-    plantilla="Especial"
-    fase="Fase 4"
-    relacionados={[
-      { label: 'Mis pedidos', href: '/mi-cuenta/pedidos' },
-      { label: 'Direcciones', href: '/mi-cuenta/direcciones' },
-    ]}
-  />
+  <Section espaciado="amplio">
+    <h1 class="text-[var(--text-4xl)]">Mi cuenta</h1>
+    <p class="mt-4 max-w-[52rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+      La compra es como invitado. Por ahora, tus pedidos y direcciones se guardan en este
+      dispositivo; la cuenta con inicio de sesión llega más adelante.
+    </p>
+
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      <Card href="/mi-cuenta/pedidos" titulo="Mis pedidos">Historial de compras hechas en este dispositivo.</Card>
+      <Card href="/mi-cuenta/direcciones" titulo="Direcciones">Direcciones guardadas para el checkout.</Card>
+    </div>
+  </Section>
 </TiendaLayout>

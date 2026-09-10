@@ -1,6 +1,7 @@
 ---
 import TiendaLayout from '../../layouts/TiendaLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import PaginaCarrito from '../../components/islands/PaginaCarrito.tsx';
 
 const seo = {
   titulo: 'Carrito',
@@ -11,15 +12,10 @@ const seo = {
 ---
 
 <TiendaLayout seo={seo}>
-  <Placeholder
-    titulo="Carrito"
-    intro="Resumen del carrito con mini-preview al agregar. Nunca se redirige al carrito automáticamente: mata la compra múltiple (docs/arquitectura §4)."
-    plantilla="Especial"
-    fase="Fase 4"
-    ctaPrimario={{ label: 'Seguir comprando', href: '/tienda' }}
-    relacionados={[
-      { label: 'Envíos y entregas', href: '/tienda/envios' },
-      { label: 'Cambios y devoluciones', href: '/tienda/devoluciones' },
-    ]}
-  />
+  <Section espaciado="amplio">
+    <h1 class="text-[var(--text-4xl)]">Tu carrito</h1>
+    <div class="mt-8">
+      <PaginaCarrito client:load />
+    </div>
+  </Section>
 </TiendaLayout>

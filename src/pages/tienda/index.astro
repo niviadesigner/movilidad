@@ -2,7 +2,10 @@
 import TiendaLayout from '../../layouts/TiendaLayout.astro';
 import Section from '../../components/ui/Section.astro';
 import Card from '../../components/ui/Card.astro';
-import { NAV_TIENDA } from '../../lib/nav';
+import TarjetaProducto from '../../components/tienda/TarjetaProducto.astro';
+import { CATEGORIAS, getDestacados } from '../../lib/tienda';
+import { UMBRAL_ENVIO_GRATIS } from '../../lib/envios';
+import { formatoCOP } from '../../lib/pricing';
 
 const seo = {
   titulo: 'Tienda de accesorios para bicicleta',
@@ -10,25 +13,33 @@ const seo = {
     'Soportes, morrales, guayas, candados y accesorios para tu bicicleta. Precio público, envío calculado antes del pago y compra sin registro.',
   ruta: '/tienda',
 };
+
+const destacados = await getDestacados(4);
 ---
 
 <TiendaLayout seo={seo}>
   <Section espaciado="amplio">
-    <p class="text-[var(--text-xs)] font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
-      Esqueleto navegable · el catálogo y el carrito llegan en Fase 4
-    </p>
-    <h1 class="mt-3 text-[var(--text-4xl)]">Tienda</h1>
-    <p class="mt-4 max-w-[52ch] text-[var(--text-lg)] text-[var(--color-text-muted)]">
-      Ecommerce con carrito y precio público. Checkout de invitado, costo de envío calculado
-      antes de pagar y pasarela Wompi.
+    <h1 class="text-[var(--text-4xl)]">Tienda</h1>
+    <p class="mt-4 max-w-[52rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+      Todo para moverte y dejar la bici segura. Precio público, compra como invitado y
+      envío gratis desde {formatoCOP(UMBRAL_ENVIO_GRATIS)}.
     </p>
 
-    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {NAV_TIENDA.map((c) => (
-        <Card href={c.href} titulo={c.label}>Categoría de la tienda.</Card>
+    <h2 class="mt-12 font-display text-[var(--text-2xl)] font-bold">Destacados</h2>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {destacados.map((p) => <TarjetaProducto producto={p} />)}
+    </div>
+
+    <h2 class="mt-14 font-display text-[var(--text-2xl)] font-bold">Categorías</h2>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {CATEGORIAS.map((c) => (
+        <Card href={`/tienda/${c.slug}`} titulo={c.nombre}>{c.descripcion}</Card>
       ))}
       <Card href="/tienda/corporativo" titulo="Compra por volumen" eyebrow="B2B">
-        Descuento por volumen visible, con el mismo motor de precios que la cotización.
+        Descuento por cantidad con el mismo motor de precios que la cotización.
+      </Card>
+      <Card href="/tienda/ofertas" titulo="Ofertas" eyebrow="Descuentos">
+        Productos con precio anterior real y verificable.
       </Card>
     </div>
 

@@ -1,26 +1,15 @@
 ---
 import TiendaLayout from '../../layouts/TiendaLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import GrillaCategoria from '../../components/tienda/GrillaCategoria.astro';
 
 const seo = {
   titulo: 'Soportes para bicicleta',
   descripcion:
-    'Soportes de pared, piso y techo para guardar la bicicleta en casa u oficina. Precio y disponibilidad visibles en la grilla.',
+    'Soportes de pared, piso y techo para guardar la bicicleta en casa u oficina. Precio y disponibilidad visibles.',
   ruta: '/tienda/soportes',
 };
 ---
 
 <TiendaLayout seo={seo}>
-  <Placeholder
-    titulo="Soportes para bicicleta"
-    intro="Página de categoría de la tienda. Grilla de productos con precio y disponibilidad visibles, filtros y orden."
-    plantilla="Especial"
-    fase="Fase 4"
-    ctaPrimario={{ label: 'Ver todas las categorías', href: '/tienda' }}
-    relacionados={[
-      { label: 'Seguridad: guayas y candados', href: '/tienda/seguridad' },
-      { label: 'Accesorios', href: '/tienda/accesorios' },
-      { label: 'Compra por volumen', href: '/tienda/corporativo' },
-    ]}
-  />
+  <GrillaCategoria slug="soportes" />
 </TiendaLayout>

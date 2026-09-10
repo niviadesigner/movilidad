@@ -1,0 +1,56 @@
+---
+/**
+ * Tarjeta de producto para grillas de categoría y destacados.
+ * Precio y disponibilidad visibles en la grilla, no solo en la ficha (regla §7).
+ */
+import { formatoCOP } from '../../lib/pricing';
+import { rutaProducto, porcentajeDescuento, type Producto } from '../../lib/tienda';
+import BotonAgregar from '../islands/BotonAgregar.tsx';
+
+interface Props {
+  producto: Producto;
+}
+const { producto } = Astro.props;
+const d = producto.data;
+const ruta = rutaProducto(producto);
+const dto = porcentajeDescuento(d.precio, d.precioAntes);
+const agotado = d.stock <= 0;
+---
+
+<article class="flex flex-col rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
+  <a href={ruta} class="block">
+    <div class="relative flex aspect-square items-center justify-center overflow-hidden rounded-[var(--radius-md)] bg-[var(--color-bg-subtle)]">
+      {d.imagenes[0] ? (
+        <img src={d.imagenes[0]} alt={d.nombre} width="320" height="320" loading="lazy" class="h-full w-full object-cover" />
+      ) : (
+        <span class="text-[var(--text-xs)] text-[var(--color-text-muted)]">Foto pendiente</span>
+      )}
+      {dto && (
+        <span class="absolute left-2 top-2 rounded-[var(--radius-sm)] bg-[var(--color-accent-300)] px-1.5 py-0.5 text-[var(--text-xs)] font-bold text-[var(--color-neutral-900)]">
+          −{dto}%
+        </span>
+      )}
+    </div>
+  </a>
+
+  <a href={ruta} class="mt-3 font-semibold hover:underline">{d.nombre}</a>
+  <p class="mt-1 flex-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">{d.resumen}</p>
+
+  <div class="mt-3 flex items-end justify-between gap-2">
+    <div>
+      <span class="font-display text-[var(--text-lg)] font-bold tabular-nums">{formatoCOP(d.precio)}</span>
+      {d.precioAntes && (
+        <span class="ml-1.5 text-[var(--text-xs)] text-[var(--color-text-muted)] line-through tabular-nums">{formatoCOP(d.precioAntes)}</span>
+      )}
+      <span class:list={['block text-[var(--text-xs)]', agotado ? 'text-[var(--color-text-muted)]' : 'text-[var(--color-success-500)]']}>
+        {agotado ? 'Agotado' : 'Disponible'}
+      </span>
+    </div>
+    <BotonAgregar
+      client:visible
+      compacto
+      stock={d.stock}
+      item={{ sku: d.sku, nombre: d.nombre, precio: d.precio, categoria: d.categoria, ruta }}
+    />
+  </div>
+</article>

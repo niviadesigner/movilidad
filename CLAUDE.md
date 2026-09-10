@@ -54,6 +54,10 @@ Cada línea es una autopista independiente con rampas de acceso entre ellas.
    En segundo plano registra el lead en `/api/agendar`. Decidido en Fase 3.
 13. **Contacto único: `305 713 4994`** (`573057134994`), el mismo para llamar y WhatsApp.
    Valor por defecto en `src/lib/site.ts`; `PUBLIC_TEL`/`PUBLIC_WHATSAPP` lo sobrescriben.
+14. **Carrito y checkout (Fase 4):** carrito en `localStorage` (`src/lib/carrito.ts`); precios
+   siempre recalculados en el servidor (`/api/pedido`); pago vía `src/lib/pago.ts` — modo demo
+   si no hay llaves de Wompi, Wompi Checkout Web (con firma de integridad) cuando las hay.
+   Sin cuenta con login: pedidos y direcciones son locales al dispositivo hasta nueva fase.
 
 ---
 

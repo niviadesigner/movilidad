@@ -1,6 +1,8 @@
 ---
 import TiendaLayout from '../../layouts/TiendaLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import CTA from '../../components/ui/CTA.astro';
+import DetallePedido from '../../components/islands/DetallePedido.tsx';
 
 const seo = {
   titulo: 'Pedido confirmado',
@@ -8,15 +10,27 @@ const seo = {
   ruta: '/tienda/pedido-confirmado',
   noIndex: true,
 };
+
+const ref = Astro.url.searchParams.get('ref') ?? '';
 ---
 
 <TiendaLayout seo={seo}>
-  <Placeholder
-    titulo="Pedido confirmado"
-    intro="Confirmación de compra con número de pedido, resumen y próximo paso. Dispara el correo transaccional y habilita el rastreo."
-    plantilla="Especial"
-    fase="Fase 4"
-    ctaPrimario={{ label: 'Ver mis pedidos', href: '/mi-cuenta/pedidos' }}
-    ctaSecundario={{ label: 'Seguir comprando', href: '/tienda' }}
-  />
+  <Section espaciado="amplio">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-primary-700)]">
+      Pedido confirmado
+    </p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Gracias por tu compra</h1>
+    <p class="mt-4 max-w-[52rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+      Te enviamos el comprobante al correo. Aquí está el resumen{ref && <> del pedido <span class="font-mono">{ref}</span></>}.
+    </p>
+
+    <div class="mt-10">
+      <DetallePedido client:load />
+    </div>
+
+    <nav aria-label="Continuar" class="mt-10 flex flex-wrap gap-4">
+      <CTA href="/tienda" variante="secundario">Seguir comprando</CTA>
+      <CTA href="/mi-cuenta/pedidos" variante="texto">Ver mis pedidos</CTA>
+    </nav>
+  </Section>
 </TiendaLayout>

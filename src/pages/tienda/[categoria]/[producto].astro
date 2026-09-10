@@ -1,34 +1,32 @@
 ---
+import { getCollection, render } from 'astro:content';
 import TiendaLayout from '../../../layouts/TiendaLayout.astro';
-import Section from '../../../components/ui/Section.astro';
-import CTA from '../../../components/ui/CTA.astro';
+import FichaProducto from '../../../components/plantillas/FichaProducto.astro';
+import { categoriaMeta } from '../../../lib/tienda';
 
-/**
- * Ficha de producto (Plantilla B). Fase 0: sin catálogo real.
- * Se genera una única ruta de ejemplo para poder ver la plantilla.
- * En Fase 4 las rutas salen del catálogo en Supabase.
- */
-export function getStaticPaths() {
-  return [
-    {
-      params: { categoria: 'seguridad', producto: 'ejemplo' },
-      props: {
-        nombre: 'Producto de ejemplo',
-        categoriaLabel: 'Seguridad: guayas y candados',
-        categoriaHref: '/tienda/seguridad',
-      },
-    },
-  ];
+export async function getStaticPaths() {
+  const productos = await getCollection('productos');
+  return productos.map((p) => {
+    const relacionados = productos
+      .filter((x) => x.data.categoria === p.data.categoria && x.id !== p.id)
+      .slice(0, 4);
+    return {
+      params: { categoria: p.data.categoria, producto: p.id },
+      props: { producto: p, relacionados },
+    };
+  });
 }
 
-const { nombre, categoriaLabel, categoriaHref } = Astro.props;
-const { categoria, producto } = Astro.params;
+const { producto, relacionados } = Astro.props;
+const { Content } = await render(producto);
+const d = producto.data;
+const cat = categoriaMeta(d.categoria);
 
 const seo = {
-  titulo: `${nombre}`,
-  descripcion: 'Ficha de producto de ejemplo para validar la plantilla. Sin catálogo real todavía.',
-  ruta: `/tienda/${categoria}/${producto}`,
-  noIndex: true,
+  titulo: `${d.nombre}`,
+  descripcion: d.resumen,
+  ruta: `/tienda/${d.categoria}/${producto.id}`,
+  noIndex: d.borrador,
   tipo: 'product' as const,
 };
 ---
@@ -36,31 +34,13 @@ const seo = {
 <TiendaLayout
   seo={seo}
   migasOverrides={{
-    [categoriaHref]: categoriaLabel,
-    [`/tienda/${categoria}/${producto}`]: nombre,
+    [`/tienda/${d.categoria}`]: cat?.nombre ?? d.categoria,
+    [`/tienda/${d.categoria}/${producto.id}`]: d.nombre,
   }}
 >
-  <Section espaciado="amplio">
-    <p class="text-[var(--text-xs)] font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
-      Plantilla B — Ficha de producto · se completa en Fase 4
-    </p>
-    <h1 class="mt-3 text-[var(--text-4xl)]">{nombre}</h1>
-    <p class="mt-4 max-w-[52ch] text-[var(--color-text-muted)]">
-      Aquí van: galería, precio con descuento por volumen visible, specs, garantía,
-      certificaciones y productos relacionados. El precio sale del motor de precios único.
-    </p>
-    <div class="mt-8 flex flex-wrap gap-4">
-      <CTA href="/tienda/carrito" variante="primario" tamano="lg">Agregar al carrito</CTA>
-      <CTA href={categoriaHref} variante="secundario">Volver a {categoriaLabel}</CTA>
+  <FichaProducto producto={producto} relacionados={relacionados}>
+    <div class="prose mt-10 max-w-[42rem] text-[var(--color-text-muted)]">
+      <Content />
     </div>
-
-    <nav aria-label="Venta cruzada" class="mt-14 border-t border-[var(--color-border)] pt-8 text-[var(--text-sm)]">
-      <p class="text-[var(--color-text-muted)]">
-        Cada ficha de seguridad enlaza a biciparqueaderos con un bloque de venta cruzada:
-      </p>
-      <a class="mt-2 inline-block font-semibold hover:underline" href="/biciparqueaderos">
-        ¿Necesitas un biciparqueadero en tu edificio? &rarr;
-      </a>
-    </nav>
-  </Section>
+  </FichaProducto>
 </TiendaLayout>

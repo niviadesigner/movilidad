@@ -1,6 +1,6 @@
 ---
 import TiendaLayout from '../../layouts/TiendaLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
 
 const seo = {
   titulo: 'Garantía de productos',
@@ -10,14 +10,39 @@ const seo = {
 ---
 
 <TiendaLayout seo={seo}>
-  <Placeholder
-    titulo="Garantía"
-    intro="Condiciones de garantía por categoría. Las certificaciones y aliados que respaldan cada producto también se muestran en su ficha (regla §8)."
-    plantilla="Especial"
-    fase="Fase 4"
-    relacionados={[
-      { label: 'Cambios y devoluciones', href: '/tienda/devoluciones' },
-      { label: 'Envíos y entregas', href: '/tienda/envios' },
-    ]}
-  />
+  <Section espaciado="amplio" ancho="estrecho">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Tienda</p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Garantía</h1>
+
+    <p class="mt-6 font-mono text-[var(--text-xs)] text-[var(--color-text-muted)]">
+      Plazos por categoría pendientes de confirmar con cada proveedor.
+    </p>
+
+    <p class="mt-4 text-[var(--color-text-muted)]">
+      Todos los productos tienen la garantía legal por defectos de fabricación que establece el
+      Estatuto del Consumidor. Además, algunos fabricantes ofrecen garantía extendida.
+    </p>
+
+    <h2 class="mt-8 font-display text-[var(--text-xl)] font-bold">Qué cubre</h2>
+    <ul class="mt-2 grid gap-2 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      <li>· Defectos de fabricación en materiales y ensamble.</li>
+      <li>· Fallas de funcionamiento no atribuibles al uso indebido.</li>
+    </ul>
+
+    <h2 class="mt-8 font-display text-[var(--text-xl)] font-bold">Qué no cubre</h2>
+    <ul class="mt-2 grid gap-2 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      <li>· Desgaste normal por uso.</li>
+      <li>· Daños por caídas, humedad fuera de especificación o manipulación.</li>
+    </ul>
+
+    <h2 class="mt-8 font-display text-[var(--text-xl)] font-bold">Cómo reclamar</h2>
+    <p class="mt-2 text-[var(--color-text-muted)]">
+      Escríbenos con el número de pedido, una descripción de la falla y fotos. Te indicamos si se
+      resuelve con cambio, reparación o reembolso.
+    </p>
+    <p class="mt-6 text-[var(--text-sm)]">
+      Las certificaciones y aliados que respaldan cada producto también aparecen en su ficha,
+      no solo aquí (regla §8).
+    </p>
+  </Section>
 </TiendaLayout>

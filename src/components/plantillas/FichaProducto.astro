@@ -1,0 +1,122 @@
+---
+/**
+ * PLANTILLA B — Ficha de producto de tienda.
+ * Galería · nombre y SKU · precio con descuento por volumen visible · specs ·
+ * agregar al carrito · relacionados · venta cruzada (regla §8).
+ */
+import Section from '../ui/Section.astro';
+import BotonAgregar from '../islands/BotonAgregar.tsx';
+import { formatoCOP, TRAMOS_VOLUMEN } from '../../lib/pricing';
+import { categoriaMeta, rutaProducto, porcentajeDescuento, type Producto } from '../../lib/tienda';
+
+interface Props {
+  producto: Producto;
+  relacionados: Producto[];
+}
+const { producto, relacionados } = Astro.props;
+const d = producto.data;
+const cat = categoriaMeta(d.categoria);
+const ruta = rutaProducto(producto);
+const dto = porcentajeDescuento(d.precio, d.precioAntes);
+const agotado = d.stock <= 0;
+
+// Tramos con descuento (ocultamos el primero, que es 0%).
+const tramos = d.descuentoVolumen ? TRAMOS_VOLUMEN.filter((t) => t.descuento > 0) : [];
+---
+
+<Section espaciado="amplio">
+  <div class="grid gap-10 lg:grid-cols-2">
+    <!-- Galería -->
+    <div>
+      {d.imagenes[0] ? (
+        <img src={d.imagenes[0]} alt={d.nombre} width="720" height="720" class="w-full rounded-[var(--radius-lg)] border border-[var(--color-border)] object-cover" />
+      ) : (
+        <div class="flex aspect-square w-full items-center justify-center rounded-[var(--radius-lg)] border border-dashed border-[var(--color-border-strong)] bg-[var(--color-bg-subtle)] text-[var(--text-sm)] text-[var(--color-text-muted)]">
+          Foto del producto pendiente
+        </div>
+      )}
+    </div>
+
+    <!-- Datos -->
+    <div>
+      {cat && (
+        <a href={`/tienda/${cat.slug}`} class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-link)] hover:underline">
+          {cat.nombre}
+        </a>
+      )}
+      <h1 class="mt-2 text-[var(--text-4xl)]">{d.nombre}</h1>
+      <p class="mt-1 font-mono text-[var(--text-sm)] text-[var(--color-text-muted)]">SKU {d.sku}</p>
+
+      <div class="mt-4 flex items-baseline gap-3">
+        <span class="font-display text-[var(--text-3xl)] font-bold tabular-nums">{formatoCOP(d.precio)}</span>
+        {d.precioAntes && (
+          <span class="text-[var(--text-base)] text-[var(--color-text-muted)] line-through tabular-nums">{formatoCOP(d.precioAntes)}</span>
+        )}
+        {dto && <span class="rounded-[var(--radius-sm)] bg-[var(--color-accent-300)] px-1.5 py-0.5 text-[var(--text-xs)] font-bold text-[var(--color-neutral-900)]">−{dto}%</span>}
+      </div>
+      <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">Precio sin IVA. El IVA se suma en el carrito.</p>
+      <p class:list={['mt-1 text-[var(--text-sm)]', agotado ? 'text-[var(--color-text-muted)]' : 'text-[var(--color-success-500)]']}>
+        {agotado ? 'Sin stock por ahora' : `Disponible · ${d.stock} en inventario`}
+      </p>
+
+      <p class="mt-4 text-[var(--text-base)] text-[var(--color-text-muted)]">{d.resumen}</p>
+
+      <div class="mt-6">
+        <BotonAgregar client:load stock={d.stock} item={{ sku: d.sku, nombre: d.nombre, precio: d.precio, categoria: d.categoria, ruta }} />
+      </div>
+
+      {tramos.length > 0 && (
+        <div class="mt-6 rounded-[var(--radius-md)] border border-[var(--color-border)] p-4">
+          <p class="text-[var(--text-sm)] font-semibold">Descuento por cantidad</p>
+          <ul class="mt-2 grid gap-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+            {tramos.map((t) => (
+              <li class="flex justify-between">
+                <span>Desde {t.desde} unidades</span>
+                <span class="font-medium text-[var(--color-primary-700)]">−{Math.round(t.descuento * 100)}%</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-2 text-[var(--text-xs)] text-[var(--color-text-muted)]">
+            El mismo motor de precios que la <a class="underline" href="/tienda/corporativo">compra por volumen</a>.
+          </p>
+        </div>
+      )}
+
+      {d.specs.length > 0 && (
+        <dl class="mt-6 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+          {d.specs.map((s) => (
+            <div>
+              <dt class="font-mono text-[var(--text-xs)] uppercase text-[var(--color-text-muted)]">{s.etiqueta}</dt>
+              <dd class="text-[var(--text-sm)]">{s.valor}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+    </div>
+  </div>
+
+  <slot />
+
+  {cat?.cruzada && (
+    <div class="mt-14 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-primary-50)] p-6">
+      <a href={cat.cruzada.href} class="font-semibold text-[var(--color-primary-700)] hover:underline">
+        {cat.cruzada.label} &rarr;
+      </a>
+    </div>
+  )}
+
+  {relacionados.length > 0 && (
+    <nav aria-label="Relacionados" class="mt-14 border-t border-[var(--color-border)] pt-8">
+      <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Relacionados</p>
+      <ul class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 text-[var(--text-sm)]">
+        {relacionados.map((r) => (
+          <li>
+            <a class="block rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-3 hover:border-[var(--color-primary-400)]" href={rutaProducto(r)}>
+              {r.data.nombre}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )}
+</Section>

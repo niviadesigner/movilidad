@@ -1,20 +1,32 @@
 ---
 import TiendaLayout from '../../layouts/TiendaLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import TarjetaProducto from '../../components/tienda/TarjetaProducto.astro';
+import { getOfertas } from '../../lib/tienda';
 
 const seo = {
   titulo: 'Ofertas en accesorios para bicicleta',
-  descripcion: 'Productos con descuento por temporada o fin de serie. Precio antes y después visible.',
+  descripcion: 'Productos con descuento por temporada o fin de serie. Precio anterior real y verificable.',
   ruta: '/tienda/ofertas',
 };
+
+const ofertas = await getOfertas();
 ---
 
 <TiendaLayout seo={seo}>
-  <Placeholder
-    titulo="Ofertas"
-    intro="Grilla de productos con descuento. El precio anterior y el actual deben ser reales y verificables (regla §8)."
-    plantilla="Especial"
-    fase="Fase 4"
-    ctaPrimario={{ label: 'Ver todas las categorías', href: '/tienda' }}
-  />
+  <Section espaciado="amplio">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Tienda</p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Ofertas</h1>
+    <p class="mt-4 max-w-[52rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+      Solo entran productos con un precio anterior real. Nada de descuentos inventados (regla §8).
+    </p>
+
+    {ofertas.length > 0 ? (
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {ofertas.map((p) => <TarjetaProducto producto={p} />)}
+      </div>
+    ) : (
+      <p class="mt-10 text-[var(--text-sm)] text-[var(--color-text-muted)]">No hay ofertas activas ahora mismo.</p>
+    )}
+  </Section>
 </TiendaLayout>

@@ -1,6 +1,8 @@
 ---
 import TiendaLayout from '../../layouts/TiendaLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import CTA from '../../components/ui/CTA.astro';
+import { TRAMOS_VOLUMEN } from '../../lib/pricing';
 
 const seo = {
   titulo: 'Compra por volumen para empresas',
@@ -8,18 +10,41 @@ const seo = {
     'Compra accesorios al por mayor para tu equipo o flota. Descuento por volumen y facturación empresarial.',
   ruta: '/tienda/corporativo',
 };
+
+const tramos = TRAMOS_VOLUMEN.filter((t) => t.descuento > 0);
 ---
 
 <TiendaLayout seo={seo}>
-  <Placeholder
-    titulo="Compra por volumen"
-    intro="Puente entre la tienda y el mundo B2B. El descuento por volumen sale del mismo motor de precios que la cotización comercial (regla §6)."
-    plantilla="Especial"
-    fase="Fase 4"
-    ctaPrimario={{ label: 'Solicitar cotización por volumen', href: '/cotizar' }}
-    relacionados={[
-      { label: 'Para empresas', href: '/soluciones/empresas' },
-      { label: 'Planes de mantenimiento para flotas', href: '/mantenimiento/flotas' },
-    ]}
-  />
+  <Section espaciado="amplio" ancho="estrecho">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Tienda</p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Compra por volumen</h1>
+    <p class="mt-4 text-[var(--text-lg)] text-[var(--color-text-muted)]">
+      Candados, luces y morrales para tu equipo o tu flota. El descuento por cantidad sale del
+      <strong>mismo motor de precios</strong> que la cotización comercial (regla §6).
+    </p>
+
+    <h2 class="mt-10 font-display text-[var(--text-xl)] font-bold">Descuento por cantidad</h2>
+    <ul class="mt-4 grid gap-2 text-[var(--text-sm)]">
+      {tramos.map((t) => (
+        <li class="flex justify-between border-b border-[var(--color-border)] py-2">
+          <span>Desde {t.desde} unidades (en el carrito)</span>
+          <span class="font-semibold text-[var(--color-primary-700)]">−{Math.round(t.descuento * 100)}%</span>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-2 text-[var(--text-xs)] text-[var(--color-text-muted)]">
+      El descuento se aplica automáticamente en el carrito. Para cantidades mayores o mezcla de
+      productos, pide una cotización.
+    </p>
+
+    <div class="mt-8 flex flex-wrap gap-4">
+      <CTA href="/tienda" variante="secundario">Ver productos</CTA>
+      <CTA href="/cotizar" variante="primario">Solicitar cotización por volumen</CTA>
+    </div>
+
+    <nav aria-label="Relacionados" class="mt-12 flex flex-wrap gap-x-6 gap-y-2 text-[var(--text-sm)]">
+      <a class="font-semibold hover:underline" href="/soluciones/empresas">Para empresas</a>
+      <a class="font-semibold hover:underline" href="/mantenimiento/flotas">Mantenimiento para flotas</a>
+    </nav>
+  </Section>
 </TiendaLayout>

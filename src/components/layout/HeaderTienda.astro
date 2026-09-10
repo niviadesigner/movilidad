@@ -7,13 +7,12 @@
  */
 import { NAV_TIENDA, VOLVER_AL_SITIO } from '../../lib/nav';
 import { SITE } from '../../lib/site';
+import { UMBRAL_ENVIO_GRATIS } from '../../lib/envios';
 import Container from './Container.astro';
+import CarritoContador from '../islands/CarritoContador.tsx';
 
 const aqui = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const activo = (href: string) => aqui === href || aqui.startsWith(href + '/');
-
-// TODO: umbral real de envío gratis (depende del operador logístico).
-const UMBRAL_ENVIO_GRATIS = 150000;
 ---
 
 <div class="bg-[var(--color-primary-800)] text-[var(--color-text-inverse)]">
@@ -79,9 +78,9 @@ const UMBRAL_ENVIO_GRATIS = 150000;
         <a href="/mi-cuenta" class="inline-flex h-11 w-11 items-center justify-center" aria-label="Mi cuenta">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" /><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
         </a>
-        <a href="/tienda/carrito" class="relative inline-flex h-11 min-w-11 items-center justify-center gap-1 rounded-[var(--radius-md)] px-2 text-[var(--text-sm)] font-semibold" aria-label="Carrito, 0 productos">
+        <a href="/tienda/carrito" class="relative inline-flex h-11 min-w-11 items-center justify-center gap-1.5 rounded-[var(--radius-md)] px-2 text-[var(--text-sm)] font-semibold" aria-label="Carrito">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-          <span data-carrito-contador>0</span>
+          <CarritoContador client:idle />
         </a>
       </div>
     </div>

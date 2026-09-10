@@ -1,6 +1,7 @@
 ---
 import TiendaLayout from '../../../layouts/TiendaLayout.astro';
-import Placeholder from '../../../components/ui/Placeholder.astro';
+import Section from '../../../components/ui/Section.astro';
+import MisPedidos from '../../../components/islands/MisPedidos.tsx';
 
 const seo = {
   titulo: 'Mis pedidos',
@@ -11,14 +12,10 @@ const seo = {
 ---
 
 <TiendaLayout seo={seo}>
-  <Placeholder
-    titulo="Mis pedidos"
-    intro="Listado de pedidos del cliente con estado y acceso al detalle y rastreo."
-    plantilla="Especial"
-    fase="Fase 4"
-    relacionados={[
-      { label: 'Mi cuenta', href: '/mi-cuenta' },
-      { label: 'Direcciones', href: '/mi-cuenta/direcciones' },
-    ]}
-  />
+  <Section espaciado="amplio">
+    <h1 class="text-[var(--text-4xl)]">Mis pedidos</h1>
+    <div class="mt-6">
+      <MisPedidos client:load />
+    </div>
+  </Section>
 </TiendaLayout>

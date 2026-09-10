@@ -1,0 +1,40 @@
+---
+/**
+ * Página de categoría de tienda: encabezado + grilla de productos + venta cruzada.
+ * Reutilizada por las 4 categorías.
+ */
+import Section from '../ui/Section.astro';
+import TarjetaProducto from './TarjetaProducto.astro';
+import { categoriaMeta, getProductosPorCategoria, type CategoriaSlug } from '../../lib/tienda';
+
+interface Props {
+  slug: CategoriaSlug;
+}
+const { slug } = Astro.props;
+const meta = categoriaMeta(slug)!;
+const productos = await getProductosPorCategoria(slug);
+---
+
+<Section espaciado="amplio">
+  <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Tienda</p>
+  <h1 class="mt-3 text-[var(--text-4xl)]">{meta.nombre}</h1>
+  <p class="mt-4 max-w-[52rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">{meta.descripcion}</p>
+
+  {productos.length > 0 ? (
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {productos.map((p) => <TarjetaProducto producto={p} />)}
+    </div>
+  ) : (
+    <p class="mt-10 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      Aún no hay productos publicados en esta categoría.
+    </p>
+  )}
+
+  {meta.cruzada && (
+    <div class="mt-14 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-primary-50)] p-6">
+      <a href={meta.cruzada.href} class="font-semibold text-[var(--color-primary-700)] hover:underline">
+        {meta.cruzada.label} &rarr;
+      </a>
+    </div>
+  )}
+</Section>

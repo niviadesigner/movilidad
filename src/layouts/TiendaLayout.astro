@@ -9,6 +9,7 @@ import HeaderTienda from '../components/layout/HeaderTienda.astro';
 import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
 import Footer from '../components/layout/Footer.astro';
 import WhatsAppFloat from '../components/islands/WhatsAppFloat.tsx';
+import MiniCarrito from '../components/islands/MiniCarrito.tsx';
 import { whatsappUrl } from '../lib/site';
 import type { SeoInput } from '../lib/seo';
 
@@ -27,4 +28,5 @@ const { seo, migasOverrides = {} } = Astro.props;
   </main>
   <Footer />
   <WhatsAppFloat client:idle href={whatsappUrl('tienda')} ocultarEnMovil={false} />
+  <MiniCarrito client:idle />
 </BaseLayout>

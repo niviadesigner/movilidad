@@ -1,6 +1,8 @@
 ---
 import TiendaLayout from '../../layouts/TiendaLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import { ZONAS_ENVIO, UMBRAL_ENVIO_GRATIS } from '../../lib/envios';
+import { formatoCOP } from '../../lib/pricing';
 
 const seo = {
   titulo: 'Envíos y entregas',
@@ -11,14 +13,49 @@ const seo = {
 ---
 
 <TiendaLayout seo={seo}>
-  <Placeholder
-    titulo="Envíos y entregas"
-    intro="Política de envíos: operador logístico, tabla de tarifas por zona, tiempos y umbral de envío gratis. Datos pendientes de definir con el operador."
-    plantilla="Especial"
-    fase="Fase 4"
-    relacionados={[
-      { label: 'Cambios y devoluciones', href: '/tienda/devoluciones' },
-      { label: 'Garantía', href: '/tienda/garantia' },
-    ]}
-  />
+  <Section espaciado="amplio" ancho="estrecho">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Tienda</p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Envíos y entregas</h1>
+
+    <p class="mt-6 text-[var(--color-text-muted)]">
+      El costo de envío se calcula y se muestra en el checkout, antes de pagar. Envío gratis
+      en compras desde <strong>{formatoCOP(UMBRAL_ENVIO_GRATIS)}</strong> (subtotal con descuento, sin IVA).
+    </p>
+
+    <h2 class="mt-10 font-display text-[var(--text-xl)] font-bold">Tarifas por zona</h2>
+    <p class="font-mono text-[var(--text-xs)] text-[var(--color-text-muted)]">Valores de ejemplo, pendientes del operador logístico.</p>
+    <div class="mt-4 overflow-x-auto">
+      <table class="w-full min-w-[28rem] border-collapse text-[var(--text-sm)]">
+        <thead>
+          <tr class="border-b border-[var(--color-border-strong)] text-left font-mono text-[var(--text-xs)] uppercase text-[var(--color-text-muted)]">
+            <th class="py-2 pr-4">Zona</th>
+            <th class="py-2 pr-4">Tarifa</th>
+            <th class="py-2">Días hábiles</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ZONAS_ENVIO.map((z) => (
+            <tr class="border-b border-[var(--color-border)]">
+              <td class="py-3 pr-4 font-medium">{z.nombre}</td>
+              <td class="py-3 pr-4 tabular-nums">{formatoCOP(z.tarifa)}</td>
+              <td class="py-3 tabular-nums">{z.dias}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="mt-10 font-display text-[var(--text-xl)] font-bold">Cómo funciona</h2>
+    <ul class="mt-3 grid gap-2 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      <li>· El pedido se despacha en días hábiles tras confirmar el pago.</li>
+      <li>· Recibes por correo la guía del transportador para hacer seguimiento.</li>
+      <li>· Si no hay quién reciba, el transportador reprograma la entrega.</li>
+    </ul>
+
+    <p class="mt-8 text-[var(--text-sm)]">
+      ¿Dudas con un pedido? Escríbenos por
+      <a class="underline" href="/tienda/devoluciones">cambios y devoluciones</a> o revisa la
+      <a class="underline" href="/tienda/garantia">garantía</a>.
+    </p>
+  </Section>
 </TiendaLayout>

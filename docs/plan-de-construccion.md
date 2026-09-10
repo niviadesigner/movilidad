@@ -96,7 +96,21 @@ Pendiente antes de cerrar: precios reales de los planes, zonas de cobertura defi
 
 ---
 
-## Fase 4 — Línea 3: Tienda
+## Fase 4 — Línea 3: Tienda — 🔨 ESTRUCTURA LISTA
+
+Estado: colección `productos` (8 de ejemplo, `borrador`); grillas de categoría y ofertas con
+precio y stock visibles; Plantilla B de producto con descuento por volumen visible; carrito
+en localStorage con mini-preview (`MiniCarrito`) y contador vivo en el header; buscador con
+filtros (`BuscadorTienda`); checkout de invitado (`Checkout`) con envío calculado antes de
+pagar; `/api/pedido` serverless que recalcula precios en el servidor, notifica y usa la capa
+de pago abstracta (`pago.ts`, modo demo sin llaves / Wompi Checkout Web con firma de
+integridad cuando hay llaves); confirmación de pedido y "Mis pedidos"/"Direcciones" locales
+al dispositivo. Envíos, devoluciones y garantía con contenido base.
+Probado de punta a punta en modo demo: carrito → checkout → pedido registrado → confirmación.
+
+Pendiente antes de cerrar: catálogo real (SKU, precios, fotos, stock), tabla de envíos del
+operador logístico, llaves de Wompi, correo transaccional, y cuenta real con inicio de sesión
+(hoy los pedidos son locales al dispositivo).
 
 - Catálogo, categorías, buscador y filtros
 - Ficha de producto con descuento por volumen visible

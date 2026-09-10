@@ -6,7 +6,7 @@
  * TODO Fase 1: conectar el webhook real de n8n o el envío por correo.
  */
 
-type TipoLead = 'cotizacion' | 'ficha-tecnica' | 'agendamiento';
+type TipoLead = 'cotizacion' | 'ficha-tecnica' | 'agendamiento' | 'pedido';
 
 interface LeadBase {
   tipo: TipoLead;
@@ -40,12 +40,26 @@ export interface LeadAgendamiento extends LeadBase {
   detalle: Record<string, string>;
 }
 
-export type Lead = LeadCotizacion | LeadFicha | LeadAgendamiento;
+export interface LeadPedido extends LeadBase {
+  tipo: 'pedido';
+  referencia: string;
+  modoPago: 'demo' | 'wompi';
+  nombre: string;
+  correo: string;
+  telefono: string;
+  direccion: string;
+  zona: string;
+  total: number;
+  lineas: { sku: string; nombre: string; unidades: number; precio: number }[];
+}
+
+export type Lead = LeadCotizacion | LeadFicha | LeadAgendamiento | LeadPedido;
 
 const WEBHOOKS: Record<TipoLead, string | undefined> = {
   cotizacion: import.meta.env.N8N_WEBHOOK_COTIZACIONES,
   'ficha-tecnica': import.meta.env.N8N_WEBHOOK_COTIZACIONES, // reusar hasta tener uno propio
   agendamiento: import.meta.env.N8N_WEBHOOK_AGENDAMIENTOS,
+  pedido: import.meta.env.N8N_WEBHOOK_COTIZACIONES, // reusar hasta tener uno de pedidos
 };
 
 export async function notificarLead(lead: Lead): Promise<void> {

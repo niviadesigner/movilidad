@@ -49,6 +49,29 @@ const proyectos = defineCollection({
   }),
 });
 
+const CATEGORIAS_TIENDA = ['soportes', 'morrales-maletines', 'seguridad', 'accesorios'] as const;
+
+const productos = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/productos' }),
+  schema: z.object({
+    nombre: z.string(),
+    sku: z.string(),
+    categoria: z.enum(CATEGORIAS_TIENDA),
+    // Precios en pesos, sin IVA. El IVA y el descuento por volumen los aplica pricing.ts.
+    precio: z.number().int().nonnegative(),
+    /** Precio anterior, solo si es real y verificable (regla §8). */
+    precioAntes: z.number().int().positive().optional(),
+    stock: z.number().int().nonnegative().default(0),
+    destacado: z.boolean().default(false),
+    imagenes: z.array(z.string()).default([]),
+    specs: z.array(z.object({ etiqueta: z.string(), valor: z.string() })).default([]),
+    /** Aplica descuento por volumen del motor de precios único. */
+    descuentoVolumen: z.boolean().default(true),
+    resumen: z.string(),
+    borrador: z.boolean().default(false),
+  }),
+});
+
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
@@ -62,4 +85,4 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { modelos, proyectos, blog };
+export const collections = { modelos, proyectos, productos, blog };
