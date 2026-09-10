@@ -1,0 +1,24 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Mis direcciones',
+  descripcion: 'Administra tus direcciones de envío guardadas.',
+  ruta: '/mi-cuenta/direcciones',
+  noIndex: true,
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Direcciones"
+    intro="Libreta de direcciones de envío del cliente. Alta, edición y selección de predeterminada."
+    plantilla="Especial"
+    fase="Fase 4"
+    relacionados={[
+      { label: 'Mi cuenta', href: '/mi-cuenta' },
+      { label: 'Mis pedidos', href: '/mi-cuenta/pedidos' },
+    ]}
+  />
+</TiendaLayout>

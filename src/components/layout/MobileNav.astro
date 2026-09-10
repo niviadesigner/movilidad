@@ -1,0 +1,108 @@
+---
+/**
+ * Navegación móvil del contexto corporativo.
+ * Menú hamburguesa en acordeón (no dropdown anidado) — docs/arquitectura §4.
+ * Progresivo: funciona el enlace directo; el script solo abre/cierra.
+ */
+import { NAV_CORPORATIVO, CTA_CORPORATIVO, PUERTA_TIENDA } from '../../lib/nav';
+---
+
+<div class="lg:hidden">
+  <button
+    type="button"
+    id="mnav-boton"
+    aria-expanded="false"
+    aria-controls="mnav-panel"
+    class="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] text-[var(--color-text)]"
+  >
+    <span class="sr-only">Abrir menú</span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+  </button>
+
+  <div
+    id="mnav-panel"
+    hidden
+    class="fixed inset-x-0 bottom-0 top-[var(--spacing-header)] z-50 overflow-y-auto border-t border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-6"
+  >
+    <nav aria-label="Menú principal">
+      <ul class="divide-y divide-[var(--color-border)]">
+        {NAV_CORPORATIVO.map((item) => (
+          <li class="py-1">
+            {item.mega ? (
+              <details class="group">
+                <summary class="flex cursor-pointer list-none items-center justify-between py-3 text-[var(--text-base)] font-semibold">
+                  <a href={item.href}>{item.label}</a>
+                  <span aria-hidden="true" class="transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <div class="pb-3 pl-3">
+                  {item.mega.columnas.map((col) => (
+                    <ul class="space-y-1 border-l border-[var(--color-border)] pl-3">
+                      {col.links.map((l) => (
+                        <li>
+                          <a href={l.href} class="block py-2 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+                            {l.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
+                  <a
+                    href={item.mega.accion.href}
+                    class="mt-2 inline-block py-2 text-[var(--text-sm)] font-semibold text-[var(--color-link)]"
+                  >
+                    {item.mega.accion.label} &rarr;
+                  </a>
+                </div>
+              </details>
+            ) : (
+              <a href={item.href} class="block py-3 text-[var(--text-base)] font-semibold">
+                {item.label}
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-6 space-y-3">
+        <a
+          href={CTA_CORPORATIVO.href}
+          class="flex min-h-11 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-accent-500)] px-5 py-3 font-semibold text-white"
+        >
+          {CTA_CORPORATIVO.label}
+        </a>
+        <a
+          href={PUERTA_TIENDA.href}
+          class="flex min-h-11 items-center justify-center rounded-[var(--radius-md)] border border-[var(--color-border-strong)] px-5 py-3 text-[var(--text-sm)] font-semibold"
+        >
+          {PUERTA_TIENDA.label} &rarr;
+        </a>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<script>
+  const boton = document.getElementById('mnav-boton');
+  const panel = document.getElementById('mnav-panel');
+  if (boton && panel) {
+    boton.addEventListener('click', () => {
+      const abierto = boton.getAttribute('aria-expanded') === 'true';
+      boton.setAttribute('aria-expanded', String(!abierto));
+      panel.hidden = abierto;
+      document.documentElement.style.overflow = abierto ? '' : 'hidden';
+    });
+    // Cierra al navegar a un ancla o al pulsar Escape.
+    panel.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) {
+        boton.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+        document.documentElement.style.overflow = '';
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !panel.hidden) boton.click();
+    });
+  }
+</script>

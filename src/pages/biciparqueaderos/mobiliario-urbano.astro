@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Mobiliario urbano para bicicletas',
+  descripcion:
+    'Parqueaderos y anclajes para espacio público y comercio: mobiliario urbano resistente al vandalismo y a la intemperie.',
+  ruta: '/biciparqueaderos/mobiliario-urbano',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Mobiliario urbano para bicicletas"
+    intro="Página de sector para espacio público, comercio y alcaldías. Foco en resistencia al vandalismo, anclaje y normativa de espacio público."
+    plantilla="A — Hub de línea"
+    fase="Fase 1"
+    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
+    relacionados={[
+      { label: 'Ver modelos', href: '/biciparqueaderos/modelos' },
+      { label: 'Diseño e instalación', href: '/biciparqueaderos/diseno-instalacion' },
+      { label: 'Proyectos', href: '/proyectos' },
+    ]}
+  />
+</SiteLayout>

@@ -1,0 +1,18 @@
+---
+/**
+ * Contenedor de ancho máximo con gutters responsivos.
+ * `ancho`: "page" (por defecto, 80rem) | "estrecho" (para lectura larga).
+ */
+interface Props {
+  ancho?: 'page' | 'estrecho';
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+}
+const { ancho = 'page', as = 'div', class: clase = '' } = Astro.props;
+const Tag = as;
+const max = ancho === 'estrecho' ? 'max-w-[48rem]' : 'max-w-[var(--container-page)]';
+---
+
+<Tag class:list={['mx-auto w-full px-4 sm:px-6 lg:px-8', max, clase]}>
+  <slot />
+</Tag>

@@ -1,0 +1,48 @@
+---
+/**
+ * Franja de logos de clientes.
+ * Regla de credibilidad §8: van en la parte alta de la home, no en el pie.
+ * Sin logos reales todavía -> se muestran marcadores de posición neutros.
+ */
+interface LogoCliente {
+  nombre: string;
+  /** Ruta a /uploads o /public. Si falta, se muestra el nombre en texto. */
+  src?: string;
+}
+interface Props {
+  titulo?: string;
+  logos?: LogoCliente[];
+}
+const {
+  titulo = 'Empresas que ya confían en nosotros',
+  // TODO: reemplazar con logos reales y verificables.
+  logos = [
+    { nombre: 'Cliente 1' },
+    { nombre: 'Cliente 2' },
+    { nombre: 'Cliente 3' },
+    { nombre: 'Cliente 4' },
+    { nombre: 'Cliente 5' },
+  ],
+} = Astro.props;
+---
+
+<div>
+  {titulo && (
+    <p class="text-center text-[var(--text-xs)] font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
+      {titulo}
+    </p>
+  )}
+  <ul class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+    {logos.map((l) => (
+      <li class="flex items-center">
+        {l.src ? (
+          <img src={l.src} alt={`Logo de ${l.nombre}`} height="28" class="h-7 w-auto opacity-70" loading="lazy" />
+        ) : (
+          <span class="rounded-[var(--radius-sm)] bg-[var(--color-bg-muted)] px-3 py-1.5 text-[var(--text-xs)] text-[var(--color-text-muted)]">
+            {l.nombre} <span class="opacity-60">· logo pendiente</span>
+          </span>
+        )}
+      </li>
+    ))}
+  </ul>
+</div>

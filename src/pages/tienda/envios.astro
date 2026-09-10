@@ -1,0 +1,24 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Envíos y entregas',
+  descripcion:
+    'Tiempos de entrega, cobertura, costo de envío y umbral de envío gratis para las compras en la tienda.',
+  ruta: '/tienda/envios',
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Envíos y entregas"
+    intro="Política de envíos: operador logístico, tabla de tarifas por zona, tiempos y umbral de envío gratis. Datos pendientes de definir con el operador."
+    plantilla="Especial"
+    fase="Fase 4"
+    relacionados={[
+      { label: 'Cambios y devoluciones', href: '/tienda/devoluciones' },
+      { label: 'Garantía', href: '/tienda/garantia' },
+    ]}
+  />
+</TiendaLayout>

@@ -1,0 +1,27 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Planes de mantenimiento para flotas de bicicletas',
+  descripcion:
+    'Planes recurrentes de mantenimiento para flotas corporativas y de última milla, con tablero de estado por bicicleta.',
+  ruta: '/mantenimiento/flotas',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Planes para flotas"
+    intro="Modalidad para empresas con flota propia: mantenimiento recurrente con SLA y reporte de estado por unidad."
+    plantilla="C — Servicio agendable"
+    fase="Fase 3"
+    ctaPrimario={{ label: 'Cotizar plan de flota', href: '/cotizar' }}
+    ctaSecundario={{ label: 'Ver planes y precios', href: '/mantenimiento/planes' }}
+    relacionados={[
+      { label: 'Jornadas en sede', href: '/mantenimiento/jornadas-empresariales' },
+      { label: 'Cobertura', href: '/mantenimiento/cobertura' },
+      { label: 'Modelos de biciparqueadero', href: '/biciparqueaderos/modelos' },
+    ]}
+  />
+</SiteLayout>

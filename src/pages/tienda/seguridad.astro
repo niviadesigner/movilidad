@@ -1,0 +1,25 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Seguridad para bicicleta: guayas y candados',
+  descripcion:
+    'Guayas, candados de U y anclajes para asegurar tu bicicleta. Compara nivel de seguridad y peso.',
+  ruta: '/tienda/seguridad',
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Seguridad: guayas y candados"
+    intro="Página de categoría de la tienda. Cada ficha de esta categoría enlaza a /biciparqueaderos con un bloque de venta cruzada (regla de enlazado §8)."
+    plantilla="Especial"
+    fase="Fase 4"
+    ctaPrimario={{ label: 'Ver todas las categorías', href: '/tienda' }}
+    relacionados={[
+      { label: '¿Necesitas un biciparqueadero en tu edificio?', href: '/biciparqueaderos' },
+      { label: 'Soportes para bicicleta', href: '/tienda/soportes' },
+    ]}
+  />
+</TiendaLayout>

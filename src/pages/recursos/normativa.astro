@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Normativa de biciparqueaderos: Ley 1811, PESV y POT',
+  descripcion:
+    'Qué exigen la Ley 1811 de 2016, el PESV y los POT municipales en materia de biciparqueaderos, explicado sin rodeos.',
+  ruta: '/recursos/normativa',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Normativa: Ley 1811, PESV y POT"
+    intro="Página de autoridad SEO. Explica la obligación normativa de biciparqueaderos y calcula la exigencia mínima. Captura lead hacia cotización."
+    plantilla="Especial"
+    fase="Fase 5"
+    ctaPrimario={{ label: 'Cotizar para cumplir la norma', href: '/cotizar' }}
+    ctaSecundario={{ label: 'Calcular cupos exigidos', href: '/recursos/calculadora-cupos' }}
+    relacionados={[
+      { label: 'Biciparqueaderos corporativos', href: '/biciparqueaderos/corporativo' },
+      { label: 'Biciparqueaderos residenciales y PH', href: '/biciparqueaderos/residencial' },
+    ]}
+  />
+</SiteLayout>

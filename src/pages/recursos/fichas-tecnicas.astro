@@ -1,0 +1,25 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Fichas técnicas descargables',
+  descripcion:
+    'Descarga las fichas técnicas de los modelos de biciparqueadero en PDF. Dejas tu correo y te las enviamos.',
+  ruta: '/recursos/fichas-tecnicas',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Fichas técnicas"
+    intro="Listado de fichas técnicas en PDF por modelo. La descarga captura correo (regla de la Plantilla B)."
+    plantilla="Especial"
+    fase="Fase 5"
+    ctaPrimario={{ label: 'Ver modelos', href: '/biciparqueaderos/modelos' }}
+    relacionados={[
+      { label: 'Diseño e instalación', href: '/biciparqueaderos/diseno-instalacion' },
+      { label: 'Cotizar', href: '/cotizar' },
+    ]}
+  />
+</SiteLayout>

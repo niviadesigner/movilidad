@@ -1,0 +1,30 @@
+---
+/**
+ * Layout del contexto tienda (/tienda/* y /mi-cuenta/*).
+ * HeaderTienda (con buscador y carrito) + migas + contenido + Footer.
+ * Sin barra inferior corporativa: el carrito ya vive en el header.
+ */
+import BaseLayout from './BaseLayout.astro';
+import HeaderTienda from '../components/layout/HeaderTienda.astro';
+import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
+import Footer from '../components/layout/Footer.astro';
+import WhatsAppFloat from '../components/islands/WhatsAppFloat.tsx';
+import { whatsappUrl } from '../lib/site';
+import type { SeoInput } from '../lib/seo';
+
+interface Props {
+  seo: SeoInput;
+  migasOverrides?: Record<string, string>;
+}
+const { seo, migasOverrides = {} } = Astro.props;
+---
+
+<BaseLayout seo={seo}>
+  <HeaderTienda />
+  <Breadcrumbs overrides={migasOverrides} />
+  <main id="contenido">
+    <slot />
+  </main>
+  <Footer />
+  <WhatsAppFloat client:idle href={whatsappUrl('tienda')} ocultarEnMovil={false} />
+</BaseLayout>

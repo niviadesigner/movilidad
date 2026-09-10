@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Diseño e instalación de biciparqueaderos',
+  descripcion:
+    'Levantamiento en sitio, diseño de distribución, fabricación e instalación llave en mano de biciparqueaderos.',
+  ruta: '/biciparqueaderos/diseno-instalacion',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Diseño e instalación"
+    intro="Servicio llave en mano: visita técnica, diseño de distribución de cupos, fabricación e instalación. Enlace obligado desde cada ficha de modelo."
+    plantilla="A — Hub de línea"
+    fase="Fase 1"
+    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
+    relacionados={[
+      { label: 'Ver todos los modelos', href: '/biciparqueaderos/modelos' },
+      { label: 'Calculadora de cupos', href: '/recursos/calculadora-cupos' },
+      { label: 'Proyectos', href: '/proyectos' },
+    ]}
+  />
+</SiteLayout>

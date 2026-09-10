@@ -1,0 +1,20 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Política de privacidad',
+  descripcion: 'Cómo tratamos los datos personales que nos compartes a través del sitio.',
+  ruta: '/legal/privacidad',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Política de privacidad"
+    intro="Texto legal pendiente. Debe alinearse con la política de tratamiento de datos (Ley 1581 de 2012)."
+    plantilla="Especial"
+    fase="Fase 6"
+    relacionados={[{ label: 'Política de tratamiento de datos', href: '/legal/tratamiento-datos' }]}
+  />
+</SiteLayout>

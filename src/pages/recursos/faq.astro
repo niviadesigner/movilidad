@@ -1,0 +1,41 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import FAQ from '../../components/ui/FAQ.astro';
+import type { ItemFAQ } from '../../components/ui/FAQ.astro';
+
+const seo = {
+  titulo: 'Preguntas frecuentes',
+  descripcion:
+    'Respuestas a las dudas más comunes sobre biciparqueaderos, mantenimiento y compras en la tienda.',
+  ruta: '/recursos/faq',
+};
+
+// TODO: reemplazar con preguntas y respuestas reales en Fase 5.
+const items: ItemFAQ[] = [
+  {
+    pregunta: '¿Cuánto tarda un proyecto de biciparqueadero?',
+    respuesta: 'Contenido pendiente. Se redacta con el cliente en Fase 5.',
+  },
+  {
+    pregunta: '¿Hacen instalación en todo el país?',
+    respuesta: 'Contenido pendiente. Se redacta con el cliente en Fase 5.',
+  },
+  {
+    pregunta: '¿El mantenimiento a domicilio llega a mi zona?',
+    respuesta: 'Contenido pendiente. Ver la página de cobertura cuando esté disponible.',
+  },
+];
+---
+
+<SiteLayout seo={seo}>
+  <Section espaciado="amplio">
+    <h1 class="text-[var(--text-4xl)]">Preguntas frecuentes</h1>
+    <p class="mt-3 max-w-[52ch] text-[var(--color-text-muted)]">
+      Esqueleto navegable. Las preguntas reales se redactan en Fase 5.
+    </p>
+    <div class="mt-10">
+      <FAQ titulo="" items={items} />
+    </div>
+  </Section>
+</SiteLayout>

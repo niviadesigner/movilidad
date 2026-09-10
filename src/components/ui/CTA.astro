@@ -1,0 +1,59 @@
+---
+/**
+ * Llamado a la acción.
+ * Regla de conversión §7: un solo CTA primario por pantalla. Los secundarios
+ * van en texto o borde, nunca con el mismo peso visual.
+ *
+ * variante: "primario" (acento cálido) | "secundario" (borde) | "texto" (enlace)
+ */
+interface Props {
+  href: string;
+  variante?: 'primario' | 'secundario' | 'texto';
+  tamano?: 'md' | 'lg';
+  externo?: boolean;
+  class?: string;
+  ariaLabel?: string;
+}
+const {
+  href,
+  variante = 'primario',
+  tamano = 'md',
+  externo = false,
+  class: clase = '',
+  ariaLabel,
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-[var(--radius-md)] font-semibold ' +
+  'transition-[background-color,color,border-color] duration-[var(--duration-base)] ' +
+  'min-h-11 focus-visible:outline-2'; // 44px mínimo de área táctil
+
+const tamanos = {
+  md: 'px-5 py-2.5 text-[var(--text-sm)]',
+  lg: 'px-7 py-3.5 text-[var(--text-base)]',
+};
+
+const variantes = {
+  primario:
+    'bg-[var(--color-accent-500)] text-white hover:bg-[var(--color-accent-600)]',
+  secundario:
+    'border border-[var(--color-border-strong)] text-[var(--color-text)] ' +
+    'hover:border-[var(--color-primary-500)] hover:text-[var(--color-primary-700)]',
+  texto:
+    'px-0 min-h-0 text-[var(--color-link)] underline underline-offset-4 ' +
+    'hover:text-[var(--color-link-hover)]',
+};
+
+const rel = externo ? 'noopener noreferrer' : undefined;
+const target = externo ? '_blank' : undefined;
+---
+
+<a
+  href={href}
+  rel={rel}
+  target={target}
+  aria-label={ariaLabel}
+  class:list={[base, tamanos[tamano], variantes[variante], clase]}
+>
+  <slot />
+</a>

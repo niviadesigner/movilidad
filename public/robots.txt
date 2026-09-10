@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Rutas transaccionales fuera del índice
+Disallow: /mi-cuenta
+Disallow: /tienda/carrito
+Disallow: /tienda/checkout
+Disallow: /tienda/pedido-confirmado
+Disallow: /tienda/buscar
+Disallow: /gracias
+Disallow: /mantenimiento/agendar/confirmado
+
+Sitemap: https://solucionesdemovilidad.com.co/sitemap-index.xml

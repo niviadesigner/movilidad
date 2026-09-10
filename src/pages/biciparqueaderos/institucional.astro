@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Biciparqueaderos institucionales y educativos',
+  descripcion:
+    'Biciparqueaderos para universidades, colegios y entidades públicas, con foco en volumen de cupos y seguridad.',
+  ruta: '/biciparqueaderos/institucional',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Biciparqueaderos institucionales y educativos"
+    intro="Página de sector para universidades, colegios y entidades públicas. Prioridad: volumen de cupos, seguridad y durabilidad."
+    plantilla="A — Hub de línea"
+    fase="Fase 1"
+    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
+    relacionados={[
+      { label: 'Ver modelos', href: '/biciparqueaderos/modelos' },
+      { label: 'Para universidades', href: '/soluciones/universidades' },
+      { label: 'Normativa y POT', href: '/recursos/normativa' },
+    ]}
+  />
+</SiteLayout>

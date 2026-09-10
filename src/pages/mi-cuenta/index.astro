@@ -1,0 +1,24 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Mi cuenta',
+  descripcion: 'Gestiona tus pedidos y direcciones.',
+  ruta: '/mi-cuenta',
+  noIndex: true,
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Mi cuenta"
+    intro="Área privada del cliente de la tienda. La cuenta es opcional: se ofrece al final del checkout, no antes."
+    plantilla="Especial"
+    fase="Fase 4"
+    relacionados={[
+      { label: 'Mis pedidos', href: '/mi-cuenta/pedidos' },
+      { label: 'Direcciones', href: '/mi-cuenta/direcciones' },
+    ]}
+  />
+</TiendaLayout>

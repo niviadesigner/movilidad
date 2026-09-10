@@ -1,0 +1,25 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Morrales y maletines para ciclistas',
+  descripcion:
+    'Morrales impermeables, maletines y alforjas para moverte en bici con el equipo protegido.',
+  ruta: '/tienda/morrales-maletines',
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Morrales y maletines"
+    intro="Página de categoría de la tienda. Grilla con precio y disponibilidad, filtros por capacidad e impermeabilidad."
+    plantilla="Especial"
+    fase="Fase 4"
+    ctaPrimario={{ label: 'Ver todas las categorías', href: '/tienda' }}
+    relacionados={[
+      { label: 'Accesorios', href: '/tienda/accesorios' },
+      { label: 'Ofertas', href: '/tienda/ofertas' },
+    ]}
+  />
+</TiendaLayout>

@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import Card from '../../components/ui/Card.astro';
+
+const seo = {
+  titulo: 'Proyectos y casos de estudio',
+  descripcion:
+    'Casos reales de biciparqueaderos instalados, con métricas duras de cupos, área recuperada y adopción.',
+  ruta: '/proyectos',
+};
+
+const proyectos = (await getCollection('proyectos')).filter(
+  (p) => import.meta.env.DEV || !p.data.borrador,
+);
+---
+
+<SiteLayout seo={seo}>
+  <Section espaciado="amplio">
+    <p class="text-[var(--text-xs)] font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
+      Esqueleto navegable · los casos reales llegan en Fase 5
+    </p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Proyectos</h1>
+    <p class="mt-4 max-w-[52ch] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+      Prueba social para la línea de biciparqueaderos. Cada caso usa la Plantilla D y enlaza a
+      los modelos que utilizó.
+    </p>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {proyectos.map((p) => (
+        <Card href={`/proyectos/${p.id}`} titulo={p.data.cliente} eyebrow={`${p.data.sector} · ${p.data.ciudad}`}>
+          {p.data.reto}
+        </Card>
+      ))}
+      {proyectos.length === 0 && (
+        <p class="text-[var(--text-sm)] text-[var(--color-text-muted)]">Aún no hay casos publicados.</p>
+      )}
+    </div>
+  </Section>
+</SiteLayout>

@@ -1,0 +1,20 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Ofertas en accesorios para bicicleta',
+  descripcion: 'Productos con descuento por temporada o fin de serie. Precio antes y después visible.',
+  ruta: '/tienda/ofertas',
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Ofertas"
+    intro="Grilla de productos con descuento. El precio anterior y el actual deben ser reales y verificables (regla §8)."
+    plantilla="Especial"
+    fase="Fase 4"
+    ctaPrimario={{ label: 'Ver todas las categorías', href: '/tienda' }}
+  />
+</TiendaLayout>

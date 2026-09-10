@@ -1,0 +1,25 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Checkout',
+  descripcion: 'Finaliza tu compra. Sin registro obligatorio y con el costo de envío calculado antes de pagar.',
+  ruta: '/tienda/checkout',
+  noIndex: true,
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Checkout"
+    intro="Checkout de invitado (cuenta opcional al final). Costo de envío calculado antes de pagar, nunca como sorpresa. Pasarela Wompi."
+    plantilla="Especial"
+    fase="Fase 4"
+    ctaPrimario={{ label: 'Volver al carrito', href: '/tienda/carrito' }}
+    relacionados={[
+      { label: 'Envíos y entregas', href: '/tienda/envios' },
+      { label: 'Garantía', href: '/tienda/garantia' },
+    ]}
+  />
+</TiendaLayout>

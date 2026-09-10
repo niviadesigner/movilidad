@@ -1,0 +1,105 @@
+---
+/**
+ * Header del contexto tienda (/tienda/* y /mi-cuenta/*).
+ * El header cambia por completo al entrar (docs/CLAUDE.md §2.5).
+ * Buscador visible siempre en escritorio. Carrito con contador.
+ * Botón de regreso al sitio para no perder al visitante B2B.
+ */
+import { NAV_TIENDA, VOLVER_AL_SITIO } from '../../lib/nav';
+import { SITE } from '../../lib/site';
+import Container from './Container.astro';
+
+const aqui = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const activo = (href: string) => aqui === href || aqui.startsWith(href + '/');
+
+// TODO: umbral real de envío gratis (depende del operador logístico).
+const UMBRAL_ENVIO_GRATIS = 150000;
+---
+
+<div class="bg-[var(--color-primary-800)] text-[var(--color-text-inverse)]">
+  <Container>
+    <p class="py-1.5 text-center text-[var(--text-xs)] text-white/90">
+      Envío gratis desde {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(UMBRAL_ENVIO_GRATIS)}
+      <span class="text-white/60">· dato provisional</span>
+    </p>
+  </Container>
+</div>
+
+<header class="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-surface)]/95 backdrop-blur">
+  <Container>
+    <div class="flex h-[var(--spacing-header)] items-center gap-4">
+      <a href="/tienda" class="flex items-center gap-2 font-bold text-[var(--color-primary-700)]" aria-label={`Tienda ${SITE.nombre}`}>
+        <svg width="26" height="26" viewBox="0 0 28 28" aria-hidden="true" fill="none">
+          <circle cx="8" cy="20" r="5" stroke="currentColor" stroke-width="2" />
+          <circle cx="20" cy="20" r="5" stroke="currentColor" stroke-width="2" />
+          <path d="M8 20l5-9h5l3 9M13 11l-2-4H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="text-[var(--text-sm)]">Tienda</span>
+      </a>
+
+      <a
+        href={VOLVER_AL_SITIO.href}
+        class="hidden items-center gap-1 border-l border-[var(--color-border)] pl-4 text-[var(--text-xs)] text-[var(--color-text-muted)] hover:text-[var(--color-text)] sm:inline-flex"
+      >
+        <span aria-hidden="true">&larr;</span> {VOLVER_AL_SITIO.label}
+      </a>
+
+      <nav aria-label="Categorías de tienda" class="hidden flex-1 lg:block">
+        <ul class="flex items-center gap-1">
+          {NAV_TIENDA.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={activo(item.href) ? 'page' : undefined}
+                class:list={[
+                  'inline-flex items-center rounded-[var(--radius-sm)] px-3 py-2 text-[var(--text-sm)] font-medium',
+                  activo(item.href)
+                    ? 'text-[var(--color-primary-700)]'
+                    : 'text-[var(--color-text)] hover:text-[var(--color-link-hover)]',
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <form role="search" action="/tienda/buscar" method="get" class="ml-auto hidden md:block">
+        <label for="tienda-q" class="sr-only">Buscar productos</label>
+        <input
+          id="tienda-q"
+          name="q"
+          type="search"
+          placeholder="Buscar productos"
+          class="h-10 w-56 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg)] px-3 text-[var(--text-sm)]"
+        />
+      </form>
+
+      <div class="flex items-center gap-1">
+        <a href="/tienda/buscar" class="inline-flex h-11 w-11 items-center justify-center md:hidden" aria-label="Buscar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" /><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </a>
+        <a href="/mi-cuenta" class="inline-flex h-11 w-11 items-center justify-center" aria-label="Mi cuenta">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" /><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </a>
+        <a href="/tienda/carrito" class="relative inline-flex h-11 min-w-11 items-center justify-center gap-1 rounded-[var(--radius-md)] px-2 text-[var(--text-sm)] font-semibold" aria-label="Carrito, 0 productos">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          <span data-carrito-contador>0</span>
+        </a>
+      </div>
+    </div>
+
+    <nav aria-label="Categorías de tienda" class="border-t border-[var(--color-border)] py-2 lg:hidden">
+      <ul class="flex gap-1 overflow-x-auto">
+        {NAV_TIENDA.map((item) => (
+          <li>
+            <a href={item.href} class="inline-flex whitespace-nowrap rounded-[var(--radius-sm)] px-3 py-1.5 text-[var(--text-sm)]">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </Container>
+</header>

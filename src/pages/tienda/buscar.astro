@@ -1,0 +1,39 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Section from '../../components/ui/Section.astro';
+
+const seo = {
+  titulo: 'Buscar en la tienda',
+  descripcion: 'Encuentra soportes, morrales, guayas, candados y accesorios para tu bicicleta.',
+  ruta: '/tienda/buscar',
+  noIndex: true,
+};
+
+const q = Astro.url.searchParams.get('q') ?? '';
+---
+
+<TiendaLayout seo={seo}>
+  <Section espaciado="amplio">
+    <h1 class="text-[var(--text-3xl)]">Buscar en la tienda</h1>
+    <form role="search" method="get" action="/tienda/buscar" class="mt-6 flex max-w-[36rem] gap-2">
+      <label for="q" class="sr-only">Términos de búsqueda</label>
+      <input
+        id="q"
+        name="q"
+        type="search"
+        value={q}
+        placeholder="Ej.: candado de U, morral impermeable"
+        class="h-11 flex-1 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg)] px-3"
+      />
+      <button type="submit" class="min-h-11 rounded-[var(--radius-md)] bg-[var(--color-primary-600)] px-5 font-semibold text-white">
+        Buscar
+      </button>
+    </form>
+
+    <p class="mt-8 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      {q
+        ? `El buscador con resultados reales se implementa en Fase 4. Consulta: "${q}".`
+        : 'El buscador con resultados reales se implementa en Fase 4.'}
+    </p>
+  </Section>
+</TiendaLayout>

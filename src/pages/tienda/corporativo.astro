@@ -1,0 +1,25 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Compra por volumen para empresas',
+  descripcion:
+    'Compra accesorios al por mayor para tu equipo o flota. Descuento por volumen y facturación empresarial.',
+  ruta: '/tienda/corporativo',
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Compra por volumen"
+    intro="Puente entre la tienda y el mundo B2B. El descuento por volumen sale del mismo motor de precios que la cotización comercial (regla §6)."
+    plantilla="Especial"
+    fase="Fase 4"
+    ctaPrimario={{ label: 'Solicitar cotización por volumen', href: '/cotizar' }}
+    relacionados={[
+      { label: 'Para empresas', href: '/soluciones/empresas' },
+      { label: 'Planes de mantenimiento para flotas', href: '/mantenimiento/flotas' },
+    ]}
+  />
+</TiendaLayout>

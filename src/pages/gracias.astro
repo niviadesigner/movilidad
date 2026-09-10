@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Placeholder from '../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Gracias, recibimos tu solicitud',
+  descripcion: 'Un ingeniero revisará tu solicitud y te contactará en menos de 24 h.',
+  ruta: '/gracias',
+  noIndex: true,
+};
+---
+
+<SiteLayout seo={seo} sinMigas>
+  <Placeholder
+    titulo="Recibimos tu solicitud"
+    intro="Página de gracias real, para medir conversiones. Muestra el próximo paso y ofrece la descarga del portafolio."
+    plantilla="Especial"
+    fase="Fase 1"
+    ctaPrimario={{ label: 'Volver al inicio', href: '/' }}
+    ctaSecundario={{ label: 'Ver modelos mientras tanto', href: '/biciparqueaderos/modelos' }}
+    relacionados={[
+      { label: 'Proyectos', href: '/proyectos' },
+      { label: 'Normativa', href: '/recursos/normativa' },
+    ]}
+  />
+</SiteLayout>

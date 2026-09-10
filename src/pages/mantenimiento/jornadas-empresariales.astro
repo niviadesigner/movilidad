@@ -1,0 +1,27 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Jornadas de mantenimiento en la sede de tu empresa',
+  descripcion:
+    'Llevamos el taller a tu sede: jornadas de mantenimiento de bicicletas para colaboradores, con reporte por unidad.',
+  ruta: '/mantenimiento/jornadas-empresariales',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Jornadas en sede"
+    intro="Modalidad para empresas: montamos el taller en la sede un día pactado y atendemos las bicicletas de los colaboradores."
+    plantilla="C — Servicio agendable"
+    fase="Fase 3"
+    ctaPrimario={{ label: 'Agendar jornada', href: '/mantenimiento/agendar' }}
+    ctaSecundario={{ label: 'Cotizar para mi empresa', href: '/cotizar' }}
+    relacionados={[
+      { label: 'Planes para flotas', href: '/mantenimiento/flotas' },
+      { label: 'Cobertura', href: '/mantenimiento/cobertura' },
+      { label: 'Para empresas', href: '/soluciones/empresas' },
+    ]}
+  />
+</SiteLayout>

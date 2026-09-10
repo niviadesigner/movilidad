@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Nosotros',
+  descripcion:
+    'Quiénes somos, qué hacemos y con qué aliados y certificaciones respaldamos cada proyecto de movilidad.',
+  ruta: '/nosotros',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Nosotros"
+    intro="Página de confianza. Empresa, trayectoria y equipo. Deriva a aliados y certificaciones y a cotización."
+    plantilla="Especial"
+    fase="Fase 2"
+    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
+    relacionados={[
+      { label: 'Aliados y certificaciones', href: '/nosotros/aliados' },
+      { label: 'Trabaja con nosotros', href: '/nosotros/trabaja-con-nosotros' },
+      { label: 'Proyectos', href: '/proyectos' },
+    ]}
+  />
+</SiteLayout>

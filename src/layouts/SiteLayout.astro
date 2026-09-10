@@ -1,0 +1,42 @@
+---
+/**
+ * Layout del contexto corporativo (todo el sitio menos /tienda y /mi-cuenta).
+ * TopBar + HeaderCorporativo + migas + contenido + Footer + flotantes.
+ */
+import BaseLayout from './BaseLayout.astro';
+import TopBar from '../components/layout/TopBar.astro';
+import HeaderCorporativo from '../components/layout/HeaderCorporativo.astro';
+import Breadcrumbs from '../components/layout/Breadcrumbs.astro';
+import Footer from '../components/layout/Footer.astro';
+import WhatsAppFloat from '../components/islands/WhatsAppFloat.tsx';
+import MobileBottomBar from '../components/islands/MobileBottomBar.tsx';
+import { whatsappUrl, type LineaId } from '../lib/site';
+import type { SeoInput } from '../lib/seo';
+
+interface Props {
+  seo: SeoInput;
+  /** Etiquetas para segmentos dinámicos en las migas. */
+  migasOverrides?: Record<string, string>;
+  /** Oculta las migas aunque la ruta esté en nivel 2+ (raro). */
+  sinMigas?: boolean;
+}
+const { seo, migasOverrides = {}, sinMigas = false } = Astro.props;
+
+// Deriva la línea actual para el mensaje de WhatsApp.
+const aqui = Astro.url.pathname;
+let linea: LineaId | undefined;
+if (aqui.startsWith('/biciparqueaderos')) linea = 'biciparqueaderos';
+else if (aqui.startsWith('/mantenimiento')) linea = 'mantenimiento';
+---
+
+<BaseLayout seo={seo}>
+  <TopBar />
+  <HeaderCorporativo />
+  {!sinMigas && <Breadcrumbs overrides={migasOverrides} />}
+  <main id="contenido" class="pb-16 sm:pb-0">
+    <slot />
+  </main>
+  <Footer />
+  <WhatsAppFloat client:idle href={whatsappUrl(linea)} />
+  <MobileBottomBar client:idle whatsappHref={whatsappUrl(linea)} />
+</BaseLayout>

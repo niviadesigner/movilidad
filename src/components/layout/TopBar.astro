@@ -1,0 +1,27 @@
+---
+/**
+ * Barra superior delgada (32 px) del contexto corporativo.
+ * Izquierda: ubicación y cobertura. Derecha: puerta lateral DISCRETA a la tienda
+ * (docs/CLAUDE.md §2.2 — el ecommerce no entra por el hero ni el menú principal).
+ */
+import { SITE } from '../../lib/site';
+import { PUERTA_TIENDA } from '../../lib/nav';
+import Container from './Container.astro';
+---
+
+<div class="hidden border-b border-[var(--color-primary-800)] bg-[var(--color-primary-900)] text-[var(--color-text-inverse)] md:block">
+  <Container>
+    <div class="flex h-[var(--spacing-topbar)] items-center justify-between text-[var(--text-xs)]">
+      <p class="text-white/80">
+        {SITE.ciudad} · {SITE.cobertura}
+      </p>
+      <a
+        href={PUERTA_TIENDA.href}
+        class="inline-flex items-center gap-1 text-white/80 transition-colors hover:text-white"
+      >
+        {PUERTA_TIENDA.label}
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </Container>
+</div>

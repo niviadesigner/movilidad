@@ -1,0 +1,24 @@
+---
+import TiendaLayout from '../../../layouts/TiendaLayout.astro';
+import Placeholder from '../../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Mis pedidos',
+  descripcion: 'Historial de pedidos y estado de cada envío.',
+  ruta: '/mi-cuenta/pedidos',
+  noIndex: true,
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Mis pedidos"
+    intro="Listado de pedidos del cliente con estado y acceso al detalle y rastreo."
+    plantilla="Especial"
+    fase="Fase 4"
+    relacionados={[
+      { label: 'Mi cuenta', href: '/mi-cuenta' },
+      { label: 'Direcciones', href: '/mi-cuenta/direcciones' },
+    ]}
+  />
+</TiendaLayout>

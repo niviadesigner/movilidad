@@ -1,0 +1,53 @@
+---
+/**
+ * Lista de preguntas frecuentes. Accesible con <details>/<summary>,
+ * sin JavaScript. Opcionalmente emite schema FAQPage.
+ */
+import { serializarSchema } from '../../lib/schema';
+
+export interface ItemFAQ {
+  pregunta: string;
+  respuesta: string;
+}
+
+interface Props {
+  titulo?: string;
+  items: ItemFAQ[];
+  /** Emite JSON-LD FAQPage. Solo si las respuestas son texto plano real. */
+  schema?: boolean;
+}
+const { titulo = 'Preguntas frecuentes', items, schema = false } = Astro.props;
+
+const jsonLd = schema
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: items.map((i) => ({
+        '@type': 'Question',
+        name: i.pregunta,
+        acceptedAnswer: { '@type': 'Answer', text: i.respuesta },
+      })),
+    }
+  : null;
+---
+
+<div class="mx-auto max-w-[48rem]">
+  {titulo && <h2 class="text-[var(--text-2xl)] font-bold">{titulo}</h2>}
+  <div class="mt-6 divide-y divide-[var(--color-border)] border-y border-[var(--color-border)]">
+    {items.map((i) => (
+      <details class="group py-4">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-[var(--text-base)] font-semibold">
+          {i.pregunta}
+          <span
+            aria-hidden="true"
+            class="shrink-0 text-[var(--color-text-muted)] transition-transform group-open:rotate-45"
+            >+</span
+          >
+        </summary>
+        <p class="mt-3 text-[var(--text-sm)] text-[var(--color-text-muted)]">{i.respuesta}</p>
+      </details>
+    ))}
+  </div>
+</div>
+
+{jsonLd && <script is:inline type="application/ld+json" set:html={serializarSchema(jsonLd)} />}

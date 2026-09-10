@@ -1,0 +1,19 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Términos y condiciones',
+  descripcion: 'Términos y condiciones de uso del sitio y de compra en la tienda.',
+  ruta: '/legal/terminos',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Términos y condiciones"
+    intro="Texto legal pendiente de redacción con el cliente y su abogado. No usar texto de relleno en producción (regla §8)."
+    plantilla="Especial"
+    fase="Fase 6"
+  />
+</SiteLayout>

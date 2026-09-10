@@ -1,0 +1,23 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Trabaja con nosotros',
+  descripcion: 'Vacantes y convocatorias del equipo de Soluciones de Movilidad.',
+  ruta: '/nosotros/trabaja-con-nosotros',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Trabaja con nosotros"
+    intro="Página de vacantes enlazada desde el pie. Sin ofertas activas todavía."
+    plantilla="Especial"
+    fase="Fase 2"
+    relacionados={[
+      { label: 'Nosotros', href: '/nosotros' },
+      { label: 'Contacto', href: '/cotizar' },
+    ]}
+  />
+</SiteLayout>

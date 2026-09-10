@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Biciparqueaderos residenciales y para PH',
+  descripcion:
+    'Biciparqueaderos para conjuntos residenciales y propiedad horizontal: aprovechamiento de sótanos y cumplimiento normativo.',
+  ruta: '/biciparqueaderos/residencial',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Biciparqueaderos residenciales y para PH"
+    intro="Página de sector para conjuntos y propiedad horizontal. Decisor: administración y consejo. Foco en aprovechar sótanos y cumplir el POT."
+    plantilla="A — Hub de línea"
+    fase="Fase 1"
+    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
+    relacionados={[
+      { label: 'Ver modelos', href: '/biciparqueaderos/modelos' },
+      { label: 'Para conjuntos residenciales', href: '/soluciones/conjuntos' },
+      { label: 'Para constructoras y arquitectos', href: '/soluciones/constructoras' },
+    ]}
+  />
+</SiteLayout>

@@ -1,0 +1,25 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Soluciones de movilidad para universidades',
+  descripcion:
+    'Biciparqueaderos de alto volumen para campus, con foco en seguridad, aforo y programas de movilidad sostenible.',
+  ruta: '/soluciones/universidades',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Para universidades"
+    intro="Landing transversal para campus. Volumen de cupos, seguridad, integración con programas de movilidad y bienestar."
+    plantilla="Especial"
+    fase="Fase 2"
+    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
+    relacionados={[
+      { label: 'Biciparqueaderos institucionales y educativos', href: '/biciparqueaderos/institucional' },
+      { label: 'Proyectos', href: '/proyectos' },
+    ]}
+  />
+</SiteLayout>

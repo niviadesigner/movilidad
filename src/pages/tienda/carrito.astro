@@ -1,0 +1,25 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Carrito',
+  descripcion: 'Revisa los productos que vas a comprar antes de pasar al pago.',
+  ruta: '/tienda/carrito',
+  noIndex: true,
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Carrito"
+    intro="Resumen del carrito con mini-preview al agregar. Nunca se redirige al carrito automáticamente: mata la compra múltiple (docs/arquitectura §4)."
+    plantilla="Especial"
+    fase="Fase 4"
+    ctaPrimario={{ label: 'Seguir comprando', href: '/tienda' }}
+    relacionados={[
+      { label: 'Envíos y entregas', href: '/tienda/envios' },
+      { label: 'Cambios y devoluciones', href: '/tienda/devoluciones' },
+    ]}
+  />
+</TiendaLayout>

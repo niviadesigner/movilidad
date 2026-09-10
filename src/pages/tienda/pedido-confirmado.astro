@@ -1,0 +1,22 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Pedido confirmado',
+  descripcion: 'Tu pedido quedó registrado. Te enviamos el comprobante y el rastreo por correo.',
+  ruta: '/tienda/pedido-confirmado',
+  noIndex: true,
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Pedido confirmado"
+    intro="Confirmación de compra con número de pedido, resumen y próximo paso. Dispara el correo transaccional y habilita el rastreo."
+    plantilla="Especial"
+    fase="Fase 4"
+    ctaPrimario={{ label: 'Ver mis pedidos', href: '/mi-cuenta/pedidos' }}
+    ctaSecundario={{ label: 'Seguir comprando', href: '/tienda' }}
+  />
+</TiendaLayout>

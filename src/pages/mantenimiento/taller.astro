@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Taller de mantenimiento de bicicletas',
+  descripcion:
+    'Lleva tu bicicleta a nuestro taller: diagnóstico, alistamiento y reparación con repuestos garantizados.',
+  ruta: '/mantenimiento/taller',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Taller"
+    intro="Modalidad para personas: agenda una cita en el taller propio, elige el tipo de servicio y la hora."
+    plantilla="C — Servicio agendable"
+    fase="Fase 3"
+    ctaPrimario={{ label: 'Agendar en el taller', href: '/mantenimiento/agendar' }}
+    relacionados={[
+      { label: 'A domicilio', href: '/mantenimiento/domicilio' },
+      { label: 'Planes y precios', href: '/mantenimiento/planes' },
+      { label: 'Cobertura', href: '/mantenimiento/cobertura' },
+    ]}
+  />
+</SiteLayout>

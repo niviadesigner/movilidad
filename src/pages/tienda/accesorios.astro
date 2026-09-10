@@ -1,0 +1,25 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Accesorios para bicicleta',
+  descripcion:
+    'Luces, timbres, guardabarros, infladores y más accesorios para tu bicicleta.',
+  ruta: '/tienda/accesorios',
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Accesorios"
+    intro="Página de categoría de la tienda. Grilla con precio y disponibilidad, filtros y orden."
+    plantilla="Especial"
+    fase="Fase 4"
+    ctaPrimario={{ label: 'Ver todas las categorías', href: '/tienda' }}
+    relacionados={[
+      { label: 'Morrales y maletines', href: '/tienda/morrales-maletines' },
+      { label: 'Ofertas', href: '/tienda/ofertas' },
+    ]}
+  />
+</TiendaLayout>

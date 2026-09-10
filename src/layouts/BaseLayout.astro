@@ -1,0 +1,50 @@
+---
+/**
+ * Documento base. Aplica <head> de SEO, idioma es-CO y JSON-LD de Organización.
+ * No pinta header ni footer: eso lo hacen SiteLayout y TiendaLayout.
+ */
+import '../styles/global.css';
+import { SITE } from '../lib/site';
+import { resolverSeo, type SeoInput } from '../lib/seo';
+import { organizationSchema, serializarSchema } from '../lib/schema';
+
+interface Props {
+  seo: SeoInput;
+}
+const { seo } = Astro.props;
+const m = resolverSeo(seo);
+---
+
+<!doctype html>
+<html lang="es-CO">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={m.canonical} />
+
+    <title>{m.titulo}</title>
+    <meta name="description" content={m.descripcion} />
+    {m.noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={m.tipo} />
+    <meta property="og:site_name" content={SITE.nombre} />
+    <meta property="og:locale" content={m.locale} />
+    <meta property="og:title" content={m.titulo} />
+    <meta property="og:description" content={m.descripcion} />
+    <meta property="og:url" content={m.canonical} />
+    <meta property="og:image" content={m.imagen} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#0b2d2a" />
+    <meta name="generator" content={Astro.generator} />
+
+    <script is:inline type="application/ld+json" set:html={serializarSchema(organizationSchema())} />
+    <slot name="head" />
+  </head>
+  <body class="min-h-dvh">
+    <a href="#contenido" class="skip-link">Saltar al contenido</a>
+    <slot />
+  </body>
+</html>

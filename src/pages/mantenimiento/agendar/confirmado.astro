@@ -1,0 +1,25 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import Placeholder from '../../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Agendamiento confirmado',
+  descripcion: 'Tu solicitud de mantenimiento quedó registrada.',
+  ruta: '/mantenimiento/agendar/confirmado',
+  noIndex: true,
+};
+---
+
+<SiteLayout seo={seo} migasOverrides={{ '/mantenimiento/agendar/confirmado': 'Confirmación' }}>
+  <Placeholder
+    titulo="Agendamiento confirmado"
+    intro="Página de confirmación tras agendar. Muestra el resumen de la cita, el próximo paso y el canal de contacto. Sirve para medir conversiones."
+    plantilla="Especial"
+    fase="Fase 3"
+    ctaPrimario={{ label: 'Volver al inicio', href: '/' }}
+    relacionados={[
+      { label: 'Planes y precios', href: '/mantenimiento/planes' },
+      { label: 'Tienda de accesorios', href: '/tienda' },
+    ]}
+  />
+</SiteLayout>

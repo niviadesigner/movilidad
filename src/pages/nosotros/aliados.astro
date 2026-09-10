@@ -1,0 +1,25 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Aliados y certificaciones',
+  descripcion:
+    'Aliados comerciales, proveedores y certificaciones que respaldan la calidad de la infraestructura.',
+  ruta: '/nosotros/aliados',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Aliados y certificaciones"
+    intro="Listado de aliados y certificaciones verificables. Estas también aparecen en cada ficha de producto, no solo aquí (regla §8)."
+    plantilla="Especial"
+    fase="Fase 2"
+    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
+    relacionados={[
+      { label: 'Nosotros', href: '/nosotros' },
+      { label: 'Proyectos', href: '/proyectos' },
+    ]}
+  />
+</SiteLayout>

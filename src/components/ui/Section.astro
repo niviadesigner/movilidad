@@ -1,0 +1,43 @@
+---
+/**
+ * Bloque de página con espaciado vertical consistente y fondo opcional.
+ * Une el ritmo entre secciones sin que cada página invente sus márgenes.
+ */
+import Container from '../layout/Container.astro';
+
+interface Props {
+  fondo?: 'base' | 'subtle' | 'muted' | 'primario';
+  espaciado?: 'normal' | 'compacto' | 'amplio';
+  ancho?: 'page' | 'estrecho';
+  as?: keyof HTMLElementTagNameMap;
+  id?: string;
+  class?: string;
+}
+const {
+  fondo = 'base',
+  espaciado = 'normal',
+  ancho = 'page',
+  as = 'section',
+  id,
+  class: clase = '',
+} = Astro.props;
+const Tag = as;
+
+const fondos: Record<NonNullable<Props['fondo']>, string> = {
+  base: 'bg-[var(--color-bg)] text-[var(--color-text)]',
+  subtle: 'bg-[var(--color-bg-subtle)] text-[var(--color-text)]',
+  muted: 'bg-[var(--color-bg-muted)] text-[var(--color-text)]',
+  primario: 'bg-[var(--color-primary-800)] text-[var(--color-text-inverse)]',
+};
+const espaciados: Record<NonNullable<Props['espaciado']>, string> = {
+  compacto: 'py-10 sm:py-12',
+  normal: 'py-14 sm:py-20',
+  amplio: 'py-20 sm:py-28',
+};
+---
+
+<Tag id={id} class:list={[fondos[fondo], espaciados[espaciado], clase]}>
+  <Container ancho={ancho}>
+    <slot />
+  </Container>
+</Tag>

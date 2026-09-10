@@ -1,0 +1,27 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Planes y precios de mantenimiento',
+  descripcion:
+    'Compara los planes de mantenimiento de bicicletas: qué incluye cada uno, frecuencia y precio.',
+  ruta: '/mantenimiento/planes',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Planes y precios"
+    intro="Comparativo de planes en tabla: qué incluye cada nivel, frecuencia, tiempos y precio. Los valores salen del motor de precios único."
+    plantilla="C — Servicio agendable"
+    fase="Fase 3"
+    ctaPrimario={{ label: 'Agendar ahora', href: '/mantenimiento/agendar' }}
+    relacionados={[
+      { label: 'Jornadas en sede', href: '/mantenimiento/jornadas-empresariales' },
+      { label: 'Planes para flotas', href: '/mantenimiento/flotas' },
+      { label: 'Taller', href: '/mantenimiento/taller' },
+      { label: 'A domicilio', href: '/mantenimiento/domicilio' },
+    ]}
+  />
+</SiteLayout>

@@ -1,0 +1,21 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Política de tratamiento de datos personales',
+  descripcion:
+    'Finalidad, responsable y derechos del titular en el tratamiento de datos personales (Ley 1581 de 2012).',
+  ruta: '/legal/tratamiento-datos',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Política de tratamiento de datos personales"
+    intro="Texto legal pendiente. Necesario antes de activar cualquier formulario que capture datos (cotización, agendamiento, checkout)."
+    plantilla="Especial"
+    fase="Fase 6"
+    relacionados={[{ label: 'Política de privacidad', href: '/legal/privacidad' }]}
+  />
+</SiteLayout>

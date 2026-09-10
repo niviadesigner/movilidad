@@ -1,0 +1,28 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Recursos: normativa, calculadora y fichas técnicas',
+  descripcion:
+    'Normativa de movilidad en bicicleta, calculadora de cupos, fichas técnicas descargables y blog.',
+  ruta: '/recursos',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Recursos"
+    intro="El motor de tráfico y captura de leads: normativa, calculadora de cupos, fichas técnicas y blog. Todo enlaza a /cotizar."
+    plantilla="Especial"
+    fase="Fase 5"
+    ctaPrimario={{ label: 'Hablar con un ingeniero', href: '/cotizar' }}
+    relacionados={[
+      { label: 'Normativa: Ley 1811, PESV y POT', href: '/recursos/normativa' },
+      { label: 'Calculadora de cupos', href: '/recursos/calculadora-cupos' },
+      { label: 'Fichas técnicas', href: '/recursos/fichas-tecnicas' },
+      { label: 'Preguntas frecuentes', href: '/recursos/faq' },
+      { label: 'Blog', href: '/blog' },
+    ]}
+  />
+</SiteLayout>

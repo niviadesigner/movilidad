@@ -1,0 +1,24 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Cambios y devoluciones',
+  descripcion:
+    'Cómo solicitar un cambio o una devolución, plazos y condiciones según el Estatuto del Consumidor.',
+  ruta: '/tienda/devoluciones',
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Cambios y devoluciones"
+    intro="Política de cambios y devoluciones alineada con el Estatuto del Consumidor (retracto de 5 días hábiles). Texto pendiente de revisión legal."
+    plantilla="Especial"
+    fase="Fase 4"
+    relacionados={[
+      { label: 'Envíos y entregas', href: '/tienda/envios' },
+      { label: 'Garantía', href: '/tienda/garantia' },
+    ]}
+  />
+</TiendaLayout>

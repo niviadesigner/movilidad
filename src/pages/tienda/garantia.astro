@@ -1,0 +1,23 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Garantía de productos',
+  descripcion: 'Cobertura de garantía por tipo de producto, plazos y cómo hacer efectiva una reclamación.',
+  ruta: '/tienda/garantia',
+};
+---
+
+<TiendaLayout seo={seo}>
+  <Placeholder
+    titulo="Garantía"
+    intro="Condiciones de garantía por categoría. Las certificaciones y aliados que respaldan cada producto también se muestran en su ficha (regla §8)."
+    plantilla="Especial"
+    fase="Fase 4"
+    relacionados={[
+      { label: 'Cambios y devoluciones', href: '/tienda/devoluciones' },
+      { label: 'Envíos y entregas', href: '/tienda/envios' },
+    ]}
+  />
+</TiendaLayout>

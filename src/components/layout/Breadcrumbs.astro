@@ -1,0 +1,49 @@
+---
+/**
+ * Migas de pan. Obligatorias desde el nivel 2 (docs/arquitectura §4).
+ * Espejo exacto de la URL, todos los segmentos clicables menos el actual.
+ * Emite schema BreadcrumbList.
+ */
+import { generarMigas } from '../../lib/routes';
+import { breadcrumbSchema, serializarSchema } from '../../lib/schema';
+import Container from './Container.astro';
+
+interface Props {
+  /** Etiquetas para segmentos dinámicos: { '/ruta/completa': 'Etiqueta' }. */
+  overrides?: Record<string, string>;
+  /** Fondo del contenedor. */
+  fondo?: 'base' | 'subtle';
+}
+const { overrides = {}, fondo = 'subtle' } = Astro.props;
+
+const migas = generarMigas(Astro.url.pathname, overrides);
+const schema = breadcrumbSchema(migas);
+const bg = fondo === 'subtle' ? 'bg-[var(--color-bg-subtle)]' : 'bg-[var(--color-bg)]';
+---
+
+{
+  migas.length > 0 && (
+    <nav aria-label="Ruta de navegación" class={`border-b border-[var(--color-border)] ${bg}`}>
+      <Container>
+        <ol class="flex flex-wrap items-center gap-x-2 gap-y-1 py-3 text-[var(--text-xs)] text-[var(--color-text-muted)]">
+          {migas.map((m, i) => (
+            <li class="flex items-center gap-2">
+              {i > 0 && <span aria-hidden="true" class="opacity-50">/</span>}
+              {m.actual ? (
+                <span aria-current="page" class="font-semibold text-[var(--color-text)]">
+                  {m.label}
+                </span>
+              ) : (
+                <a href={m.href} class="hover:text-[var(--color-link-hover)] hover:underline">
+                  {m.label}
+                </a>
+              )}
+            </li>
+          ))}
+        </ol>
+      </Container>
+    </nav>
+  )
+}
+
+{schema && <script is:inline type="application/ld+json" set:html={serializarSchema(schema)} />}

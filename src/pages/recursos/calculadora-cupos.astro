@@ -1,0 +1,25 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Calculadora de cupos de biciparqueadero',
+  descripcion:
+    'Estima cuántos cupos de biciparqueadero necesitas según área, número de personas y normativa aplicable.',
+  ruta: '/recursos/calculadora-cupos',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Calculadora de cupos"
+    intro="Isla interactiva: el visitante estima cupos y, al pedir el resultado detallado, deja sus datos. Califica el lead y lo envía a cotización."
+    plantilla="Especial"
+    fase="Fase 5"
+    ctaPrimario={{ label: 'Cotizar con mi estimación', href: '/cotizar' }}
+    relacionados={[
+      { label: 'Normativa: Ley 1811 y PESV', href: '/recursos/normativa' },
+      { label: 'Modelos de biciparqueadero', href: '/biciparqueaderos/modelos' },
+    ]}
+  />
+</SiteLayout>

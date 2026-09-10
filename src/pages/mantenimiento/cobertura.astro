@@ -1,0 +1,25 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Cobertura del servicio de mantenimiento',
+  descripcion:
+    'Zonas donde prestamos mantenimiento a domicilio y jornadas en sede. Consulta si llegamos a tu ubicación.',
+  ruta: '/mantenimiento/cobertura',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Cobertura"
+    intro="Mapa y listado de zonas con cobertura para domicilio y jornadas. Alimenta la validación previa del agendador."
+    plantilla="Especial"
+    fase="Fase 3"
+    ctaPrimario={{ label: 'Agendar ahora', href: '/mantenimiento/agendar' }}
+    relacionados={[
+      { label: 'A domicilio', href: '/mantenimiento/domicilio' },
+      { label: 'Jornadas en sede', href: '/mantenimiento/jornadas-empresariales' },
+    ]}
+  />
+</SiteLayout>

@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Placeholder from '../../components/ui/Placeholder.astro';
+
+const seo = {
+  titulo: 'Soluciones de movilidad para constructoras y arquitectos',
+  descripcion:
+    'Biciparqueaderos que cumplen el POT y se integran al diseño desde la etapa de planos. Fichas y especificaciones para licitación.',
+  ruta: '/soluciones/constructoras',
+};
+---
+
+<SiteLayout seo={seo}>
+  <Placeholder
+    titulo="Para constructoras y arquitectos"
+    intro="Landing transversal. Habla de cumplimiento del POT, integración desde planos y especificación técnica para licitaciones."
+    plantilla="Especial"
+    fase="Fase 2"
+    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
+    relacionados={[
+      { label: 'Biciparqueaderos residenciales y PH', href: '/biciparqueaderos/residencial' },
+      { label: 'Diseño e instalación', href: '/biciparqueaderos/diseno-instalacion' },
+      { label: 'Fichas técnicas', href: '/recursos/fichas-tecnicas' },
+    ]}
+  />
+</SiteLayout>
