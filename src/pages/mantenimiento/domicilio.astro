@@ -1,26 +1,16 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import ServicioAgendable from '../../components/plantillas/ServicioAgendable.astro';
+import { SERVICIOS } from '../../data/mantenimiento';
 
 const seo = {
   titulo: 'Mantenimiento de bicicletas a domicilio',
   descripcion:
-    'Un técnico va a tu casa. Primero validamos cobertura por barrio o código postal, luego agendas.',
+    'Un técnico va a tu casa. Primero validamos cobertura por barrio o localidad; solo después pedimos tus datos.',
   ruta: '/mantenimiento/domicilio',
 };
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="A domicilio"
-    intro="Modalidad para personas: un técnico se desplaza a tu domicilio. Regla crítica — la cobertura se valida ANTES de pedir cualquier dato personal."
-    plantilla="C — Servicio agendable"
-    fase="Fase 3"
-    ctaPrimario={{ label: 'Validar cobertura y agendar', href: '/mantenimiento/agendar' }}
-    ctaSecundario={{ label: 'Ver zonas con cobertura', href: '/mantenimiento/cobertura' }}
-    relacionados={[
-      { label: 'Taller', href: '/mantenimiento/taller' },
-      { label: 'Planes y precios', href: '/mantenimiento/planes' },
-    ]}
-  />
+  <ServicioAgendable contenido={SERVICIOS.domicilio} />
 </SiteLayout>

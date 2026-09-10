@@ -1,6 +1,8 @@
 ---
 import SiteLayout from '../../../layouts/SiteLayout.astro';
-import Placeholder from '../../../components/ui/Placeholder.astro';
+import Section from '../../../components/ui/Section.astro';
+import CTA from '../../../components/ui/CTA.astro';
+import { SITE, whatsappUrl } from '../../../lib/site';
 
 const seo = {
   titulo: 'Agendamiento confirmado',
@@ -11,15 +13,42 @@ const seo = {
 ---
 
 <SiteLayout seo={seo} migasOverrides={{ '/mantenimiento/agendar/confirmado': 'Confirmación' }}>
-  <Placeholder
-    titulo="Agendamiento confirmado"
-    intro="Página de confirmación tras agendar. Muestra el resumen de la cita, el próximo paso y el canal de contacto. Sirve para medir conversiones."
-    plantilla="Especial"
-    fase="Fase 3"
-    ctaPrimario={{ label: 'Volver al inicio', href: '/' }}
-    relacionados={[
-      { label: 'Planes y precios', href: '/mantenimiento/planes' },
-      { label: 'Tienda de accesorios', href: '/tienda' },
-    ]}
-  />
+  <Section espaciado="amplio" ancho="estrecho">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-primary-700)]">
+      Agendamiento recibido
+    </p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Listo, lo tenemos</h1>
+
+    <p class="mt-4 text-[var(--text-lg)] text-[var(--color-text-muted)]" data-mensaje>
+      Registramos tu solicitud. Te contactamos para confirmar los detalles.
+    </p>
+
+    <div class="mt-8 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-subtle)] p-6">
+      <p class="text-[var(--text-base)] font-semibold">¿Necesitas ajustar algo?</p>
+      <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+        Llama al {SITE.tel} o escríbenos por
+        <a class="underline" href={whatsappUrl('mantenimiento')} target="_blank" rel="noopener noreferrer"> WhatsApp</a>.
+      </p>
+    </div>
+
+    <nav aria-label="Continuar" class="mt-10 flex flex-wrap gap-4">
+      <CTA href="/" variante="secundario">Volver al inicio</CTA>
+      <CTA href="/tienda" variante="texto">Ver la tienda de accesorios</CTA>
+    </nav>
+  </Section>
 </SiteLayout>
+
+<script>
+  const mensajes: Record<string, string> = {
+    empresa:
+      'Registramos tu solicitud de jornada en sede. Un coordinador te escribe para cerrar el cronograma según el número de bicicletas.',
+    taller:
+      'Registramos tu cita en el taller. Te confirmamos por correo el turno y qué llevar.',
+    domicilio:
+      'Registramos tu solicitud a domicilio en una zona con cobertura. Te confirmamos la ventana horaria y el técnico asignado.',
+  };
+  const m = new URLSearchParams(location.search).get('m');
+  const el = document.querySelector('[data-mensaje]');
+  if (el && m && mensajes[m]) el.textContent = mensajes[m];
+  if (m) history.replaceState(null, '', location.pathname);
+</script>

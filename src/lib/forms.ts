@@ -72,3 +72,52 @@ export function validarFicha(fd: FormData): ResultadoValidacion<DatosFicha> {
   if (!datos.modeloId) errores.modeloId = 'Falta el modelo.';
   return { ok: Object.keys(errores).length === 0, datos, errores };
 }
+
+const MODALIDADES = ['empresa', 'taller', 'domicilio'] as const;
+type ModalidadAgenda = (typeof MODALIDADES)[number];
+
+export interface DatosAgendamiento {
+  modalidad: ModalidadAgenda;
+  nombre: string;
+  correo: string;
+  telefono: string;
+  fecha: string;
+  detalle: Record<string, string>;
+}
+
+export function validarAgendamiento(fd: FormData): ResultadoValidacion<DatosAgendamiento> {
+  if (limpio(fd.get('empresa_web'))) {
+    return { ok: true, bot: true, errores: {} };
+  }
+
+  const modalidad = limpio(fd.get('modalidad')) as ModalidadAgenda;
+  const datos: DatosAgendamiento = {
+    modalidad,
+    nombre: limpio(fd.get('nombre')),
+    correo: limpio(fd.get('correo')),
+    telefono: limpio(fd.get('telefono')),
+    fecha: limpio(fd.get('fecha')),
+    detalle: {},
+  };
+
+  const errores: Record<string, string> = {};
+  if (!MODALIDADES.includes(modalidad)) errores.modalidad = 'Modalidad no válida.';
+  if (datos.nombre.length < 2) errores.nombre = 'Escribe tu nombre.';
+  if (!RE_CORREO.test(datos.correo)) errores.correo = 'Revisa el correo.';
+  if (!RE_TEL.test(datos.telefono)) errores.telefono = 'Revisa el teléfono.';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(datos.fecha)) errores.fecha = 'Falta la fecha.';
+
+  const campos: Record<ModalidadAgenda, string[]> = {
+    empresa: ['numBicis', 'ciudad', 'sede', 'empresa'],
+    taller: ['tipoServicio', 'franja'],
+    domicilio: ['cobertura', 'franja', 'direccion'],
+  };
+  for (const c of campos[modalidad] ?? []) {
+    const v = limpio(fd.get(c));
+    if (v) datos.detalle[c] = v;
+  }
+  if (modalidad === 'empresa' && !datos.detalle.empresa) errores.empresa = 'Falta la empresa.';
+  if (modalidad === 'domicilio' && !datos.detalle.direccion) errores.direccion = 'Falta la dirección.';
+
+  return { ok: Object.keys(errores).length === 0, datos, errores };
+}

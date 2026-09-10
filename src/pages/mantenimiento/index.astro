@@ -1,29 +1,16 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import HubLinea from '../../components/plantillas/HubLinea.astro';
+import { HUB } from '../../data/mantenimiento';
 
 const seo = {
   titulo: 'Mantenimiento de bicicletas para empresas y personas',
   descripcion:
-    'Mantenimiento de bicicletas en tres modalidades: jornadas en sede, taller propio y a domicilio. Agenda tu servicio.',
+    'Mantenimiento de bicicletas en tres modalidades: jornadas en sede, taller propio y a domicilio. Agenda en línea y confirma en el momento.',
   ruta: '/mantenimiento',
 };
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Mantenimiento"
-    intro="Servicio recurrente en tres modalidades: jornadas en la sede de la empresa, taller propio y a domicilio. Se cierra con agendamiento."
-    plantilla="A — Hub de línea"
-    fase="Fase 3"
-    ctaPrimario={{ label: 'Agendar ahora', href: '/mantenimiento/agendar' }}
-    ctaSecundario={{ label: 'Ver planes y precios', href: '/mantenimiento/planes' }}
-    relacionados={[
-      { label: 'Jornadas en sede', href: '/mantenimiento/jornadas-empresariales' },
-      { label: 'Planes para flotas', href: '/mantenimiento/flotas' },
-      { label: 'Taller', href: '/mantenimiento/taller' },
-      { label: 'A domicilio', href: '/mantenimiento/domicilio' },
-      { label: 'Cobertura', href: '/mantenimiento/cobertura' },
-    ]}
-  />
+  <HubLinea {...HUB} />
 </SiteLayout>

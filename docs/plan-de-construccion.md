@@ -70,7 +70,19 @@ real para el bloque 5, versión clara del logo para fondos oscuros e imagen `og-
 
 ---
 
-## Fase 3 — Línea 2: Mantenimiento
+## Fase 3 — Línea 2: Mantenimiento — 🔨 ESTRUCTURA LISTA
+
+Estado: hub con Plantilla A; 4 servicios (jornadas, flotas, taller, domicilio) con
+Plantilla C nueva (`ServicioAgendable`); comparativo de planes; página de cobertura con
+chequeo en vivo. Agendador de 4 pasos (`Agendador.tsx`, isla React) con selector de
+modalidad y validación de cobertura ANTES de pedir datos personales; endpoint serverless
+`/api/agendar` con validación y notificación (`notificarLead` tipo `agendamiento`);
+página de confirmación con mensaje por modalidad. Contenido en `src/data/mantenimiento.ts`.
+Probado de punta a punta en la ruta domicilio.
+
+Pendiente antes de cerrar: precios reales de los planes, zonas de cobertura definitivas,
+URL de `N8N_WEBHOOK_AGENDAMIENTOS`, y decidir si el agendador confirma o cobra en el acto
+(hoy solo registra la solicitud).
 
 - Hub y páginas de las 3 modalidades
 - Comparativo de planes

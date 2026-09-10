@@ -1,6 +1,8 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import ChequeoCobertura from '../../components/islands/ChequeoCobertura.tsx';
+import { COBERTURA } from '../../data/mantenimiento';
 
 const seo = {
   titulo: 'Cobertura del servicio de mantenimiento',
@@ -11,15 +13,33 @@ const seo = {
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Cobertura"
-    intro="Mapa y listado de zonas con cobertura para domicilio y jornadas. Alimenta la validación previa del agendador."
-    plantilla="Especial"
-    fase="Fase 3"
-    ctaPrimario={{ label: 'Agendar ahora', href: '/mantenimiento/agendar' }}
-    relacionados={[
-      { label: 'A domicilio', href: '/mantenimiento/domicilio' },
-      { label: 'Jornadas en sede', href: '/mantenimiento/jornadas-empresariales' },
-    ]}
-  />
+  <Section espaciado="amplio">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
+      Mantenimiento · Cobertura
+    </p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">¿Llegamos a tu zona?</h1>
+    <p class="mt-4 max-w-[46rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+      El servicio a domicilio opera en las zonas listadas abajo. Si no ves la tuya, el taller
+      está disponible para todos.
+    </p>
+
+    <div class="mt-8 max-w-[36rem]">
+      <ChequeoCobertura client:idle />
+    </div>
+
+    <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {COBERTURA.map((c) => (
+        <div>
+          <h2 class="font-display text-[var(--text-lg)] font-bold">{c.ciudad}</h2>
+          <ul class="mt-2 grid gap-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+            {c.zonas.map((z) => <li>{z}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-10 font-mono text-[var(--text-xs)] text-[var(--color-text-muted)]">
+      Zonas de ejemplo. La cobertura definitiva se confirma con el cliente.
+    </p>
+  </Section>
 </SiteLayout>
