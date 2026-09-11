@@ -16,14 +16,14 @@ export default defineConfig({
   // URL con "/" final), sin importar si el archivo generado es x.html o
   // x/index.html — por eso no fijamos build.format aquí, no cambia nada.
   trailingSlash: 'never',
-  // 301 reales del cliente: por ahora vacío. Confirmado con el cliente
-  // (2026-09-11) que solucionesdemovilidad.com.co es un dominio nuevo, sin
-  // sitio anterior que redirigir. Ver src/data/redirects-301.ts.
+  // 301: las del sitio anterior (vacío, ver src/data/redirects-301.ts) más
+  // las internas propias del sitio.
   redirects: Object.fromEntries(
-    Object.entries(REDIRECTS_301).map(([origen, destino]) => [
-      origen,
-      { status: 301, destination: destino },
-    ]),
+    Object.entries({
+      ...REDIRECTS_301,
+      // "Recursos" es una agrupación de menú, no tiene página propia.
+      '/recursos': '/recursos/normativa',
+    }).map(([origen, destino]) => [origen, { status: 301, destination: destino }]),
   ),
   // Sitio mayormente estático. Los formularios que necesitan servidor
   // (cotizar, agendar, ficha técnica, calculadora, pedido) viven en

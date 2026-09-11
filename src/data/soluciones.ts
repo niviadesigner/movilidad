@@ -56,11 +56,11 @@ export const SOLUCIONES: Record<string, ContenidoHub> = {
     intro:
       'Para constructoras y arquitectos: especificación técnica, cumplimiento del cupo mínimo de bicicletas y una solución que se integra al diseño, no que se improvisa al final.',
     ctaPrimario: CTA_COTIZAR,
-    ctaSecundario: { label: 'Fichas técnicas', href: '/recursos/fichas-tecnicas' },
+    ctaSecundario: { label: 'Ver modelos y fichas técnicas', href: '/biciparqueaderos/modelos' },
     selector: {
       titulo: 'Lo que pedimos y entregamos',
       items: [
-        { titulo: 'Especificación para licitación', texto: 'Fichas técnicas y dimensiones para tus planos y pliegos.', href: '/recursos/fichas-tecnicas' },
+        { titulo: 'Especificación para licitación', texto: 'Fichas técnicas y dimensiones para tus planos y pliegos.', href: '/biciparqueaderos/modelos' },
         { titulo: 'Modelos para sótano', texto: 'Distribución que aprovecha el ancho de pasillo y la altura.', href: '/biciparqueaderos/modelos' },
         { titulo: 'Diseño e instalación', texto: 'Anclaje según superficie y montaje coordinado con obra.', href: '/biciparqueaderos/diseno-instalacion' },
       ],

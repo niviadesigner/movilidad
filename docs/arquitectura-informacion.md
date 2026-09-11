@@ -31,10 +31,9 @@ HOME B2B (/)
 ├── PROYECTOS (/proyectos)
 │   └── Caso de estudio (/proyectos/{cliente})
 │
-├── RECURSOS (/recursos)
+├── RECURSOS — agrupación de menú, sin página propia en /recursos
 │   ├── Normativa: Ley 1811, PESV y POT (/recursos/normativa)
 │   ├── Calculadora de cupos (/recursos/calculadora-cupos)
-│   ├── Fichas técnicas (/recursos/fichas-tecnicas)
 │   ├── Preguntas frecuentes (/recursos/faq)
 │   └── Blog (/blog) → (/blog/{slug})
 │
@@ -145,7 +144,6 @@ mantenimiento, y quien compra una guaya puede necesitar un biciparqueadero en su
 | Caso de estudio | `/proyectos/{cliente}` | Interna | Media | Confianza + cotizar |
 | Normativa | `/recursos/normativa` | Mega menú | Alta (SEO) | Captar lead |
 | Calculadora de cupos | `/recursos/calculadora-cupos` | Mega menú + home | Alta | Captar y calificar |
-| Fichas técnicas | `/recursos/fichas-tecnicas` | Mega menú | Media | Captar correo |
 | Blog | `/blog/{slug}` | Mega menú | Media | Tráfico |
 | Nosotros | `/nosotros` | Header | Baja | Confianza |
 | Cotizar | `/cotizar` | CTA header | Alta | Convertir |
@@ -179,7 +177,7 @@ gerente de sostenibilidad que le vendemos morrales.
 
 | Biciparqueaderos ▾ | Mantenimiento ▾ | Recursos ▾ |
 |---|---|---|
-| **Por sector**<br>Corporativo<br>Institucional y educativo<br>Residencial y PH<br>Mobiliario urbano | **Empresas**<br>Jornadas en sede<br>Planes para flotas | Normativa Ley 1811 y PESV<br>Calculadora de cupos<br>Fichas técnicas |
+| **Por sector**<br>Corporativo<br>Institucional y educativo<br>Residencial y PH<br>Mobiliario urbano | **Empresas**<br>Jornadas en sede<br>Planes para flotas | Normativa Ley 1811 y PESV<br>Calculadora de cupos |
 | **Explorar**<br>Ver todos los modelos<br>Diseño e instalación | **Personas**<br>Taller<br>A domicilio<br>Planes y precios | Preguntas frecuentes<br>Blog |
 | → Calculadora de cupos | → Agendar ahora | → Hablar con un ingeniero |
 
@@ -200,7 +198,7 @@ El header cambia por completo al entrar:
 
 - **Líneas**: Biciparqueaderos · Mantenimiento · Tienda
 - **Soluciones**: Empresas · Constructoras · Conjuntos · Universidades
-- **Recursos**: Normativa · Calculadora · Fichas técnicas · FAQ · Blog
+- **Recursos**: Normativa · Calculadora · FAQ · Blog
 - **Empresa**: Nosotros · Aliados y certificaciones · Contacto
 - **Legal**: Términos · Privacidad · Política de tratamiento de datos · Envíos y devoluciones
 

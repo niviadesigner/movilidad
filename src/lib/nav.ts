@@ -92,14 +92,15 @@ export const NAV_CORPORATIVO: NavItem[] = [
   },
   {
     label: 'Recursos',
-    href: '/recursos',
+    // Sin página propia en /recursos: el rótulo abre el mega menú; si se
+    // hace clic directo, va a la página principal del grupo.
+    href: '/recursos/normativa',
     mega: {
       columnas: [
         {
           links: [
             { label: 'Normativa: Ley 1811 y PESV', href: '/recursos/normativa' },
             { label: 'Calculadora de cupos', href: '/recursos/calculadora-cupos' },
-            { label: 'Fichas técnicas', href: '/recursos/fichas-tecnicas' },
           ],
         },
         {
@@ -195,7 +196,6 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     links: [
       { label: 'Normativa', href: '/recursos/normativa' },
       { label: 'Calculadora de cupos', href: '/recursos/calculadora-cupos' },
-      { label: 'Fichas técnicas', href: '/recursos/fichas-tecnicas' },
       { label: 'Preguntas frecuentes', href: '/recursos/faq' },
       { label: 'Blog', href: '/blog' },
     ],

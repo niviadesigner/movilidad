@@ -31,7 +31,6 @@ export const LABELS: Record<string, string> = {
   '/recursos': 'Recursos',
   '/recursos/normativa': 'Normativa: Ley 1811, PESV y POT',
   '/recursos/calculadora-cupos': 'Calculadora de cupos',
-  '/recursos/fichas-tecnicas': 'Fichas técnicas',
   '/recursos/faq': 'Preguntas frecuentes',
 
   '/blog': 'Blog',
