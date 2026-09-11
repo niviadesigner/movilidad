@@ -183,12 +183,15 @@ Estado:
   redirecciones reales del adapter de Vercel, no meta-refresh). Vacío: sin el sitemap o el
   listado de URLs del sitio anterior no hay qué mapear.
 
+**301 resuelto (2026-09-11):** confirmado con el cliente que `solucionesdemovilidad.com.co` es
+un dominio nuevo, sin sitio anterior. No hay nada que redirigir; el mecanismo queda listo y
+vacío por si algún día hace falta.
+
 Pendiente — necesita algo del cliente, no es código:
 1. Confirmar o cambiar la elección de Google Analytics 4.
-2. El sitemap.xml o listado de URLs del sitio anterior, para llenar las 301.
-3. Revisión de un abogado sobre los tres textos legales antes de publicarlos como definitivos
-   (falta también el NIT y la dirección física exacta del responsable).
-4. Llaves reales de Wompi, catálogo y precios reales, webhook de n8n — arrastrados de fases
+2. Revisión de un abogado sobre los tres textos legales antes de publicarlos como definitivos.
+   El cliente va a pasar el NIT y la razón social exacta.
+3. Llaves reales de Wompi, catálogo y precios reales, webhook de n8n — arrastrados de fases
    anteriores.
 
 ---

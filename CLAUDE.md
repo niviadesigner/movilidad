@@ -62,9 +62,10 @@ Cada línea es una autopista independiente con rampas de acceso entre ellas.
    `PUBLIC_GA4_ID` — sin esa variable no carga nada. Es la elección por defecto de Fase 6,
    reversible: confírmala o pide cambiarla por Plausible/Fathom/ninguna. 5 eventos de
    conversión ya instrumentados (cotización, agendamiento, pedido, calculadora, ficha técnica).
-16. **Redirecciones 301** desde el sitio anterior: mecanismo listo en
-   `src/data/redirects-301.ts` → `astro.config.mjs` (redirecciones reales vía Vercel, no
-   meta-refresh). Vacío — hace falta el sitemap o el listado de URLs del sitio viejo.
+16. **Sin redirecciones 301: `solucionesdemovilidad.com.co` es un dominio nuevo**, sin sitio
+   anterior (confirmado con el cliente). El mecanismo queda listo y vacío en
+   `src/data/redirects-301.ts` → `astro.config.mjs`, por si algún día hay que retirar otro
+   dominio. Decidido en Fase 6.
 17. **Legal (Fase 6):** los tres textos de `/legal/*` pasaron de `Placeholder` a un borrador
    completo en estructura (Ley 1581 de 2012, Decreto 1377 de 2013, Ley 1480 de 2011), con
    aviso visible de que falta la revisión de un abogado del cliente antes de publicarse.
@@ -79,9 +80,8 @@ Cada línea es una autopista independiente con rampas de acceso entre ellas.
 - [ ] **Copy final** de home y hubs (se está redactando aparte, ver `docs/copy/`).
 - [ ] **Catálogo real**: SKUs, precios, fotos, stock inicial.
 - [ ] **Confirmar Google Analytics 4** como herramienta de analítica, o cambiarla.
-- [ ] **Sitemap o listado de URLs del sitio anterior**, para las redirecciones 301.
 - [ ] **Revisión legal** de `/legal/terminos`, `/legal/privacidad` y `/legal/tratamiento-datos`
-      por un abogado, más el NIT y la dirección física exacta del responsable del tratamiento.
+      por un abogado. El cliente va a pasar el NIT y la razón social exacta.
 
 Mientras no estén definidas, trabaja con datos de ejemplo claramente marcados como
 `// TODO: reemplazar con dato real` y nunca inventes precios, cifras ni nombres de clientes.
