@@ -9,8 +9,6 @@ const seo = {
     'Cuéntanos qué necesitas y un ingeniero te responde en menos de 24 h. Cinco campos, sin compromiso.',
   ruta: '/cotizar',
 };
-
-const hayError = Astro.url.searchParams.get('error') === '1';
 ---
 
 <SiteLayout seo={seo} sinMigas>
@@ -22,7 +20,7 @@ const hayError = Astro.url.searchParams.get('error') === '1';
     </p>
 
     <div class="mt-10">
-      <FormularioCotizacion origen="/cotizar" conError={hayError} idPrefijo="cot" />
+      <FormularioCotizacion origen="/cotizar" idPrefijo="cot" />
     </div>
   </Section>
 </SiteLayout>

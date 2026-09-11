@@ -11,31 +11,62 @@ const seo = {
   ruta: '/recursos/faq',
 };
 
-// TODO: reemplazar con preguntas y respuestas reales en Fase 5.
 const items: ItemFAQ[] = [
   {
     pregunta: '¿Cuánto tarda un proyecto de biciparqueadero?',
-    respuesta: 'Contenido pendiente. Se redacta con el cliente en Fase 5.',
+    respuesta:
+      'Depende del tamaño y de la fabricación. En la visita técnica te damos un cronograma concreto que queda por escrito en la cotización.',
   },
   {
-    pregunta: '¿Hacen instalación en todo el país?',
-    respuesta: 'Contenido pendiente. Se redacta con el cliente en Fase 5.',
+    pregunta: '¿Instalan en todo el país?',
+    respuesta:
+      'Trabajamos desde Bogotá con cobertura nacional para proyectos de biciparqueaderos. El desplazamiento y los tiempos se detallan en la propuesta.',
+  },
+  {
+    pregunta: '¿Cómo sé si mi empresa está obligada a tener biciparqueadero?',
+    respuesta:
+      'La Ley 1811, el PESV y el POT de tu municipio pueden aplicar según tu caso. Revisa la página de normativa o cuéntanos tu situación en la cotización.',
   },
   {
     pregunta: '¿El mantenimiento a domicilio llega a mi zona?',
-    respuesta: 'Contenido pendiente. Ver la página de cobertura cuando esté disponible.',
+    respuesta:
+      'Depende de la zona. En el agendador validamos la cobertura antes de pedir cualquier dato personal; también puedes revisarla en la página de cobertura.',
+  },
+  {
+    pregunta: '¿Necesito crear una cuenta para comprar en la tienda?',
+    respuesta:
+      'No. La compra es como invitado. La cuenta es opcional y se ofrece al final del checkout.',
+  },
+  {
+    pregunta: '¿Cómo se calcula el envío de la tienda?',
+    respuesta:
+      'Se calcula por zona y se muestra en el checkout antes de pagar, nunca como sorpresa al final.',
+  },
+  {
+    pregunta: '¿Puedo devolver un producto de la tienda?',
+    respuesta:
+      'Sí, dentro de los plazos del derecho de retracto. El detalle está en cambios y devoluciones.',
+  },
+  {
+    pregunta: '¿Tienen un solo canal de contacto?',
+    respuesta:
+      'Sí: un solo teléfono y un solo WhatsApp para todo el sitio, visibles en el pie de página.',
   },
 ];
 ---
 
 <SiteLayout seo={seo}>
   <Section espaciado="amplio">
-    <h1 class="text-[var(--text-4xl)]">Preguntas frecuentes</h1>
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
+      Recursos · FAQ
+    </p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Preguntas frecuentes</h1>
     <p class="mt-3 max-w-[52ch] text-[var(--color-text-muted)]">
-      Esqueleto navegable. Las preguntas reales se redactan en Fase 5.
+      Si tu duda es sobre normativa, mira también la página de
+      <a class="underline" href="/recursos/normativa">normativa</a>.
     </p>
     <div class="mt-10">
-      <FAQ titulo="" items={items} />
+      <FAQ titulo="" items={items} schema />
     </div>
   </Section>
 </SiteLayout>

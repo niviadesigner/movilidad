@@ -118,3 +118,29 @@ export function validarAgendamiento(fd: FormData): ResultadoValidacion<DatosAgen
 
   return { ok: Object.keys(errores).length === 0, datos, errores };
 }
+
+export interface DatosCalculadora {
+  correo: string;
+  tipoEspacio: string;
+  personas: number;
+  cuposEstimado: number;
+  familiaSugerida: string;
+}
+
+export function validarCalculadora(fd: FormData): ResultadoValidacion<DatosCalculadora> {
+  if (limpio(fd.get('empresa_web'))) {
+    return { ok: true, bot: true, errores: {} };
+  }
+  const datos: DatosCalculadora = {
+    correo: limpio(fd.get('correo')),
+    tipoEspacio: limpio(fd.get('tipoEspacio')),
+    personas: Number(limpio(fd.get('personas'))),
+    cuposEstimado: Number(limpio(fd.get('cuposEstimado'))),
+    familiaSugerida: limpio(fd.get('familiaSugerida')),
+  };
+  const errores: Record<string, string> = {};
+  if (!RE_CORREO.test(datos.correo)) errores.correo = 'Revisa el correo.';
+  if (!datos.tipoEspacio) errores.tipoEspacio = 'Falta el tipo de espacio.';
+  if (!(datos.personas > 0)) errores.personas = 'Falta el dato de personas o unidades.';
+  return { ok: Object.keys(errores).length === 0, datos, errores };
+}

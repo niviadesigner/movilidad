@@ -4,7 +4,8 @@
  * Progresivo: el POST nativo a /api/ficha-tecnica funciona sin JS (el lead se
  * registra igual). La confirmación en la misma página se resuelve en cliente,
  * porque la ficha de modelo es estática y no puede leer el querystring en build.
- * Estados: ?ficha=enviada · ?ficha=error
+ * Estados: ?ficha=enviada · ?ficha=error (+ &modelo= cuando hay varias fichas
+ * en una misma página, p. ej. /recursos/fichas-tecnicas).
  */
 interface Props {
   modeloId: string;
@@ -14,7 +15,7 @@ interface Props {
 const { modeloId, modeloNombre, pdfUrl } = Astro.props;
 ---
 
-<div class="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-subtle)] p-6" data-captura>
+<div class="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-subtle)] p-6" data-captura data-modelo-id={modeloId}>
   <div data-captura-ok hidden>
     <p class="text-[var(--text-base)] font-semibold text-[var(--color-primary-700)]">
       Listo, te enviamos la ficha técnica a tu correo.
@@ -72,21 +73,28 @@ const { modeloId, modeloNombre, pdfUrl } = Astro.props;
 </div>
 
 <script>
-  const raiz = document.querySelector('[data-captura]');
-  if (raiz) {
-    const params = new URLSearchParams(window.location.search);
-    const estado = params.get('ficha');
-    if (estado === 'enviada') {
-      raiz.querySelector('[data-captura-form]')?.setAttribute('hidden', '');
-      raiz.querySelector('[data-captura-ok]')?.removeAttribute('hidden');
-      raiz.scrollIntoView({ block: 'center', behavior: 'smooth' });
-    } else if (estado === 'error') {
-      raiz.querySelector('[data-captura-error]')?.removeAttribute('hidden');
+  const params = new URLSearchParams(window.location.search);
+  const estado = params.get('ficha');
+  const modelo = params.get('modelo');
+
+  if (estado) {
+    // Si la página tiene varias fichas, solo se revela la que coincide con
+    // ?modelo=; si no viene (una sola ficha en la página), se revela esa.
+    const raices = [...document.querySelectorAll('[data-captura]')].filter(
+      (el) => !modelo || el.getAttribute('data-modelo-id') === modelo,
+    );
+    for (const raiz of raices) {
+      if (estado === 'enviada') {
+        raiz.querySelector('[data-captura-form]')?.setAttribute('hidden', '');
+        raiz.querySelector('[data-captura-ok]')?.removeAttribute('hidden');
+        raiz.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      } else if (estado === 'error') {
+        raiz.querySelector('[data-captura-error]')?.removeAttribute('hidden');
+      }
     }
-    if (estado) {
-      params.delete('ficha');
-      const qs = params.toString();
-      history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
-    }
+    params.delete('ficha');
+    params.delete('modelo');
+    const qs = params.toString();
+    history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
   }
 </script>

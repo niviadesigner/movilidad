@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import Card from '../../components/ui/Card.astro';
 
 const seo = {
   titulo: 'Recursos: normativa, calculadora y fichas técnicas',
@@ -11,18 +12,30 @@ const seo = {
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Recursos"
-    intro="El motor de tráfico y captura de leads: normativa, calculadora de cupos, fichas técnicas y blog. Todo enlaza a /cotizar."
-    plantilla="Especial"
-    fase="Fase 5"
-    ctaPrimario={{ label: 'Hablar con un ingeniero', href: '/cotizar' }}
-    relacionados={[
-      { label: 'Normativa: Ley 1811, PESV y POT', href: '/recursos/normativa' },
-      { label: 'Calculadora de cupos', href: '/recursos/calculadora-cupos' },
-      { label: 'Fichas técnicas', href: '/recursos/fichas-tecnicas' },
-      { label: 'Preguntas frecuentes', href: '/recursos/faq' },
-      { label: 'Blog', href: '/blog' },
-    ]}
-  />
+  <Section espaciado="amplio">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Recursos</p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Para resolver tu proyecto antes de cotizar</h1>
+    <p class="mt-4 max-w-[46rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+      Normativa, una calculadora de cupos y fichas técnicas. Todo enlaza a
+      <a class="underline" href="/cotizar">cotizar</a>.
+    </p>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+      <Card href="/recursos/normativa" titulo="Normativa" eyebrow="Ley 1811 · PESV · POT">
+        ¿Estás obligado a tener biciparqueadero? Qué exige cada norma.
+      </Card>
+      <Card href="/recursos/calculadora-cupos" titulo="Calculadora de cupos" eyebrow="2 minutos">
+        Estima cuántos cupos necesitas según tu tipo de espacio.
+      </Card>
+      <Card href="/recursos/fichas-tecnicas" titulo="Fichas técnicas" eyebrow="PDF">
+        Dimensiones, materiales y normativa por modelo.
+      </Card>
+      <Card href="/recursos/faq" titulo="Preguntas frecuentes" eyebrow="Dudas comunes">
+        Respuestas rápidas antes de escribirnos.
+      </Card>
+      <Card href="/blog" titulo="Blog" eyebrow="Artículos">
+        Normativa y buenas prácticas de movilidad en bicicleta.
+      </Card>
+    </div>
+  </Section>
 </SiteLayout>

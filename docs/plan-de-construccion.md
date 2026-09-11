@@ -124,13 +124,25 @@ operador logístico, llaves de Wompi, correo transaccional, y cuenta real con in
 
 ---
 
-## Fase 5 — Autoridad y captura
+## Fase 5 — Autoridad y captura — 🔨 ESTRUCTURA LISTA
 
-- `/recursos/normativa` con Ley 1811, PESV y POT
-- Calculadora de cupos con captura y calificación de lead
-- Casos de estudio con Plantilla D
-- Blog y primeros artículos
-- Fichas técnicas descargables
+Estado: `/recursos/normativa` con Ley 1811, PESV y POT (contenido informativo real, con
+disclaimer de que no es asesoría legal) + FAQ con schema `FAQPage`; `/recursos/calculadora-cupos`
+(`CalculadoraCupos.tsx`) con heurística de cupos por tipo de espacio (`lib/calculadora.ts`),
+captura de correo y `/api/calculadora` (lead calificado); `/recursos/fichas-tecnicas` lista
+todos los modelos con descarga por correo; Plantilla D (`CasoEstudio.astro`) aplicada a
+`/proyectos/[cliente]`, con testimonio y modelos usados enlazados; blog con 3 artículos reales
+(Ley 1811, PESV, cómo elegir modelo) y `/recursos/faq` con preguntas reales del sitio completo.
+
+De paso se corrigieron dos fallos reales que Fase 5 dejó ver: `CapturaCorreo` solo revelaba la
+confirmación en la primera ficha de la página cuando había varias (ahora cada una se identifica
+por `?modelo=`); y `/cotizar` es una página estática que nunca podía leer `?error=1` ni
+`?cupos=` en el servidor (ahora un script en `FormularioCotizacion` los lee en el cliente). Se
+añadió también un `.prose` mínimo en `global.css`: sin él, los artículos largos perdían
+jerarquía de encabezados y viñetas de lista.
+
+Pendiente antes de cerrar: revisión legal del contenido de normativa, cifras reales de los
+casos de estudio (hoy son de ejemplo, `borrador`), y una imagen `og-default` para redes.
 
 **Entrega:** el motor de tráfico y leads encendido.
 

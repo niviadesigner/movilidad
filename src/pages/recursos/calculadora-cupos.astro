@@ -1,25 +1,35 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import CalculadoraCupos from '../../components/islands/CalculadoraCupos.tsx';
 
 const seo = {
   titulo: 'Calculadora de cupos de biciparqueadero',
   descripcion:
-    'Estima cuántos cupos de biciparqueadero necesitas según área, número de personas y normativa aplicable.',
+    'Estima cuántos cupos de biciparqueadero necesitas según el tipo de espacio y el número de personas.',
   ruta: '/recursos/calculadora-cupos',
 };
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Calculadora de cupos"
-    intro="Isla interactiva: el visitante estima cupos y, al pedir el resultado detallado, deja sus datos. Califica el lead y lo envía a cotización."
-    plantilla="Especial"
-    fase="Fase 5"
-    ctaPrimario={{ label: 'Cotizar con mi estimación', href: '/cotizar' }}
-    relacionados={[
-      { label: 'Normativa: Ley 1811 y PESV', href: '/recursos/normativa' },
-      { label: 'Modelos de biciparqueadero', href: '/biciparqueaderos/modelos' },
-    ]}
-  />
+  <Section espaciado="amplio">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
+      Recursos · Calculadora
+    </p>
+    <h1 class="mt-3 max-w-[26ch] text-[var(--text-4xl)]">¿Cuántos cupos necesitas?</h1>
+    <p class="mt-4 max-w-[46rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+      Elige el tipo de espacio y cuántas personas o unidades tiene. Te damos un rango para
+      planear el proyecto en segundos.
+    </p>
+
+    <div class="mt-10 max-w-[40rem]">
+      <CalculadoraCupos client:load />
+    </div>
+
+    <p class="mt-8 max-w-[40rem] text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      Esta calculadora da un estimado de planeación, no la cifra oficial que exige el POT de tu
+      municipio. Revisa qué normas te aplican en
+      <a class="underline" href="/recursos/normativa">Normativa</a>.
+    </p>
+  </Section>
 </SiteLayout>
