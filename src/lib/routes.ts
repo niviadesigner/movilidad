@@ -38,7 +38,6 @@ export const LABELS: Record<string, string> = {
 
   '/nosotros': 'Nosotros',
   '/nosotros/aliados': 'Aliados y certificaciones',
-  '/nosotros/trabaja-con-nosotros': 'Trabaja con nosotros',
 
   '/cotizar': 'Cotizar',
   '/gracias': 'Gracias',

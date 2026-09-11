@@ -201,7 +201,7 @@ El header cambia por completo al entrar:
 - **Líneas**: Biciparqueaderos · Mantenimiento · Tienda
 - **Soluciones**: Empresas · Constructoras · Conjuntos · Universidades
 - **Recursos**: Normativa · Calculadora · Fichas técnicas · FAQ · Blog
-- **Empresa**: Nosotros · Aliados y certificaciones · Contacto · Trabaja con nosotros
+- **Empresa**: Nosotros · Aliados y certificaciones · Contacto
 - **Legal**: Términos · Privacidad · Política de tratamiento de datos · Envíos y devoluciones
 
 ### Migas de pan

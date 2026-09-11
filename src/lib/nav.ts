@@ -205,7 +205,6 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     links: [
       { label: 'Nosotros', href: '/nosotros' },
       { label: 'Aliados y certificaciones', href: '/nosotros/aliados' },
-      { label: 'Trabaja con nosotros', href: '/nosotros/trabaja-con-nosotros' },
       { label: 'Cotizar', href: '/cotizar' },
     ],
   },
