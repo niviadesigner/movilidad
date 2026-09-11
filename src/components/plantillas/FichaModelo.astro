@@ -7,6 +7,7 @@
 import Section from '../ui/Section.astro';
 import CTA from '../ui/CTA.astro';
 import CapturaCorreo from '../ui/CapturaCorreo.astro';
+import SelloConfianza from '../ui/SelloConfianza.astro';
 import { formatoCOP } from '../../lib/pricing';
 
 interface ModeloData {
@@ -47,6 +48,8 @@ const familia = familias[data.familia];
           alt={`Biciparqueadero ${data.nombre}, modelo ${data.codigo}`}
           width="720"
           height="540"
+          fetchpriority="high"
+          decoding="async"
           class="w-full rounded-[var(--radius-lg)] border border-[var(--color-border)] object-cover"
         />
       ) : (
@@ -102,6 +105,8 @@ const familia = familias[data.familia];
           <CTA href="/biciparqueaderos/diseno-instalacion" variante="secundario">Diseño e instalación</CTA>
         </div>
       </div>
+
+      <SelloConfianza normativa={data.normativa} />
     </div>
   </div>
 

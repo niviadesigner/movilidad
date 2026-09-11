@@ -1,0 +1,23 @@
+---
+/**
+ * Carga Google Analytics 4 SOLO si PUBLIC_GA4_ID está definido.
+ * Sin esa variable, este componente no renderiza nada: ni script, ni cookie,
+ * ni petición de red. Ver src/lib/analytics.ts y /legal/privacidad.
+ */
+import { GA4_ID, analyticsActivo } from '../../lib/analytics';
+---
+
+{analyticsActivo && (
+  <>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+    <script define:vars={{ GA4_ID }} is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      // anonymize_ip no existe en GA4 (ya anonimiza por defecto), pero
+      // desactivamos las señales de Google (ads/remarketing) hasta decidirlo.
+      gtag('config', GA4_ID, { allow_google_signals: false });
+    </script>
+  </>
+)}

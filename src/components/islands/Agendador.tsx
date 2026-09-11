@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { validarCobertura } from '../../data/mantenimiento';
+import { trackEvent, EVENTOS } from '../../lib/analytics';
 
 /**
  * Agendador de mantenimiento en 4 pasos (docs/arquitectura §7).
@@ -170,6 +171,7 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
     } catch {
       /* ignoramos: el canal principal es WhatsApp */
     }
+    trackEvent(EVENTOS.agendamientoWhatsapp, { modalidad });
     setTimeout(() => {
       window.location.href = `/mantenimiento/agendar/confirmado?m=${modalidad}`;
     }, 200);

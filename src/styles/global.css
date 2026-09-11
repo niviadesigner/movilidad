@@ -47,7 +47,7 @@
   --color-accent-700: #7c7700;
 
   /* ----- Semánticos (distintos del amarillo de marca) ----- */
-  --color-success-500: #1a8f5c;
+  --color-success-500: #157a4d; /* AA: 5.35:1 sobre blanco (auditoría Fase 6) */
   --color-success-50: #e6f3ec;
   --color-warning-500: #c2701a;
   --color-warning-50: #f7ede0;

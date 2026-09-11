@@ -1,20 +1,82 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import AvisoBorradorLegal from '../../components/ui/AvisoBorradorLegal.astro';
+import { SITE } from '../../lib/site';
+import { analyticsActivo } from '../../lib/analytics';
 
 const seo = {
   titulo: 'Política de privacidad',
   descripcion: 'Cómo tratamos los datos personales que nos compartes a través del sitio.',
   ruta: '/legal/privacidad',
 };
+const actualizado = '11 de septiembre de 2026';
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Política de privacidad"
-    intro="Texto legal pendiente. Debe alinearse con la política de tratamiento de datos (Ley 1581 de 2012)."
-    plantilla="Especial"
-    fase="Fase 6"
-    relacionados={[{ label: 'Política de tratamiento de datos', href: '/legal/tratamiento-datos' }]}
-  />
+  <Section espaciado="amplio" ancho="estrecho">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Legal</p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Política de privacidad</h1>
+    <div class="mt-8">
+      <AvisoBorradorLegal actualizado={actualizado} />
+    </div>
+
+    <div class="prose max-w-none text-[var(--color-text-muted)]">
+      <p>
+        Esta política explica qué pasa técnicamente cuando navegas
+        <strong>{SITE.dominio.replace('https://', '')}</strong>: qué guardamos en tu navegador y
+        qué medimos de forma agregada. Para el tratamiento de los datos que nos das en un
+        formulario (nombre, correo, teléfono), consulta la
+        <a href="/legal/tratamiento-datos">política de tratamiento de datos personales</a>.
+      </p>
+
+      <h2>1. Almacenamiento local del navegador</h2>
+      <p>
+        El carrito de compras, "mis pedidos" y "mis direcciones" se guardan con
+        <code>localStorage</code> en tu propio navegador. Esos datos no salen de tu dispositivo:
+        no los vemos, no los recibimos en un servidor. Se borran si limpias los datos del sitio
+        o cambias de navegador.
+      </p>
+
+      <h2>2. Analítica web</h2>
+      {analyticsActivo ? (
+        <p>
+          Usamos Google Analytics 4 para entender, de forma agregada, qué páginas se visitan y
+          si el sitio ayuda a resolver lo que buscas (por ejemplo, si alguien envía el
+          formulario de cotización). Google puede usar cookies para esto. Puedes bloquearlas
+          desde la configuración de tu navegador sin que el sitio deje de funcionar.
+        </p>
+      ) : (
+        <p>
+          Al día de hoy este sitio <strong>no tiene activada</strong> ninguna herramienta de
+          analítica ni píxel de publicidad. Si eso cambia, esta sección se actualiza antes de
+          activarla.
+        </p>
+      )}
+
+      <h2>3. Cookies</h2>
+      <p>
+        No usamos cookies propias para perfilarte ni para publicidad. Si la analítica de la
+        sección anterior está activa, las únicas cookies en el sitio son las que instala esa
+        herramienta.
+      </p>
+
+      <h2>4. Enlaces a terceros</h2>
+      <p>
+        Algunos botones te llevan a WhatsApp o a la pasarela de pago Wompi. Una vez sales de
+        nuestro dominio, aplica la política de privacidad de ese tercero, no la nuestra.
+      </p>
+
+      <h2>5. Seguridad</h2>
+      <p>
+        Los formularios viajan cifrados (HTTPS). Los datos de pago de la tienda los procesa
+        directamente Wompi: no los recibimos ni los almacenamos en nuestros servidores.
+      </p>
+
+      <h2>6. Contacto</h2>
+      <p>
+        Dudas sobre esta política: escríbenos a {SITE.correo} o al {SITE.tel}.
+      </p>
+    </div>
+  </Section>
 </SiteLayout>

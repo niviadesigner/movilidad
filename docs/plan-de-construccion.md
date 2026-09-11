@@ -148,14 +148,48 @@ casos de estudio (hoy son de ejemplo, `borrador`), y una imagen `og-default` par
 
 ---
 
-## Fase 6 — Cierre
+## Fase 6 — Cierre — 🔨 ESTRUCTURA LISTA
 
-- Auditoría de rendimiento: LCP bajo 2,5 s en móvil
-- Auditoría de accesibilidad AA
-- Auditoría de la lista de credibilidad de `CLAUDE.md` sección 8
-- Revisión de que ningún enlace externo lleve parámetros de rastreo de IA
-- Analítica, eventos de conversión y píxeles
-- Redirecciones 301 desde el sitio anterior
+Estado:
+
+- **Rendimiento**: hidratación de islas ya usaba `client:idle`/`client:load` con criterio
+  (nada bloquea el LCP); se añadió `fetchpriority="high"` a las imágenes de ficha (los
+  candidatos a LCP en esas páginas); fuentes con `font-display: swap` (por defecto de
+  `@fontsource`); bundles de islas livianos (todas < 11 kB sin comprimir, la mayoría < 5 kB).
+  Sin fotos reales todavía, la optimización de imágenes queda pendiente de cuando lleguen.
+- **Accesibilidad AA**: auditoría de contraste real (cálculo WCAG) sobre los pares de color en
+  uso. Encontró y corrigió una falla: `--color-success-500` daba 4.10:1 sobre blanco (bajo el
+  mínimo 4.5:1) en "disponible en stock", "cobertura confirmada" y el flotante de WhatsApp;
+  ahora es `#157a4d`, 5.35:1. El resto de pares (texto, enlaces, CTA amarillo, secciones
+  oscuras) ya pasaban con margen amplio. Alt text, `aria-*`, foco visible y asociación de
+  `<label>` revisados: sin hallazgos nuevos.
+- **Credibilidad (§8)**: sin lorem ipsum, sin estrellas decorativas, sin parámetros de rastreo
+  de IA en enlaces salientes (auditado por grep). Se encontró y cerró un hueco real: ninguna
+  ficha de modelo o de producto mostraba certificaciones ni aliados — nuevo componente
+  `SelloConfianza` (normativa real en biciparqueaderos, enlace a garantía en tienda, siempre
+  enlaza a `/nosotros/aliados`). Esa página, que era un `Placeholder`, ahora es real y honesta:
+  dice explícitamente que aún no hay aliados publicados, en vez de simular una lista.
+- **Legal**: los tres formularios del sitio ya pedían aceptar `/legal/tratamiento-datos`
+  mientras esa página (y privacidad y términos) seguían siendo `Placeholder` de Fase 0. Se
+  redactó un borrador completo y correcto en estructura para las tres (Ley 1581 de 2012,
+  Decreto 1377 de 2013, Ley 1480 de 2011), con aviso visible de que falta la revisión de un
+  abogado antes de publicarse como definitivo.
+- **Analítica**: Google Analytics 4 (decisión por defecto, reversible) detrás de
+  `PUBLIC_GA4_ID` — sin esa variable no carga ni un script ni una cookie. 5 eventos de
+  conversión instrumentados: `cotizacion_enviada`, `agendamiento_whatsapp`,
+  `pedido_confirmado`, `calculadora_lead`, `ficha_tecnica_lead`. Probado con un ID de prueba:
+  carga condicional y disparo de evento confirmados.
+- **Redirecciones 301**: mecanismo listo (`src/data/redirects-301.ts` → `astro.config.mjs` →
+  redirecciones reales del adapter de Vercel, no meta-refresh). Vacío: sin el sitemap o el
+  listado de URLs del sitio anterior no hay qué mapear.
+
+Pendiente — necesita algo del cliente, no es código:
+1. Confirmar o cambiar la elección de Google Analytics 4.
+2. El sitemap.xml o listado de URLs del sitio anterior, para llenar las 301.
+3. Revisión de un abogado sobre los tres textos legales antes de publicarlos como definitivos
+   (falta también el NIT y la dirección física exacta del responsable).
+4. Llaves reales de Wompi, catálogo y precios reales, webhook de n8n — arrastrados de fases
+   anteriores.
 
 ---
 

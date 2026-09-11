@@ -1,0 +1,38 @@
+---
+/**
+ * Bloque de confianza para fichas de producto/modelo (regla §8: certificaciones
+ * y aliados visibles en cada ficha, no solo en Nosotros).
+ *
+ * Solo muestra lo que es real y verificable: la normativa que cumple el modelo
+ * (cuando aplica) y un enlace a los aliados y certificaciones de la empresa.
+ * No inventa sellos ni certificaciones que el producto no tenga.
+ */
+interface Props {
+  /** Normativa real que cumple el modelo (biciparqueaderos). */
+  normativa?: string[];
+  /** Enlace a la política de garantía de la línea (tienda). */
+  garantiaHref?: string;
+}
+const { normativa = [], garantiaHref } = Astro.props;
+---
+
+<div class="mt-6 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg-subtle)] p-4">
+  {normativa.length > 0 && (
+    <div>
+      <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Cumple</p>
+      <ul class="mt-2 flex flex-wrap gap-2">
+        {normativa.map((n) => (
+          <li class="rounded-[var(--radius-sm)] border border-[var(--color-primary-200)] bg-[var(--color-primary-50)] px-2.5 py-1 text-[var(--text-xs)] font-semibold text-[var(--color-primary-700)]">
+            {n}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+  <p class:list={['text-[var(--text-xs)] text-[var(--color-text-muted)]', normativa.length > 0 && 'mt-3']}>
+    {garantiaHref && (
+      <>Con <a class="underline" href={garantiaHref}>garantía</a> y </>
+    )}
+    respaldado por los <a class="underline" href="/nosotros/aliados">aliados y certificaciones</a> de la empresa.
+  </p>
+</div>

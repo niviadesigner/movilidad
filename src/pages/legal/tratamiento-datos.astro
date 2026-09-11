@@ -1,6 +1,8 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import AvisoBorradorLegal from '../../components/ui/AvisoBorradorLegal.astro';
+import { SITE } from '../../lib/site';
 
 const seo = {
   titulo: 'Política de tratamiento de datos personales',
@@ -8,14 +10,87 @@ const seo = {
     'Finalidad, responsable y derechos del titular en el tratamiento de datos personales (Ley 1581 de 2012).',
   ruta: '/legal/tratamiento-datos',
 };
+const actualizado = '11 de septiembre de 2026';
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Política de tratamiento de datos personales"
-    intro="Texto legal pendiente. Necesario antes de activar cualquier formulario que capture datos (cotización, agendamiento, checkout)."
-    plantilla="Especial"
-    fase="Fase 6"
-    relacionados={[{ label: 'Política de privacidad', href: '/legal/privacidad' }]}
-  />
+  <Section espaciado="amplio" ancho="estrecho">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Legal</p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Política de tratamiento de datos personales</h1>
+    <div class="mt-8">
+      <AvisoBorradorLegal actualizado={actualizado} />
+    </div>
+
+    <div class="prose max-w-none text-[var(--color-text-muted)]">
+      <p>
+        En cumplimiento de la Ley 1581 de 2012 y el Decreto 1377 de 2013, {SITE.nombreLegal}
+        ("nosotros", "la empresa") informa la forma en que recolecta, usa y protege los datos
+        personales de quienes usan este sitio o sus formularios.
+      </p>
+
+      <h2>1. Responsable del tratamiento</h2>
+      <ul>
+        <li>Razón social: {SITE.nombreLegal} <!-- TODO: confirmar NIT y dirección física --></li>
+        <li>Domicilio: {SITE.ciudad}, Colombia</li>
+        <li>Correo de contacto: {SITE.correo}</li>
+        <li>Teléfono: {SITE.tel}</li>
+      </ul>
+
+      <h2>2. Datos que recolectamos</h2>
+      <p>Según el formulario que uses, podemos recolectar:</p>
+      <ul>
+        <li>Nombre, empresa, correo y teléfono (cotización, agendamiento, descarga de fichas técnicas).</li>
+        <li>Dirección de entrega y datos de pago (compras en la tienda; los datos de pago los procesa directamente la pasarela Wompi, no quedan almacenados en nuestros servidores).</li>
+        <li>Información de navegación agregada, si activamos analítica web (ver la <a href="/legal/privacidad">política de privacidad</a>).</li>
+      </ul>
+
+      <h2>3. Finalidad del tratamiento</h2>
+      <ul>
+        <li>Responder cotizaciones y solicitudes de contacto.</li>
+        <li>Coordinar agendamientos de mantenimiento y visitas técnicas.</li>
+        <li>Procesar, facturar y despachar pedidos de la tienda.</li>
+        <li>Enviar la información que solicites expresamente (fichas técnicas, resultado de la calculadora de cupos).</li>
+        <li>Cumplir obligaciones legales, contables y tributarias.</li>
+      </ul>
+      <p>No vendemos ni cedemos tus datos a terceros para fines comerciales distintos a los aquí descritos.</p>
+
+      <h2>4. A quién podemos entregar tus datos</h2>
+      <p>
+        Compartimos datos únicamente con proveedores que nos ayudan a operar el servicio que
+        solicitaste: la pasarela de pagos Wompi (para procesar compras), el transportador que
+        despacha tu pedido, y nuestra herramienta interna de notificación de solicitudes.
+        Cada uno trata tus datos solo para prestarnos ese servicio puntual.
+      </p>
+
+      <h2>5. Tus derechos como titular (artículo 8, Ley 1581 de 2012)</h2>
+      <ul>
+        <li>Conocer, actualizar y rectificar tus datos.</li>
+        <li>Solicitar prueba de la autorización otorgada.</li>
+        <li>Ser informado sobre el uso que se le ha dado a tus datos.</li>
+        <li>Presentar quejas ante la Superintendencia de Industria y Comercio (SIC) por infracciones a la ley.</li>
+        <li>Revocar la autorización y/o solicitar la supresión del dato, cuando no exista un deber legal o contractual de conservarlo.</li>
+        <li>Acceder de forma gratuita a tus datos personales que hayan sido objeto de tratamiento.</li>
+      </ul>
+
+      <h2>6. Cómo ejercer tus derechos</h2>
+      <p>
+        Escríbenos a {SITE.correo} o al WhatsApp {SITE.tel} indicando tu solicitud. Respondemos
+        dentro de los plazos que fija la ley (10 días hábiles para consultas, 15 días hábiles
+        para reclamos).
+      </p>
+
+      <h2>7. Autorización</h2>
+      <p>
+        Al diligenciar cualquier formulario de este sitio y marcar la aceptación, autorizas el
+        tratamiento de tus datos para las finalidades descritas en el punto 3.
+      </p>
+
+      <h2>8. Vigencia</h2>
+      <p>
+        Esta política rige desde su publicación y se mantiene mientras exista una relación
+        contractual o legal que justifique conservar tus datos, o hasta que ejerzas tu derecho
+        de supresión.
+      </p>
+    </div>
+  </Section>
 </SiteLayout>

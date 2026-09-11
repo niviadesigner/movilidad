@@ -73,6 +73,8 @@ const { modeloId, modeloNombre, pdfUrl } = Astro.props;
 </div>
 
 <script>
+  import { trackEvent, EVENTOS } from '../../lib/analytics';
+
   const params = new URLSearchParams(window.location.search);
   const estado = params.get('ficha');
   const modelo = params.get('modelo');
@@ -88,6 +90,7 @@ const { modeloId, modeloNombre, pdfUrl } = Astro.props;
         raiz.querySelector('[data-captura-form]')?.setAttribute('hidden', '');
         raiz.querySelector('[data-captura-ok]')?.removeAttribute('hidden');
         raiz.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        trackEvent(EVENTOS.fichaTecnicaLead, { modelo_id: raiz.getAttribute('data-modelo-id') });
       } else if (estado === 'error') {
         raiz.querySelector('[data-captura-error]')?.removeAttribute('hidden');
       }

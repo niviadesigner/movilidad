@@ -16,6 +16,7 @@ import '../styles/global.css';
 import { SITE } from '../lib/site';
 import { resolverSeo, type SeoInput } from '../lib/seo';
 import { organizationSchema, serializarSchema } from '../lib/schema';
+import Analytics from '../components/layout/Analytics.astro';
 
 interface Props {
   seo: SeoInput;
@@ -52,6 +53,7 @@ const m = resolverSeo(seo);
     <meta name="generator" content={Astro.generator} />
 
     <script is:inline type="application/ld+json" set:html={serializarSchema(organizationSchema())} />
+    <Analytics />
     <slot name="head" />
   </head>
   <body class="min-h-dvh">

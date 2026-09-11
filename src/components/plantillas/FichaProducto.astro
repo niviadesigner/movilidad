@@ -6,6 +6,7 @@
  */
 import Section from '../ui/Section.astro';
 import BotonAgregar from '../islands/BotonAgregar.tsx';
+import SelloConfianza from '../ui/SelloConfianza.astro';
 import { formatoCOP, TRAMOS_VOLUMEN } from '../../lib/pricing';
 import { categoriaMeta, rutaProducto, porcentajeDescuento, type Producto } from '../../lib/tienda';
 
@@ -29,7 +30,7 @@ const tramos = d.descuentoVolumen ? TRAMOS_VOLUMEN.filter((t) => t.descuento > 0
     <!-- Galería -->
     <div>
       {d.imagenes[0] ? (
-        <img src={d.imagenes[0]} alt={d.nombre} width="720" height="720" class="w-full rounded-[var(--radius-lg)] border border-[var(--color-border)] object-cover" />
+        <img src={d.imagenes[0]} alt={d.nombre} width="720" height="720" fetchpriority="high" decoding="async" class="w-full rounded-[var(--radius-lg)] border border-[var(--color-border)] object-cover" />
       ) : (
         <div class="flex aspect-square w-full items-center justify-center rounded-[var(--radius-lg)] border border-dashed border-[var(--color-border-strong)] bg-[var(--color-bg-subtle)] text-[var(--text-sm)] text-[var(--color-text-muted)]">
           Foto del producto pendiente
@@ -92,6 +93,8 @@ const tramos = d.descuentoVolumen ? TRAMOS_VOLUMEN.filter((t) => t.descuento > 0
           ))}
         </dl>
       )}
+
+      <SelloConfianza garantiaHref="/tienda/garantia" />
     </div>
   </div>
 

@@ -59,3 +59,8 @@ const PORTAFOLIO_URL = '/portafolio-soluciones-de-movilidad.pdf';
     </nav>
   </Section>
 </SiteLayout>
+
+<script>
+  import { trackEvent, EVENTOS } from '../lib/analytics';
+  trackEvent(EVENTOS.cotizacionEnviada);
+</script>

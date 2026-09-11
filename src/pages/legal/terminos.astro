@@ -1,19 +1,101 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import AvisoBorradorLegal from '../../components/ui/AvisoBorradorLegal.astro';
+import { SITE } from '../../lib/site';
 
 const seo = {
   titulo: 'Términos y condiciones',
   descripcion: 'Términos y condiciones de uso del sitio y de compra en la tienda.',
   ruta: '/legal/terminos',
 };
+const actualizado = '11 de septiembre de 2026';
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Términos y condiciones"
-    intro="Texto legal pendiente de redacción con el cliente y su abogado. No usar texto de relleno en producción (regla §8)."
-    plantilla="Especial"
-    fase="Fase 6"
-  />
+  <Section espaciado="amplio" ancho="estrecho">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Legal</p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Términos y condiciones</h1>
+    <div class="mt-8">
+      <AvisoBorradorLegal actualizado={actualizado} />
+    </div>
+
+    <div class="prose max-w-none text-[var(--color-text-muted)]">
+      <h2>1. Objeto</h2>
+      <p>
+        Estos términos regulan el uso del sitio {SITE.dominio.replace('https://', '')},
+        operado por {SITE.nombreLegal}, y las compras hechas en la tienda en línea. Al usar el
+        sitio o comprar en él, aceptas estos términos.
+      </p>
+
+      <h2>2. Nuestros servicios</h2>
+      <p>
+        Ofrecemos tres líneas: diseño e instalación de biciparqueaderos (bajo cotización),
+        mantenimiento de bicicletas (bajo agendamiento) y venta de accesorios con precio
+        público y pago inmediato en la tienda.
+      </p>
+
+      <h2>3. Precios y disponibilidad</h2>
+      <p>
+        Los precios de la tienda se muestran en pesos colombianos (COP) e incluyen IVA en el
+        total del carrito. Los proyectos de biciparqueaderos y los servicios de mantenimiento
+        se cotizan a la medida; el precio final queda por escrito en la propuesta o en la
+        confirmación del agendamiento. Podemos corregir un precio publicado por error evidente
+        antes de confirmar tu pedido.
+      </p>
+
+      <h2>4. Proceso de compra en la tienda</h2>
+      <p>
+        La compra se hace como invitado, sin registro obligatorio. El costo de envío se calcula
+        y se muestra antes de pagar. El pago se procesa a través de Wompi; no almacenamos los
+        datos de tu tarjeta. Ver <a href="/tienda/envios">envíos</a>,
+        <a href="/tienda/devoluciones">cambios y devoluciones</a> y
+        <a href="/tienda/garantia">garantía</a>.
+      </p>
+
+      <h2>5. Cotizaciones y agendamientos</h2>
+      <p>
+        Enviar el formulario de cotización o el agendador no genera un cobro ni una obligación
+        de compra; es una solicitud de contacto. El proyecto o el servicio quedan en firme
+        cuando ambas partes aceptan la propuesta.
+      </p>
+
+      <h2>6. Propiedad intelectual</h2>
+      <p>
+        El contenido de este sitio (textos, diseño, imágenes, logo) pertenece a
+        {SITE.nombreLegal} o se usa con autorización. No está permitido reproducirlo sin
+        permiso escrito.
+      </p>
+
+      <h2>7. Limitación de responsabilidad</h2>
+      <p>
+        Hacemos lo posible para que la información del sitio sea exacta, pero puede contener
+        errores tipográficos o de actualización. No respondemos por daños indirectos derivados
+        del uso del sitio, sin perjuicio de los derechos que te reconoce el Estatuto del
+        Consumidor (Ley 1480 de 2011).
+      </p>
+
+      <h2>8. Datos personales</h2>
+      <p>
+        El tratamiento de tus datos se rige por nuestra
+        <a href="/legal/tratamiento-datos">política de tratamiento de datos personales</a>.
+      </p>
+
+      <h2>9. Ley aplicable</h2>
+      <p>
+        Estos términos se rigen por las leyes de Colombia. Cualquier controversia se somete a
+        los jueces competentes de {SITE.ciudad}, sin perjuicio de tu derecho a acudir a la
+        Superintendencia de Industria y Comercio como consumidor.
+      </p>
+
+      <h2>10. Cambios</h2>
+      <p>
+        Podemos actualizar estos términos. La fecha de "última actualización" arriba indica la
+        versión vigente.
+      </p>
+
+      <h2>11. Contacto</h2>
+      <p>{SITE.correo} · {SITE.tel}</p>
+    </div>
+  </Section>
 </SiteLayout>

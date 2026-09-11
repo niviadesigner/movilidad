@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { TIPOS_ESPACIO, estimarCupos, type TipoEspacio } from '../../lib/calculadora';
+import { trackEvent, EVENTOS } from '../../lib/analytics';
 
 /**
  * Calculadora de cupos (/recursos/calculadora-cupos).
@@ -38,6 +39,10 @@ export default function CalculadoraCupos() {
       const data = (await res.json()) as { ok: boolean };
       if (data.ok) {
         setEnviado(true);
+        trackEvent(EVENTOS.calculadoraLead, {
+          tipo_espacio: opcion.label,
+          cupos_estimado: resultado.recomendado,
+        });
         return;
       }
       setError('No pudimos enviarlo. Revisa el correo e inténtalo de nuevo.');

@@ -12,6 +12,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_WHATSAPP: string;
   readonly N8N_WEBHOOK_COTIZACIONES: string;
   readonly N8N_WEBHOOK_AGENDAMIENTOS: string;
+  readonly PUBLIC_GA4_ID: string;
 }
 
 interface ImportMeta {

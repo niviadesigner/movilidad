@@ -11,7 +11,9 @@ const seo = {
   noIndex: true,
 };
 
-const ref = Astro.url.searchParams.get('ref') ?? '';
+// Página estática: no se puede leer ?ref= en el servidor. El número de
+// pedido lo muestra <DetallePedido> (lee la URL en el cliente); aquí basta
+// con un texto genérico para no duplicar esa lectura.
 ---
 
 <TiendaLayout seo={seo}>
@@ -21,7 +23,7 @@ const ref = Astro.url.searchParams.get('ref') ?? '';
     </p>
     <h1 class="mt-3 text-[var(--text-4xl)]">Gracias por tu compra</h1>
     <p class="mt-4 max-w-[52rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
-      Te enviamos el comprobante al correo. Aquí está el resumen{ref && <> del pedido <span class="font-mono">{ref}</span></>}.
+      Te enviamos el comprobante al correo. Aquí está el resumen de tu pedido.
     </p>
 
     <div class="mt-10">
@@ -34,3 +36,29 @@ const ref = Astro.url.searchParams.get('ref') ?? '';
     </nav>
   </Section>
 </TiendaLayout>
+
+<script>
+  import { trackEvent, EVENTOS } from '../../lib/analytics';
+
+  interface PedidoLocal {
+    ref: string;
+    total: number;
+    modo?: string;
+  }
+
+  const ref = new URLSearchParams(location.search).get('ref') || '';
+  try {
+    const pedidos: PedidoLocal[] = JSON.parse(localStorage.getItem('pedidos') || '[]');
+    const pedido = pedidos.find((p) => p.ref === ref);
+    if (pedido) {
+      trackEvent(EVENTOS.pedidoConfirmado, {
+        value: pedido.total,
+        currency: 'COP',
+        transaction_id: pedido.ref,
+        modo_pago: pedido.modo ?? 'demo',
+      });
+    }
+  } catch {
+    /* sin analítica si el pedido no se pudo leer */
+  }
+</script>

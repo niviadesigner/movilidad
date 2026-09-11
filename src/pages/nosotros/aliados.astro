@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import Placeholder from '../../components/ui/Placeholder.astro';
+import Section from '../../components/ui/Section.astro';
+import CTA from '../../components/ui/CTA.astro';
 
 const seo = {
   titulo: 'Aliados y certificaciones',
@@ -8,18 +9,46 @@ const seo = {
     'Aliados comerciales, proveedores y certificaciones que respaldan la calidad de la infraestructura.',
   ruta: '/nosotros/aliados',
 };
+
+// TODO: reemplazar con aliados y certificaciones reales, verificables, del cliente.
+// Regla §8: cero logos o sellos decorativos — o son reales, o no van. Mientras no
+// existan, la página lo dice tal cual en vez de simular una lista.
+const ALIADOS: { nombre: string; tipo: string }[] = [];
 ---
 
 <SiteLayout seo={seo}>
-  <Placeholder
-    titulo="Aliados y certificaciones"
-    intro="Listado de aliados y certificaciones verificables. Estas también aparecen en cada ficha de producto, no solo aquí (regla §8)."
-    plantilla="Especial"
-    fase="Fase 2"
-    ctaPrimario={{ label: 'Cotizar en 24 h', href: '/cotizar' }}
-    relacionados={[
-      { label: 'Nosotros', href: '/nosotros' },
-      { label: 'Proyectos', href: '/proyectos' },
-    ]}
-  />
+  <Section espaciado="amplio">
+    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
+      Nosotros · Aliados
+    </p>
+    <h1 class="mt-3 text-[var(--text-4xl)]">Aliados y certificaciones</h1>
+    <p class="mt-4 max-w-[46rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+      Esta página reúne los proveedores, aliados comerciales y certificaciones que respaldan
+      la infraestructura que instalamos. Los mismos aparecen enlazados desde cada ficha de
+      modelo y de producto, no solo aquí.
+    </p>
+
+    {ALIADOS.length > 0 ? (
+      <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {ALIADOS.map((a) => (
+          <li class="rounded-[var(--radius-lg)] border border-[var(--color-border)] p-5">
+            <p class="font-semibold">{a.nombre}</p>
+            <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">{a.tipo}</p>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div class="mt-10 rounded-[var(--radius-lg)] border border-dashed border-[var(--color-border-strong)] bg-[var(--color-bg-subtle)] p-6">
+        <p class="text-[var(--text-base)] font-semibold">Aún no publicamos aliados aquí.</p>
+        <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+          Cuando cerremos alianzas y certificaciones verificables, quedan listadas en esta
+          página. No mostramos sellos decorativos ni logos sin autorización.
+        </p>
+      </div>
+    )}
+
+    <div class="mt-10">
+      <CTA href="/cotizar" variante="primario" tamano="lg">Cotizar en 24 h</CTA>
+    </div>
+  </Section>
 </SiteLayout>
