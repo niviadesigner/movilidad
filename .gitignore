@@ -20,3 +20,8 @@ Thumbs.db
 *.log
 npm-debug.log*
 
+
+# Documentos sensibles del cliente — nunca al repo
+Rut SMTR.pdf
+*.pdf
+!public/**/*.pdf

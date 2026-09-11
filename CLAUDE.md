@@ -69,6 +69,10 @@ Cada línea es una autopista independiente con rampas de acceso entre ellas.
 17. **Legal (Fase 6):** los tres textos de `/legal/*` pasaron de `Placeholder` a un borrador
    completo en estructura (Ley 1581 de 2012, Decreto 1377 de 2013, Ley 1480 de 2011), con
    aviso visible de que falta la revisión de un abogado del cliente antes de publicarse.
+18. **Razón social y NIT reales** (del RUT): `Soluciones de Movilidad, Transporte y Recreación
+   SAS`, NIT `901.569.372-6`, dirección `Cl. 74A # 27-51, P.1, Bogotá D.C.` — en `SITE` de
+   `src/lib/site.ts` y en `/legal/tratamiento-datos`. El RUT en sí (`Rut SMTR.pdf`) NUNCA va al
+   repo: tiene la cédula del representante legal. Está en `.gitignore`.
 
 ---
 
@@ -81,7 +85,7 @@ Cada línea es una autopista independiente con rampas de acceso entre ellas.
 - [ ] **Catálogo real**: SKUs, precios, fotos, stock inicial.
 - [ ] **Confirmar Google Analytics 4** como herramienta de analítica, o cambiarla.
 - [ ] **Revisión legal** de `/legal/terminos`, `/legal/privacidad` y `/legal/tratamiento-datos`
-      por un abogado. El cliente va a pasar el NIT y la razón social exacta.
+      por un abogado (NIT y razón social ya confirmados, ver decisión 18).
 
 Mientras no estén definidas, trabaja con datos de ejemplo claramente marcados como
 `// TODO: reemplazar con dato real` y nunca inventes precios, cifras ni nombres de clientes.

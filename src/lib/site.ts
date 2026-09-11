@@ -5,7 +5,10 @@
 
 export const SITE = {
   nombre: 'Soluciones de Movilidad',
-  nombreLegal: 'Soluciones de Movilidad S.A.S.', // TODO: confirmar razón social real
+  // Razón social real, del RUT (NIT 901.569.372-6).
+  nombreLegal: 'Soluciones de Movilidad, Transporte y Recreación SAS',
+  nit: '901.569.372-6',
+  direccion: 'Cl. 74A # 27-51, P.1, Bogotá D.C.',
   dominio: 'https://solucionesdemovilidad.com.co',
   descripcion:
     'Infraestructura y servicios para movilidad en bicicleta: biciparqueaderos, mantenimiento y tienda de accesorios.',
@@ -17,7 +20,7 @@ export const SITE = {
   // Contacto único (regla §8). Un solo número, el mismo para llamar y para WhatsApp.
   tel: import.meta.env.PUBLIC_TEL || '+57 305 713 4994',
   whatsapp: import.meta.env.PUBLIC_WHATSAPP || '573057134994',
-  correo: 'contacto@solucionesdemovilidad.com.co', // TODO: confirmar
+  correo: 'contacto@solucionesdemovilidad.com.co', // TODO: confirmar (el del RUT es interno, no de cara al público)
 
   // Autoría (no se muestra en el sitio, solo referencia interna).
   construidoPor: 'NIVI@DESIGN / Nivia Studio Creativo',
