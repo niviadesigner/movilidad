@@ -14,21 +14,34 @@ const seo = {
 
 <SiteLayout seo={seo}>
   <Section espaciado="amplio">
-    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Nosotros</p>
-    <h1 class="mt-3 max-w-[26ch] text-[var(--text-4xl)]">
-      Un solo proveedor para las tres líneas de la movilidad en bicicleta
-    </h1>
-    <p class="mt-4 max-w-[46rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
-      Diseñamos, fabricamos e instalamos biciparqueaderos; damos mantenimiento a bicicletas; y
-      vendemos los accesorios para usarla todos los días. Las tres líneas se coordinan desde el
-      mismo equipo, para que un proyecto de movilidad no se reparta entre cinco proveedores.
-    </p>
-    <!-- TODO: reemplazar con la historia real de la empresa (fundación, trayectoria, equipo). Copy final pendiente, ver docs/copy/. -->
+    <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,46rem)_1fr]">
+      <div>
+        <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Nosotros</p>
+        <h1 class="mt-3 max-w-[26ch] text-[var(--text-4xl)]">
+          Un solo proveedor para las tres líneas de la movilidad en bicicleta
+        </h1>
+        <p class="mt-4 max-w-[46rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+          Diseñamos, fabricamos e instalamos biciparqueaderos; damos mantenimiento a bicicletas; y
+          vendemos los accesorios para usarla todos los días. Las tres líneas se coordinan desde el
+          mismo equipo, para que un proyecto de movilidad no se reparta entre cinco proveedores.
+        </p>
+        <!-- TODO: reemplazar con la historia real de la empresa (fundación, trayectoria, equipo). Copy final pendiente, ver docs/copy/. -->
+      </div>
+      <img
+        src="/images/nosotros-taller.jpg"
+        alt="Planos técnicos y modelo a escala de un biciparqueadero sobre una mesa de trabajo"
+        width="900"
+        height="675"
+        fetchpriority="high"
+        decoding="async"
+        class="hidden w-full rounded-[var(--radius-lg)] object-cover lg:block"
+      />
+    </div>
 
     <div class="mt-10 grid gap-4 sm:grid-cols-3">
-      <Card href="/biciparqueaderos" titulo="Biciparqueaderos">Proyecto B2B: diseño, fabricación e instalación.</Card>
-      <Card href="/mantenimiento" titulo="Mantenimiento">Servicio recurrente en tres modalidades.</Card>
-      <Card href="/tienda" titulo="Tienda">Accesorios con precio público y envío calculado.</Card>
+      <Card href="/biciparqueaderos" titulo="Biciparqueaderos" icono="edificio">Proyecto B2B: diseño, fabricación e instalación.</Card>
+      <Card href="/mantenimiento" titulo="Mantenimiento" icono="herramienta">Servicio recurrente en tres modalidades.</Card>
+      <Card href="/tienda" titulo="Tienda" icono="carrito">Accesorios con precio público y envío calculado.</Card>
     </div>
   </Section>
 

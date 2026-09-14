@@ -7,6 +7,7 @@ material: "Acero galvanizado con bandeja superior asistida por resorte"
 dimensiones: "Módulo de 2.700 mm, dos niveles"
 normativa:
   - "Ley 1811 de 2016"
+imagenPrincipal: "/images/modelos/doble-altura.jpg"
 resumen: "Duplica los cupos en la misma huella con una bandeja superior asistida. Para campus y sedes con poco espacio. Datos de ejemplo para la plantilla."
 borrador: true
 ---

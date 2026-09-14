@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel';
+import node from '@astrojs/node';
 import tailwindcss from '@tailwindcss/vite';
 import { REDIRECTS_301 } from './src/data/redirects-301.ts';
 
@@ -11,10 +11,7 @@ const SITE = 'https://solucionesdemovilidad.com.co';
 
 export default defineConfig({
   site: SITE,
-  // Política única de barra final: sin barra en ningún lado. La aplica el
-  // adapter de Vercel en .vercel/output/config.json (redirige 308 cualquier
-  // URL con "/" final), sin importar si el archivo generado es x.html o
-  // x/index.html — por eso no fijamos build.format aquí, no cambia nada.
+  // Política única de barra final: sin barra en ningún lado.
   trailingSlash: 'never',
   // 301: las del sitio anterior (vacío, ver src/data/redirects-301.ts) más
   // las internas propias del sitio.
@@ -29,7 +26,7 @@ export default defineConfig({
   // (cotizar, agendar, ficha técnica, calculadora, pedido) viven en
   // src/pages/api/*.ts con `export const prerender = false`.
   output: 'static',
-  adapter: vercel(),
+  adapter: node({ mode: 'standalone' }),
   integrations: [
     react(),
     sitemap({

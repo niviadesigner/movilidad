@@ -30,9 +30,9 @@ export const SOLUCIONES: Record<string, ContenidoHub> = {
     selector: {
       titulo: 'Lo que suele necesitar una empresa',
       items: [
-        { titulo: 'Biciparqueadero corporativo', texto: 'Cupos en la sede, con cumplimiento normativo.', href: '/biciparqueaderos/corporativo' },
-        { titulo: 'Jornadas de mantenimiento', texto: 'El taller va a tu sede para las bicis del equipo.', href: '/mantenimiento/jornadas-empresariales' },
-        { titulo: 'Accesorios por volumen', texto: 'Candados, luces y morrales con descuento por cantidad.', href: '/tienda/corporativo' },
+        { titulo: 'Biciparqueadero corporativo', texto: 'Cupos en la sede, con cumplimiento normativo.', href: '/biciparqueaderos/corporativo', icono: 'edificio' },
+        { titulo: 'Jornadas de mantenimiento', texto: 'El taller va a tu sede para las bicis del equipo.', href: '/mantenimiento/jornadas-empresariales', icono: 'herramienta' },
+        { titulo: 'Accesorios por volumen', texto: 'Candados, luces y morrales con descuento por cantidad.', href: '/tienda/corporativo', icono: 'maletin' },
       ],
     },
     pasos: PASOS,
@@ -60,9 +60,9 @@ export const SOLUCIONES: Record<string, ContenidoHub> = {
     selector: {
       titulo: 'Lo que pedimos y entregamos',
       items: [
-        { titulo: 'Especificación para licitación', texto: 'Fichas técnicas y dimensiones para tus planos y pliegos.', href: '/biciparqueaderos/modelos' },
-        { titulo: 'Modelos para sótano', texto: 'Distribución que aprovecha el ancho de pasillo y la altura.', href: '/biciparqueaderos/modelos' },
-        { titulo: 'Diseño e instalación', texto: 'Anclaje según superficie y montaje coordinado con obra.', href: '/biciparqueaderos/diseno-instalacion' },
+        { titulo: 'Especificación para licitación', texto: 'Fichas técnicas y dimensiones para tus planos y pliegos.', href: '/biciparqueaderos/modelos', icono: 'documento' },
+        { titulo: 'Modelos para sótano', texto: 'Distribución que aprovecha el ancho de pasillo y la altura.', href: '/biciparqueaderos/modelos', icono: 'edificio' },
+        { titulo: 'Diseño e instalación', texto: 'Anclaje según superficie y montaje coordinado con obra.', href: '/biciparqueaderos/diseno-instalacion', icono: 'compas' },
       ],
     },
     pasos: PASOS,
@@ -90,9 +90,9 @@ export const SOLUCIONES: Record<string, ContenidoHub> = {
     selector: {
       titulo: 'Lo que valoran los conjuntos',
       items: [
-        { titulo: 'Biciparqueadero residencial', texto: 'Modular, para sótano o zona común, con anclaje seguro.', href: '/biciparqueaderos/residencial' },
-        { titulo: 'Mantenimiento para residentes', texto: 'Servicio a domicilio dentro del conjunto.', href: '/mantenimiento/domicilio' },
-        { titulo: 'Seguridad complementaria', texto: 'Guayas y candados de la tienda.', href: '/tienda/seguridad' },
+        { titulo: 'Biciparqueadero residencial', texto: 'Modular, para sótano o zona común, con anclaje seguro.', href: '/biciparqueaderos/residencial', icono: 'casa' },
+        { titulo: 'Mantenimiento para residentes', texto: 'Servicio a domicilio dentro del conjunto.', href: '/mantenimiento/domicilio', icono: 'camion' },
+        { titulo: 'Seguridad complementaria', texto: 'Guayas y candados de la tienda.', href: '/tienda/seguridad', icono: 'candado' },
       ],
     },
     pasos: PASOS,
@@ -120,9 +120,9 @@ export const SOLUCIONES: Record<string, ContenidoHub> = {
     selector: {
       titulo: 'Lo que necesita un campus',
       items: [
-        { titulo: 'Biciparqueadero institucional', texto: 'Distribución modular para cientos de cupos.', href: '/biciparqueaderos/institucional' },
-        { titulo: 'Modelos de doble altura', texto: 'Duplica cupos en la misma huella donde falta espacio.', href: '/biciparqueaderos/modelos' },
-        { titulo: 'Diseño e instalación', texto: 'Levantamiento del campus y montaje por fases.', href: '/biciparqueaderos/diseno-instalacion' },
+        { titulo: 'Biciparqueadero institucional', texto: 'Distribución modular para cientos de cupos.', href: '/biciparqueaderos/institucional', icono: 'graduacion' },
+        { titulo: 'Modelos de doble altura', texto: 'Duplica cupos en la misma huella donde falta espacio.', href: '/biciparqueaderos/modelos', icono: 'edificio' },
+        { titulo: 'Diseño e instalación', texto: 'Levantamiento del campus y montaje por fases.', href: '/biciparqueaderos/diseno-instalacion', icono: 'compas' },
       ],
     },
     pasos: PASOS,

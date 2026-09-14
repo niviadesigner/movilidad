@@ -7,8 +7,17 @@
 import Section from '../ui/Section.astro';
 import BotonAgregar from '../islands/BotonAgregar.tsx';
 import SelloConfianza from '../ui/SelloConfianza.astro';
+import Icono from '../ui/Icono.astro';
 import { formatoCOP, TRAMOS_VOLUMEN } from '../../lib/pricing';
 import { categoriaMeta, rutaProducto, porcentajeDescuento, type Producto } from '../../lib/tienda';
+import type { NombreIcono } from '../ui/Icono.astro';
+
+const ICONO_CATEGORIA: Record<string, NombreIcono> = {
+  soportes: 'bici',
+  'morrales-maletines': 'mochila',
+  seguridad: 'candado',
+  accesorios: 'casco',
+};
 
 interface Props {
   producto: Producto;
@@ -32,8 +41,9 @@ const tramos = d.descuentoVolumen ? TRAMOS_VOLUMEN.filter((t) => t.descuento > 0
       {d.imagenes[0] ? (
         <img src={d.imagenes[0]} alt={d.nombre} width="720" height="720" fetchpriority="high" decoding="async" class="w-full rounded-[var(--radius-lg)] border border-[var(--color-border)] object-cover" />
       ) : (
-        <div class="flex aspect-square w-full items-center justify-center rounded-[var(--radius-lg)] border border-dashed border-[var(--color-border-strong)] bg-[var(--color-bg-subtle)] text-[var(--text-sm)] text-[var(--color-text-muted)]">
-          Foto del producto pendiente
+        <div class="flex aspect-square w-full flex-col items-center justify-center gap-3 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-primary-50)] text-[var(--color-primary-700)]">
+          <Icono nombre={ICONO_CATEGORIA[d.categoria] ?? 'carrito'} class="h-16 w-16" />
+          <p class="text-[var(--text-sm)] font-medium">Foto del producto pendiente</p>
         </div>
       )}
     </div>

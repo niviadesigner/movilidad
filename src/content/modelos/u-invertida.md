@@ -7,6 +7,7 @@ material: "Acero al carbono con recubrimiento en polvo (pintura electrostática)
 dimensiones: "800 × 750 mm (alto × ancho)"
 normativa:
   - "Ley 1811 de 2016"
+imagenPrincipal: "/images/modelos/u-invertida.jpg"
 resumen: "El anclaje más simple y robusto: soporta la bici por el cuadro y admite dos candados. Datos de ejemplo para la plantilla; specs definitivas pendientes."
 borrador: true
 ---

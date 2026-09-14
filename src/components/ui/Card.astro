@@ -3,23 +3,31 @@
  * Tarjeta base: sector, modelo, producto, caso de estudio, recurso.
  * Si recibe `href`, toda la tarjeta es clicable (con foco accesible).
  */
+import Icono, { type NombreIcono } from './Icono.astro';
+
 interface Props {
   href?: string;
   titulo?: string;
   eyebrow?: string;
+  icono?: NombreIcono;
   as?: keyof HTMLElementTagNameMap;
   class?: string;
 }
-const { href, titulo, eyebrow, as = 'article', class: clase = '' } = Astro.props;
+const { href, titulo, eyebrow, icono, as = 'article', class: clase = '' } = Astro.props;
 const Tag = as;
 
 const base =
   'group relative flex flex-col rounded-[var(--radius-lg)] border border-[var(--color-border)] ' +
   'bg-[var(--color-surface)] p-6 transition-shadow duration-[var(--duration-base)] ' +
-  'hover:shadow-[var(--shadow-md)]';
+  'hover:shadow-[var(--shadow-md)] hover:border-[var(--color-primary-300)]';
 ---
 
 <Tag class:list={[base, clase]}>
+  {icono && (
+    <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary-50)] text-[var(--color-primary-700)] transition-colors duration-[var(--duration-base)] group-hover:bg-[var(--color-accent-200)] group-hover:text-[var(--color-neutral-900)]">
+      <Icono nombre={icono} class="h-6 w-6" />
+    </div>
+  )}
   {eyebrow && (
     <p class="mb-1 text-[var(--text-xs)] font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
       {eyebrow}

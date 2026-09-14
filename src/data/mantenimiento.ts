@@ -42,13 +42,14 @@ export const HUB: ContenidoHub = {
     'Servicio recurrente en tres modalidades: jornadas en la sede de tu empresa, en nuestro taller o a domicilio. Se agenda en línea y se confirma en el momento.',
   ctaPrimario: CTA_AGENDAR,
   ctaSecundario: { label: 'Ver planes y precios', href: '/mantenimiento/planes' },
+  imagenHero: { src: '/images/mantenimiento.jpg', alt: 'Técnico ajustando la transmisión de una bicicleta en el taller' },
   selector: {
     titulo: '¿Dónde necesitas el servicio?',
     items: [
-      { titulo: 'En mi empresa', texto: 'Jornada en sede para las bicicletas del equipo.', href: '/mantenimiento/jornadas-empresariales' },
-      { titulo: 'Flota de la empresa', texto: 'Plan recurrente con reporte por unidad.', href: '/mantenimiento/flotas' },
-      { titulo: 'En el taller', texto: 'Dejas la bici y la recoges lista el mismo día.', href: '/mantenimiento/taller' },
-      { titulo: 'En mi casa', texto: 'Un técnico se desplaza, previa validación de cobertura.', href: '/mantenimiento/domicilio' },
+      { titulo: 'En mi empresa', texto: 'Jornada en sede para las bicicletas del equipo.', href: '/mantenimiento/jornadas-empresariales', icono: 'maletin' },
+      { titulo: 'Flota de la empresa', texto: 'Plan recurrente con reporte por unidad.', href: '/mantenimiento/flotas', icono: 'camion' },
+      { titulo: 'En el taller', texto: 'Dejas la bici y la recoges lista el mismo día.', href: '/mantenimiento/taller', icono: 'herramienta' },
+      { titulo: 'En mi casa', texto: 'Un técnico se desplaza, previa validación de cobertura.', href: '/mantenimiento/domicilio', icono: 'casa' },
     ],
   },
   pasos: {

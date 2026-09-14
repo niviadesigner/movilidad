@@ -25,3 +25,7 @@ npm-debug.log*
 Rut SMTR.pdf
 *.pdf
 !public/**/*.pdf
+
+# Fuentes originales de imágenes (alta resolución, sin optimizar).
+# Las versiones optimizadas para el sitio viven en public/images/.
+assets-originales/

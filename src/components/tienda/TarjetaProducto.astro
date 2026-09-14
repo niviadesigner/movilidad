@@ -6,6 +6,14 @@
 import { formatoCOP } from '../../lib/pricing';
 import { rutaProducto, porcentajeDescuento, type Producto } from '../../lib/tienda';
 import BotonAgregar from '../islands/BotonAgregar.tsx';
+import Icono, { type NombreIcono } from '../ui/Icono.astro';
+
+const ICONO_CATEGORIA: Record<string, NombreIcono> = {
+  soportes: 'bici',
+  'morrales-maletines': 'mochila',
+  seguridad: 'candado',
+  accesorios: 'casco',
+};
 
 interface Props {
   producto: Producto;
@@ -23,7 +31,9 @@ const agotado = d.stock <= 0;
       {d.imagenes[0] ? (
         <img src={d.imagenes[0]} alt={d.nombre} width="320" height="320" loading="lazy" class="h-full w-full object-cover" />
       ) : (
-        <span class="text-[var(--text-xs)] text-[var(--color-text-muted)]">Foto pendiente</span>
+        <span class="text-[var(--color-primary-700)]">
+          <Icono nombre={ICONO_CATEGORIA[d.categoria] ?? 'carrito'} class="h-10 w-10" />
+        </span>
       )}
       {dto && (
         <span class="absolute left-2 top-2 rounded-[var(--radius-sm)] bg-[var(--color-accent-300)] px-1.5 py-0.5 text-[var(--text-xs)] font-bold text-[var(--color-neutral-900)]">

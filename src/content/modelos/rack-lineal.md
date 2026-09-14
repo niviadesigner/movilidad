@@ -8,6 +8,7 @@ dimensiones: "Módulo de 2.400 mm, ampliable"
 normativa:
   - "Ley 1811 de 2016"
   - "PESV"
+imagenPrincipal: "/images/modelos/rack-lineal.jpg"
 resumen: "Módulo de piso para parqueo en fila, ideal para sótanos y patios de sede. Datos de ejemplo para la plantilla."
 borrador: true
 ---

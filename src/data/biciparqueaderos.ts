@@ -9,6 +9,7 @@
 import type { Paso } from '../components/ui/Pasos.astro';
 import type { ItemCruzada } from '../components/ui/VentaCruzada.astro';
 import type { ItemFAQ } from '../components/ui/FAQ.astro';
+import type { NombreIcono } from '../components/ui/Icono.astro';
 
 interface Enlace {
   label: string;
@@ -18,6 +19,7 @@ interface TarjetaSelector {
   titulo: string;
   texto: string;
   href: string;
+  icono?: NombreIcono;
 }
 
 export interface ContenidoHub {
@@ -26,6 +28,7 @@ export interface ContenidoHub {
   intro: string;
   ctaPrimario: Enlace;
   ctaSecundario?: Enlace;
+  imagenHero?: { src: string; alt: string };
   selector?: { titulo: string; items: TarjetaSelector[] };
   pasos?: { titulo?: string; items: Paso[] };
   ventaCruzada?: { titulo?: string; items: ItemCruzada[] };
@@ -98,13 +101,14 @@ export const HUB: ContenidoHub = {
     'Diseñamos, fabricamos e instalamos la infraestructura para que tu equipo, tus residentes o tus estudiantes lleguen en bici. Un solo proveedor, de la visita a la entrega.',
   ctaPrimario: CTA_COTIZAR,
   ctaSecundario: { label: 'Calcular cupos que necesito', href: '/recursos/calculadora-cupos' },
+  imagenHero: { src: '/images/modelos/rack-lineal.jpg', alt: 'Biciparqueadero tipo rack lineal, varias unidades en fila' },
   selector: {
     titulo: '¿Para qué tipo de espacio?',
     items: [
-      { titulo: 'Corporativo', texto: 'Sedes y oficinas. Cumplimiento de PESV y recuperación de área.', href: '/biciparqueaderos/corporativo' },
-      { titulo: 'Institucional y educativo', texto: 'Universidades, colegios y entidades. Alto volumen de cupos.', href: '/biciparqueaderos/institucional' },
-      { titulo: 'Residencial y PH', texto: 'Conjuntos y propiedad horizontal. Aprovecha sótanos y cumple el POT.', href: '/biciparqueaderos/residencial' },
-      { titulo: 'Mobiliario urbano', texto: 'Espacio público y comercio. Resistente al vandalismo y a la intemperie.', href: '/biciparqueaderos/mobiliario-urbano' },
+      { titulo: 'Corporativo', texto: 'Sedes y oficinas. Cumplimiento de PESV y recuperación de área.', href: '/biciparqueaderos/corporativo', icono: 'edificio' },
+      { titulo: 'Institucional y educativo', texto: 'Universidades, colegios y entidades. Alto volumen de cupos.', href: '/biciparqueaderos/institucional', icono: 'graduacion' },
+      { titulo: 'Residencial y PH', texto: 'Conjuntos y propiedad horizontal. Aprovecha sótanos y cumple el POT.', href: '/biciparqueaderos/residencial', icono: 'casa' },
+      { titulo: 'Mobiliario urbano', texto: 'Espacio público y comercio. Resistente al vandalismo y a la intemperie.', href: '/biciparqueaderos/mobiliario-urbano', icono: 'bici' },
     ],
   },
   pasos: { titulo: 'Cómo trabajamos', items: PASOS_PROYECTO },

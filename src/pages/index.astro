@@ -13,6 +13,14 @@ import LogoBar from '../components/ui/LogoBar.astro';
 import Pasos from '../components/ui/Pasos.astro';
 import FormularioCotizacion from '../components/ui/FormularioCotizacion.astro';
 import { SEGMENTOS } from '../lib/nav';
+import type { NombreIcono } from '../components/ui/Icono.astro';
+
+const ICONO_SEGMENTO: Record<string, NombreIcono> = {
+  '/soluciones/empresas': 'maletin',
+  '/soluciones/constructoras': 'compas',
+  '/soluciones/conjuntos': 'casa',
+  '/soluciones/universidades': 'graduacion',
+};
 
 const seo = {
   titulo: 'Soluciones de Movilidad — Infraestructura para movilidad en bicicleta',
@@ -32,24 +40,35 @@ const pasosTrabajo = [
 <SiteLayout seo={seo} sinMigas>
   {/* 1 · Hero — dato duro + promesa + CTA */}
   <Section fondo="subtle" espaciado="amplio">
-    <div class="max-w-[46rem]">
-      <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
-        La Ley 1811 de 2016 obliga a empresas y entidades a promover el uso de la bicicleta
-      </p>
-      <h1 class="mt-3 text-[var(--text-5xl)]">
-        Infraestructura para que tu equipo llegue en bici, y para cumplir la norma
-      </h1>
-      <p class="mt-5 text-[var(--text-lg)] text-[var(--color-text-muted)]">
-        Diseñamos, fabricamos e instalamos biciparqueaderos para empresas, constructoras y
-        conjuntos. Un solo proveedor, de la visita técnica a la entrega.
-      </p>
-      <div class="mt-8 flex flex-wrap items-center gap-4">
-        <CTA href="/cotizar" variante="primario" tamano="lg">Cotizar en 24 h</CTA>
-        <CTA href="/recursos/calculadora-cupos" variante="secundario">Calcular cupos que necesito</CTA>
+    <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,46rem)_1fr]">
+      <div>
+        <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
+          La Ley 1811 de 2016 obliga a empresas y entidades a promover el uso de la bicicleta
+        </p>
+        <h1 class="mt-3 text-[var(--text-5xl)]">
+          Infraestructura para que tu equipo llegue en bici, y para cumplir la norma
+        </h1>
+        <p class="mt-5 text-[var(--text-lg)] text-[var(--color-text-muted)]">
+          Diseñamos, fabricamos e instalamos biciparqueaderos para empresas, constructoras y
+          conjuntos. Un solo proveedor, de la visita técnica a la entrega.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <CTA href="/cotizar" variante="primario" tamano="lg">Cotizar en 24 h</CTA>
+          <CTA href="/recursos/calculadora-cupos" variante="secundario">Calcular cupos que necesito</CTA>
+        </div>
+        <p class="mt-4 font-mono text-[var(--text-xs)] text-[var(--color-text-muted)]">
+          Fuente: Ley 1811 de 2016, Congreso de Colombia.
+        </p>
       </div>
-      <p class="mt-4 font-mono text-[var(--text-xs)] text-[var(--color-text-muted)]">
-        Fuente: Ley 1811 de 2016, Congreso de Colombia.
-      </p>
+      <img
+        src="/images/hero-home.jpg"
+        alt="Biciparqueadero corporativo instalado en el acceso de un edificio de oficinas"
+        width="1200"
+        height="900"
+        fetchpriority="high"
+        decoding="async"
+        class="hidden w-full rounded-[var(--radius-lg)] object-cover lg:block"
+      />
     </div>
   </Section>
 
@@ -64,7 +83,7 @@ const pasosTrabajo = [
     <p class="mt-2 text-[var(--color-text-muted)]">Cada audiencia tiene su recorrido.</p>
     <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {SEGMENTOS.map((s) => (
-        <Card href={s.href} titulo={s.label}>Solución transversal para {s.label.toLowerCase()}.</Card>
+        <Card href={s.href} titulo={s.label} icono={ICONO_SEGMENTO[s.href]}>Solución transversal para {s.label.toLowerCase()}.</Card>
       ))}
     </div>
   </Section>
@@ -133,9 +152,9 @@ const pasosTrabajo = [
     <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Línea 2 · servicio recurrente</p>
     <h2 class="mt-2 text-[var(--text-2xl)]">Mantenimiento de bicicletas</h2>
     <div class="mt-6 grid gap-4 sm:grid-cols-3">
-      <Card href="/mantenimiento/jornadas-empresariales" titulo="Jornadas en sede">Llevamos el taller a tu empresa un día pactado.</Card>
-      <Card href="/mantenimiento/taller" titulo="Taller">Dejas tu bici y la recoges lista.</Card>
-      <Card href="/mantenimiento/domicilio" titulo="A domicilio">Un técnico va a tu casa, previa validación de cobertura.</Card>
+      <Card href="/mantenimiento/jornadas-empresariales" titulo="Jornadas en sede" icono="maletin">Llevamos el taller a tu empresa un día pactado.</Card>
+      <Card href="/mantenimiento/taller" titulo="Taller" icono="herramienta">Dejas tu bici y la recoges lista.</Card>
+      <Card href="/mantenimiento/domicilio" titulo="A domicilio" icono="camion">Un técnico va a tu casa, previa validación de cobertura.</Card>
     </div>
     <div class="mt-6">
       <CTA href="/mantenimiento/agendar" variante="primario">Agendar</CTA>
@@ -148,10 +167,10 @@ const pasosTrabajo = [
     <h2 class="mt-2 text-[var(--text-2xl)]">Tienda de accesorios</h2>
     <p class="mt-2 text-[var(--color-text-muted)]">Precio público, carrito y envío calculado antes de pagar.</p>
     <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <Card href="/tienda/soportes" titulo="Soportes">De pared, piso y techo.</Card>
-      <Card href="/tienda/morrales-maletines" titulo="Morrales y maletines">Impermeables y alforjas.</Card>
-      <Card href="/tienda/seguridad" titulo="Seguridad">Guayas y candados de U.</Card>
-      <Card href="/tienda/accesorios" titulo="Accesorios">Luces, timbres, guardabarros.</Card>
+      <Card href="/tienda/soportes" titulo="Soportes" icono="bici">De pared, piso y techo.</Card>
+      <Card href="/tienda/morrales-maletines" titulo="Morrales y maletines" icono="mochila">Impermeables y alforjas.</Card>
+      <Card href="/tienda/seguridad" titulo="Seguridad" icono="candado">Guayas y candados de U.</Card>
+      <Card href="/tienda/accesorios" titulo="Accesorios" icono="casco">Luces, timbres, guardabarros.</Card>
     </div>
     <div class="mt-6">
       <CTA href="/tienda" variante="secundario">Ir a la tienda</CTA>

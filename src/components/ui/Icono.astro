@@ -1,0 +1,147 @@
+---
+/**
+ * Set propio de iconos de línea (24x24, stroke=currentColor).
+ * Se usa en Card (badges), placeholders de imagen y bloques de recursos.
+ * Sin dependencias externas: son los únicos "gráficos" del sitio hasta que
+ * haya fotografía real.
+ */
+export type NombreIcono = 'bici' | 'edificio' | 'casa' | 'graduacion' | 'compas' | 'candado' | 'herramienta' | 'camion' | 'carrito' | 'documento' | 'calculadora' | 'mochila' | 'casco' | 'maletin';
+
+interface Props {
+  nombre: NombreIcono;
+  class?: string;
+}
+const { nombre, class: clase = 'h-6 w-6' } = Astro.props;
+
+const comun = {
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: 'currentColor',
+  'stroke-width': '1.75',
+  'stroke-linecap': 'round' as const,
+  'stroke-linejoin': 'round' as const,
+  'aria-hidden': true,
+};
+---
+
+{nombre === 'bici' && (
+  <svg {...comun} class={clase}>
+    <circle cx="5.5" cy="17.5" r="3.3" />
+    <circle cx="18.5" cy="17.5" r="3.3" />
+    <path d="M5.5 17.5 12 6.5h3.5L18.5 17.5M9 10.5h5.5M12 6.5l3 6" />
+  </svg>
+)}
+
+{nombre === 'edificio' && (
+  <svg {...comun} class={clase}>
+    <rect x="6" y="4" width="12" height="16" rx="1" />
+    <rect x="8.5" y="7" width="2" height="2" />
+    <rect x="13.5" y="7" width="2" height="2" />
+    <rect x="8.5" y="11" width="2" height="2" />
+    <rect x="13.5" y="11" width="2" height="2" />
+    <rect x="10" y="15" width="4" height="5" />
+  </svg>
+)}
+
+{nombre === 'casa' && (
+  <svg {...comun} class={clase}>
+    <path d="M4 11 12 4l8 7" />
+    <path d="M6 10v10h12V10" />
+    <rect x="10" y="14" width="4" height="6" />
+  </svg>
+)}
+
+{nombre === 'graduacion' && (
+  <svg {...comun} class={clase}>
+    <path d="M12 5 2 9.5 12 14l10-4.5Z" />
+    <path d="M6 11.5V16c0 1.5 2.5 3 6 3s6-1.5 6-3v-4.5" />
+    <path d="M22 9.5v5" />
+  </svg>
+)}
+
+{nombre === 'compas' && (
+  <svg {...comun} class={clase}>
+    <path d="M12 4 5 20M12 4l7 16" />
+    <circle cx="12" cy="4" r="1.3" />
+    <path d="M8.7 15h6.6" />
+  </svg>
+)}
+
+{nombre === 'candado' && (
+  <svg {...comun} class={clase}>
+    <rect x="5" y="11" width="14" height="9" rx="1.5" />
+    <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+    <circle cx="12" cy="15.2" r="1.2" />
+    <line x1="12" y1="16.4" x2="12" y2="17.8" />
+  </svg>
+)}
+
+{nombre === 'herramienta' && (
+  <svg {...comun} class={clase}>
+    <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2Z" />
+  </svg>
+)}
+
+{nombre === 'camion' && (
+  <svg {...comun} class={clase}>
+    <rect x="2" y="9" width="11" height="7" rx="1" />
+    <path d="M13 11h4l3 3v2h-7Z" />
+    <circle cx="6" cy="17.5" r="1.6" />
+    <circle cx="16.5" cy="17.5" r="1.6" />
+  </svg>
+)}
+
+{nombre === 'carrito' && (
+  <svg {...comun} class={clase}>
+    <path d="M4 5h2l2.5 10H17L19 8H7.5" />
+    <circle cx="9.5" cy="19" r="1.3" />
+    <circle cx="16" cy="19" r="1.3" />
+  </svg>
+)}
+
+{nombre === 'documento' && (
+  <svg {...comun} class={clase}>
+    <path d="M8 3h7l3 3v15H8Z" />
+    <path d="M15 3v3h3" />
+    <line x1="10.5" y1="11" x2="15.5" y2="11" />
+    <line x1="10.5" y1="14" x2="15.5" y2="14" />
+    <line x1="10.5" y1="17" x2="14" y2="17" />
+  </svg>
+)}
+
+{nombre === 'calculadora' && (
+  <svg {...comun} class={clase}>
+    <rect x="6" y="3" width="12" height="18" rx="1.5" />
+    <rect x="8.5" y="5.5" width="7" height="3.5" />
+    <circle cx="9" cy="13" r="0.9" />
+    <circle cx="12" cy="13" r="0.9" />
+    <circle cx="15" cy="13" r="0.9" />
+    <circle cx="9" cy="16.5" r="0.9" />
+    <circle cx="12" cy="16.5" r="0.9" />
+    <circle cx="15" cy="16.5" r="0.9" />
+  </svg>
+)}
+
+{nombre === 'mochila' && (
+  <svg {...comun} class={clase}>
+    <path d="M8 8V6a4 4 0 0 1 8 0v2" />
+    <rect x="6" y="8" width="12" height="12" rx="2" />
+    <rect x="9.5" y="12" width="5" height="4" rx="0.5" />
+  </svg>
+)}
+
+{nombre === 'casco' && (
+  <svg {...comun} class={clase}>
+    <path d="M4 15a8 8 0 0 1 16 0Z" />
+    <path d="M4 15h16v2H4Z" />
+    <line x1="12" y1="7" x2="12" y2="15" />
+  </svg>
+)}
+
+{nombre === 'maletin' && (
+  <svg {...comun} class={clase}>
+    <rect x="4" y="8" width="16" height="11" rx="1.5" />
+    <path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
+    <line x1="4" y1="13" x2="20" y2="13" />
+  </svg>
+)}

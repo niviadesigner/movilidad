@@ -19,11 +19,24 @@ const destacados = await getDestacados(4);
 
 <TiendaLayout seo={seo}>
   <Section espaciado="amplio">
-    <h1 class="text-[var(--text-4xl)]">Tienda</h1>
-    <p class="mt-4 max-w-[52rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
-      Todo para moverte y dejar la bici segura. Precio público, compra como invitado y
-      envío gratis desde {formatoCOP(UMBRAL_ENVIO_GRATIS)}.
-    </p>
+    <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,46rem)_1fr]">
+      <div>
+        <h1 class="text-[var(--text-4xl)]">Tienda</h1>
+        <p class="mt-4 max-w-[52rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+          Todo para moverte y dejar la bici segura. Precio público, compra como invitado y
+          envío gratis desde {formatoCOP(UMBRAL_ENVIO_GRATIS)}.
+        </p>
+      </div>
+      <img
+        src="/images/tienda-flatlay.jpg"
+        alt="Candado, guaya, luces, casco y morral impermeable organizados en cuadrícula"
+        width="900"
+        height="900"
+        fetchpriority="high"
+        decoding="async"
+        class="hidden w-full max-w-[360px] justify-self-center rounded-[var(--radius-lg)] object-cover lg:block"
+      />
+    </div>
 
     <h2 class="mt-12 font-display text-[var(--text-2xl)] font-bold">Destacados</h2>
     <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
