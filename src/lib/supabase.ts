@@ -9,10 +9,10 @@
  */
 import { createClient } from '@supabase/supabase-js';
 
-const url = import.meta.env.PUBLIC_SUPABASE_URL;
-const anonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+const url = import.meta.env.SUPABASE_URL;
+const publishableKey = import.meta.env.SUPABASE_PUBLISHABLE_KEY;
 
-const configurado = Boolean(url && anonKey && !url.includes('TU-PROYECTO'));
+const configurado = Boolean(url && publishableKey && !url.includes('TU-PROYECTO'));
 
 if (!configurado && import.meta.env.DEV) {
   // Aviso en desarrollo, sin romper el build del esqueleto.
@@ -22,16 +22,16 @@ if (!configurado && import.meta.env.DEV) {
 }
 
 export const supabase = configurado
-  ? createClient(url, anonKey)
+  ? createClient(url, publishableKey)
   : null;
 
 /** Cliente con permisos elevados. Nunca lo importes en componentes de cliente. */
 export function supabaseAdmin() {
-  const serviceKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !serviceKey) {
-    throw new Error('[supabase] Falta SUPABASE_SERVICE_ROLE_KEY o PUBLIC_SUPABASE_URL.');
+  const secretKey = import.meta.env.SUPABASE_SECRET_KEY;
+  if (!url || !secretKey) {
+    throw new Error('[supabase] Falta SUPABASE_SECRET_KEY o SUPABASE_URL.');
   }
-  return createClient(url, serviceKey, {
+  return createClient(url, secretKey, {
     auth: { autoRefreshToken: false, persistSession: false },
   });
 }
