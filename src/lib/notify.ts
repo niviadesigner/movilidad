@@ -1,10 +1,9 @@
 /**
- * Notificación de leads (cotizaciones y descargas de ficha).
- * Envía a un webhook de n8n si está configurado; si no, registra en consola
- * para no romper el flujo en desarrollo.
- *
- * TODO Fase 1: conectar el webhook real de n8n o el envío por correo.
+ * Notificación de leads (cotizaciones, agendamientos, fichas, calculadora y
+ * pedidos). Guarda cada lead en Supabase (tabla `leads`) y, si además hay un
+ * webhook de n8n configurado, también lo envía ahí.
  */
+import { supabaseAdmin, supabaseConfigurado } from './supabase';
 
 type TipoLead = 'cotizacion' | 'ficha-tecnica' | 'agendamiento' | 'pedido' | 'calculadora';
 
@@ -73,10 +72,17 @@ const WEBHOOKS: Record<TipoLead, string | undefined> = {
 };
 
 export async function notificarLead(lead: Lead): Promise<void> {
+  if (supabaseConfigurado) {
+    const { error } = await supabaseAdmin()
+      .from('leads')
+      .insert({ tipo: lead.tipo, recibido_en: lead.recibidoEn, origen: lead.origen ?? null, payload: lead });
+    if (error) console.error('[notify] error guardando en Supabase:', error.message);
+  }
+
   const url = WEBHOOKS[lead.tipo];
 
   if (!url) {
-    console.info('[notify] lead sin webhook configurado:', JSON.stringify(lead));
+    if (!supabaseConfigurado) console.info('[notify] lead sin Supabase ni webhook configurados:', JSON.stringify(lead));
     return;
   }
 
@@ -91,7 +97,7 @@ export async function notificarLead(lead: Lead): Promise<void> {
     }
   } catch (err) {
     // No propagamos: el usuario ya envió el formulario, el lead no se pierde
-    // si además se guarda en base de datos (Fase 1+).
+    // porque ya quedó guardado en Supabase arriba.
     console.error('[notify] fallo al enviar al webhook:', err);
   }
 }
