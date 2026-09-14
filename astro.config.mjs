@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import { REDIRECTS_301 } from './src/data/redirects-301.ts';
 
@@ -26,7 +26,7 @@ export default defineConfig({
   // (cotizar, agendar, ficha técnica, calculadora, pedido) viven en
   // src/pages/api/*.ts con `export const prerender = false`.
   output: 'static',
-  adapter: node({ mode: 'standalone' }),
+  adapter: vercel(),
   integrations: [
     react(),
     sitemap({
