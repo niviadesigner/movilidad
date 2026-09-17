@@ -1,6 +1,7 @@
 /**
  * Constantes globales del sitio.
- * Un solo teléfono y un solo WhatsApp en todo el sitio (regla de credibilidad §8).
+ * Un solo teléfono (línea comercial, llamadas) y un solo WhatsApp en todo el
+ * sitio (regla de credibilidad §8) — pueden ser números distintos.
  */
 
 export const SITE = {
@@ -17,8 +18,8 @@ export const SITE = {
   idioma: 'es-CO',
   ogLocale: 'es_CO',
 
-  // Contacto único (regla §8). Un solo número, el mismo para llamar y para WhatsApp.
-  tel: import.meta.env.PUBLIC_TEL || '+57 305 713 4994',
+  // Contacto único (regla §8): línea comercial para llamadas + WhatsApp aparte.
+  tel: import.meta.env.PUBLIC_TEL || '+57 310 771 1461',
   whatsapp: import.meta.env.PUBLIC_WHATSAPP || '573057134994',
   correo: 'contacto@solucionesdemovilidad.com.co', // TODO: confirmar (el del RUT es interno, no de cara al público)
 
