@@ -36,13 +36,17 @@ const proyectos = defineCollection({
     ciudad: z.string(),
     reto: z.string(),
     solucion: z.string(),
-    // Exactamente 3 métricas duras (Plantilla D).
+    // Hasta 3 métricas duras (Plantilla D). Vacío mientras el dato real no esté verificado.
     metricas: z
       .array(z.object({ valor: z.string(), etiqueta: z.string(), fuente: z.string() }))
-      .length(3),
+      .max(3)
+      .default([]),
     testimonio: z
       .object({ cita: z.string(), autor: z.string(), cargo: z.string() })
       .optional(),
+    // Rutas de foto, en el orden en que se muestran. Los espacios sin foto
+    // quedan como placeholder honesto hasta que llegue el material real.
+    galeria: z.array(z.string()).max(3).default([]),
     modelosUsados: z.array(z.string()).default([]),
     fecha: z.coerce.date(),
     borrador: z.boolean().default(false),

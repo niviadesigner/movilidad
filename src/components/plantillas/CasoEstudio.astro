@@ -5,6 +5,7 @@
  * testimonio · productos usados con enlace a ficha · CTA "quiero algo así".
  */
 import CTA from '../ui/CTA.astro';
+import Icono from '../ui/Icono.astro';
 
 interface Metrica {
   valor: string;
@@ -23,9 +24,12 @@ interface Props {
   solucion: string;
   metricas: Metrica[];
   testimonio?: { cita: string; autor: string; cargo: string };
+  /** Hasta 3 fotos. Los espacios vacíos se muestran como placeholder honesto. */
+  galeria?: string[];
   modelosUsados: ModeloUsado[];
 }
-const { cliente, sector, ciudad, reto, solucion, metricas, testimonio, modelosUsados } = Astro.props;
+const { cliente, sector, ciudad, reto, solucion, metricas, testimonio, galeria = [], modelosUsados } = Astro.props;
+const ESPACIOS_GALERIA = 3;
 ---
 
 <div class="max-w-[46rem]">
@@ -33,6 +37,26 @@ const { cliente, sector, ciudad, reto, solucion, metricas, testimonio, modelosUs
     Caso de estudio · {sector} · {ciudad}
   </p>
   <h1 class="mt-3 text-[var(--text-4xl)]">{cliente}</h1>
+</div>
+
+<div class="mt-8 grid gap-4 sm:grid-cols-3">
+  {Array.from({ length: ESPACIOS_GALERIA }).map((_, i) => (
+    galeria[i] ? (
+      <img
+        src={galeria[i]}
+        alt={`Instalación en ${ciudad} — foto ${i + 1}`}
+        width="480"
+        height="360"
+        loading="lazy"
+        class="aspect-[4/3] w-full rounded-[var(--radius-lg)] border border-[var(--color-border)] object-cover"
+      />
+    ) : (
+      <div class="flex aspect-[4/3] w-full flex-col items-center justify-center gap-2 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-primary-50)] text-[var(--color-primary-700)]">
+        <Icono nombre="edificio" class="h-10 w-10" />
+        <p class="text-[var(--text-xs)] font-medium">Foto pendiente</p>
+      </div>
+    )
+  ))}
 </div>
 
 <div class="mt-8 grid gap-6 sm:grid-cols-2">
@@ -46,16 +70,18 @@ const { cliente, sector, ciudad, reto, solucion, metricas, testimonio, modelosUs
   </div>
 </div>
 
-<dl class="mt-10 grid gap-6 sm:grid-cols-3">
-  {metricas.map((m) => (
-    <div>
-      <dt class="sr-only">{m.etiqueta}</dt>
-      <dd class="text-[var(--text-3xl)] font-bold text-[var(--color-primary-700)]">{m.valor}</dd>
-      <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">{m.etiqueta}</p>
-      <p class="mt-0.5 font-mono text-[var(--text-xs)] text-[var(--color-text-muted)]">Fuente: {m.fuente}</p>
-    </div>
-  ))}
-</dl>
+{metricas.length > 0 && (
+  <dl class="mt-10 grid gap-6 sm:grid-cols-3">
+    {metricas.map((m) => (
+      <div>
+        <dt class="sr-only">{m.etiqueta}</dt>
+        <dd class="text-[var(--text-3xl)] font-bold text-[var(--color-primary-700)]">{m.valor}</dd>
+        <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">{m.etiqueta}</p>
+        <p class="mt-0.5 font-mono text-[var(--text-xs)] text-[var(--color-text-muted)]">Fuente: {m.fuente}</p>
+      </div>
+    ))}
+  </dl>
+)}
 
 <div class="prose mt-10 max-w-[42rem] text-[var(--color-text-muted)]">
   <slot />
