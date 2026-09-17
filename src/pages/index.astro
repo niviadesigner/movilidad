@@ -13,6 +13,7 @@ import LogoBar from '../components/ui/LogoBar.astro';
 import Pasos from '../components/ui/Pasos.astro';
 import FormularioCotizacion from '../components/ui/FormularioCotizacion.astro';
 import { SEGMENTOS } from '../lib/nav';
+import { whatsappUrl } from '../lib/site';
 import type { NombreIcono } from '../components/ui/Icono.astro';
 
 const ICONO_SEGMENTO: Record<string, NombreIcono> = {
@@ -38,26 +39,24 @@ const pasosTrabajo = [
 ---
 
 <SiteLayout seo={seo} sinMigas>
-  {/* 1 · Hero — dato duro + promesa + CTA */}
+  {/* 1 · Hero — promesa amplia (no solo biciparqueaderos) + prueba de experiencia + CTA */}
   <Section fondo="subtle" espaciado="amplio">
     <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,46rem)_1fr]">
       <div>
-        <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
-          La Ley 1811 de 2016 obliga a empresas y entidades a promover el uso de la bicicleta
-        </p>
-        <h1 class="mt-3 text-[var(--text-5xl)]">
-          Infraestructura para que tu equipo llegue en bici, y para cumplir la norma
-        </h1>
+        <h1 class="text-[var(--text-5xl)]">Soluciones para movernos mejor</h1>
         <p class="mt-5 text-[var(--text-lg)] text-[var(--color-text-muted)]">
-          Diseñamos, fabricamos e instalamos biciparqueaderos para empresas, constructoras y
-          conjuntos. Un solo proveedor, de la visita técnica a la entrega.
+          Diseñamos, fabricamos e implementamos soluciones para bicicletas y movilidad
+          sostenible, combinando experiencia técnica, funcionalidad y atención al detalle.
+        </p>
+        <p class="mt-2 text-[var(--text-base)] text-[var(--color-text-muted)]">
+          Biciparqueaderos, bicitalleres, soportes para bicicletas y mantenimiento especializado.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-4">
-          <CTA href="/cotizar" variante="primario" tamano="lg">Cotizar en 24 h</CTA>
-          <CTA href="/recursos/calculadora-cupos" variante="secundario">Calcular cupos que necesito</CTA>
+          <CTA href="/cotizar" variante="primario" tamano="lg">Cotizar un proyecto</CTA>
+          <CTA href="/mantenimiento/agendar" variante="secundario">Solicitar mantenimiento</CTA>
         </div>
         <p class="mt-4 font-mono text-[var(--text-xs)] text-[var(--color-text-muted)]">
-          Fuente: Ley 1811 de 2016, Congreso de Colombia.
+          Experiencia en proyectos instalados en más de 25 ciudades de Colombia.
         </p>
       </div>
       <img
@@ -72,12 +71,28 @@ const pasosTrabajo = [
     </div>
   </Section>
 
-  {/* 2 · Barra de logos de clientes (parte alta, regla §8) */}
+  {/* 2 · Tres líneas — qué hacemos, de un vistazo */}
+  <Section espaciado="compacto">
+    <h2 class="text-[var(--text-2xl)]">Nuestras líneas</h2>
+    <div class="mt-6 grid gap-4 sm:grid-cols-3">
+      <Card href="/biciparqueaderos" titulo="Infraestructura para bicicletas" icono="edificio">
+        Biciparqueaderos y bicitalleres para empresas, constructoras, conjuntos y espacio público.
+      </Card>
+      <Card href="/mantenimiento" titulo="Taller y mantenimiento" icono="herramienta">
+        Mantenimiento en taller, a domicilio y protección de tu bicicleta.
+      </Card>
+      <Card href="/tienda" titulo="Productos para ciclistas" icono="carrito">
+        Soportes, accesorios y equipamiento pensado por quienes montan bicicleta.
+      </Card>
+    </div>
+  </Section>
+
+  {/* 3 · Barra de logos de clientes (parte alta, regla §8) */}
   <Section espaciado="compacto">
     <LogoBar />
   </Section>
 
-  {/* 3 · Selector de sector → /soluciones/* */}
+  {/* 4 · Selector de sector → /soluciones/* */}
   <Section fondo="subtle">
     <h2 class="text-[var(--text-2xl)]">¿Desde dónde nos escribes?</h2>
     <p class="mt-2 text-[var(--color-text-muted)]">Cada audiencia tiene su recorrido.</p>
@@ -177,17 +192,28 @@ const pasosTrabajo = [
     </div>
   </Section>
 
-  {/* 9 · Cómo trabajamos, en 4 pasos */}
+  {/* 9 · ¿Qué necesitas? — accesos directos por necesidad puntual */}
+  <Section>
+    <h2 class="text-[var(--text-2xl)]">¿Qué necesitas?</h2>
+    <div class="mt-6 grid gap-3 sm:grid-cols-2">
+      <CTA href="/biciparqueaderos" variante="secundario" class="justify-start">Tengo un proyecto de biciparqueaderos</CTA>
+      <CTA href="/mantenimiento/agendar" variante="secundario" class="justify-start">Necesito mantenimiento para mi bicicleta</CTA>
+      <CTA href="/tienda/soportes" variante="secundario" class="justify-start">Busco soportes para mi bicicleta</CTA>
+      <CTA href="/cotizar" variante="secundario" class="justify-start">Quiero cotizar un proyecto</CTA>
+    </div>
+  </Section>
+
+  {/* 10 · Cómo trabajamos, en 4 pasos */}
   <Section fondo="subtle">
     <Pasos titulo="Cómo trabajamos" pasos={pasosTrabajo} />
   </Section>
 
-  {/* 10 · Aliados y certificaciones */}
+  {/* 11 · Aliados y certificaciones */}
   <Section espaciado="compacto">
     <LogoBar titulo="Aliados y certificaciones" />
   </Section>
 
-  {/* 11 · CTA final con formulario de 5 campos */}
+  {/* 12 · CTA final con formulario de 5 campos + WhatsApp */}
   <Section fondo="primario" espaciado="amplio">
     <div class="grid gap-10 lg:grid-cols-2">
       <div class="max-w-[42ch]">
@@ -197,6 +223,14 @@ const pasosTrabajo = [
         <p class="mt-3 text-[var(--color-primary-100)]">
           Cinco campos, sin compromiso. Un ingeniero te responde en menos de 24 h.
         </p>
+        <a
+          href={whatsappUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-4 inline-block text-[var(--text-sm)] font-semibold text-[var(--color-accent-300)] underline underline-offset-4"
+        >
+          O escríbenos directo por WhatsApp
+        </a>
       </div>
       <div class="rounded-[var(--radius-lg)] bg-[var(--color-surface)] p-6 sm:p-8">
         <FormularioCotizacion origen="/" idPrefijo="home" />
