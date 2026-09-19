@@ -18,8 +18,13 @@ export interface CategoriaMeta {
 export const CATEGORIAS: CategoriaMeta[] = [
   {
     slug: 'soportes',
-    nombre: 'Soportes para bicicleta',
-    descripcion: 'De pared, piso y techo para guardar la bici en casa u oficina.',
+    nombre: 'Bicicleteros y soportes',
+    descripcion:
+      'Hechos por ciclistas, para ciclistas: soportes de pared, piso y techo que cuidan la bici (sin rayones ni golpes), aprovechan el espacio y facilitan el uso.',
+    cruzada: {
+      label: '¿Tienda de ciclismo, café o taller? Pide un diseño a medida',
+      href: '/tienda/disenos-personalizados',
+    },
   },
   {
     slug: 'morrales-maletines',

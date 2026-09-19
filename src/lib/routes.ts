@@ -48,7 +48,8 @@ export const LABELS: Record<string, string> = {
   '/soluciones/universidades': 'Para universidades',
 
   '/tienda': 'Tienda',
-  '/tienda/soportes': 'Soportes para bicicleta',
+  '/tienda/soportes': 'Bicicleteros y soportes',
+  '/tienda/disenos-personalizados': 'Diseños personalizados',
   '/tienda/morrales-maletines': 'Morrales y maletines',
   '/tienda/seguridad': 'Seguridad: guayas y candados',
   '/tienda/accesorios': 'Accesorios',

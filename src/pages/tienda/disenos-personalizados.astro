@@ -1,0 +1,74 @@
+---
+import TiendaLayout from '../../layouts/TiendaLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import Card from '../../components/ui/Card.astro';
+import CTA from '../../components/ui/CTA.astro';
+import Pasos from '../../components/ui/Pasos.astro';
+import Icono from '../../components/ui/Icono.astro';
+
+const seo = {
+  titulo: 'Soportes y bicicleteros a medida',
+  descripcion:
+    'Diseñamos y fabricamos soportes y bicicleteros personalizados para tiendas de ciclismo, cafés, talleres y hogares, con instalación incluida.',
+  ruta: '/tienda/disenos-personalizados',
+};
+
+const pasos = [
+  { titulo: 'Nos cuentas', texto: 'Qué bicicletas, qué espacio y para qué uso.' },
+  { titulo: 'Propuesta', texto: 'Te devolvemos un diseño con medidas y valor.' },
+  { titulo: 'Fabricación', texto: 'Lo producimos con los materiales y acabado acordados.' },
+  { titulo: 'Instalación', texto: 'Lo instalamos, con la instalación incluida.' },
+];
+---
+
+<TiendaLayout seo={seo}>
+  <Section fondo="subtle" espaciado="amplio">
+    <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,46rem)_1fr]">
+      <div>
+        <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
+          Tienda · Diseños personalizados
+        </p>
+        <h1 class="mt-3 text-[var(--text-4xl)]">Soportes y bicicleteros hechos a tu medida</h1>
+        <p class="mt-4 text-[var(--text-lg)] text-[var(--color-text-muted)]">
+          Para tiendas de ciclismo, cafés, talleres y hogares. No son soportes comunes: los
+          pensamos para cuidar la bicicleta, aprovechar el espacio y verse bien donde van.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <CTA href="/cotizar" variante="primario" tamano="lg">Pedir un diseño a medida</CTA>
+          <CTA href="/tienda/soportes" variante="secundario">Ver soportes disponibles</CTA>
+        </div>
+      </div>
+      <div class="hidden aspect-[4/3] w-full flex-col items-center justify-center gap-3 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-primary-50)] text-[var(--color-primary-700)] lg:flex">
+        <Icono nombre="bici" class="h-16 w-16" />
+        <p class="text-[var(--text-sm)] font-medium">Foto o render pendiente</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="text-[var(--text-2xl)]">Qué buscamos resolver</h2>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <Card titulo="Sin rayones ni golpes" icono="candado">Apoyos que protegen el cuadro y las llantas.</Card>
+      <Card titulo="Mejor forma de apoyar o colgar" icono="bici">Pensados para que la bici quede bien puesta.</Card>
+      <Card titulo="Aprovechan el espacio" icono="edificio">Se adaptan a paredes, pisos y locales reales.</Card>
+      <Card titulo="Fáciles de usar" icono="herramienta">Que guardar y sacar la bici sea simple.</Card>
+    </div>
+  </Section>
+
+  <Section fondo="subtle">
+    <Pasos titulo="Cómo trabajamos" pasos={pasos} />
+    <p class="mt-6 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      Instalación incluida. Por ahora la coordinamos en Bogotá; para otras ciudades, consúltanos.
+    </p>
+  </Section>
+
+  <Section fondo="primario" espaciado="amplio">
+    <div class="max-w-[42rem]">
+      <h2 class="text-[var(--text-3xl)] text-[var(--color-text-inverse)]">Cuéntanos qué necesitas</h2>
+      <p class="mt-3 text-[var(--color-primary-100)]">Te respondemos con una propuesta de diseño y valor.</p>
+      <div class="mt-8">
+        <CTA href="/cotizar" variante="primario" tamano="lg">Pedir un diseño a medida</CTA>
+      </div>
+    </div>
+  </Section>
+</TiendaLayout>
