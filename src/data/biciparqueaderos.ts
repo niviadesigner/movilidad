@@ -28,7 +28,7 @@ export interface ContenidoHub {
   intro: string;
   ctaPrimario: Enlace;
   ctaSecundario?: Enlace;
-  imagenHero?: { src: string; alt: string };
+  imagenHero?: { src?: string; alt: string; icono?: NombreIcono };
   selector?: { titulo: string; items: TarjetaSelector[] };
   pasos?: { titulo?: string; items: Paso[] };
   ventaCruzada?: { titulo?: string; items: ItemCruzada[] };
@@ -195,5 +195,44 @@ export const SECTORES: Record<string, ContenidoHub> = {
     },
     faq: { items: FAQ_HUB },
     cierre: CIERRE,
+  },
+
+  bicitalleres: {
+    eyebrow: 'Infraestructura · Bicitalleres',
+    titulo: 'Bicitalleres: estaciones de mantenimiento básico para bicicletas',
+    intro:
+      'Diseñamos y fabricamos estaciones para que ciclistas resuelvan ajustes básicos en sitio. Sirven como complemento del biciparqueadero o como producto independiente para empresas, conjuntos, universidades, espacios públicos y comercios.',
+    ctaPrimario: { label: 'Cotizar un bicitaller', href: '/cotizar' },
+    ctaSecundario: { label: 'Ver biciparqueaderos', href: '/biciparqueaderos' },
+    imagenHero: { alt: 'Bicitaller: estación de mantenimiento básico para bicicletas', icono: 'herramienta' },
+    selector: {
+      titulo: '¿Dónde se instala un bicitaller?',
+      items: [
+        { titulo: 'Empresas', texto: 'Junto al biciparqueadero de la sede, para que el equipo resuelva ajustes básicos.', href: '/soluciones/empresas', icono: 'maletin' },
+        { titulo: 'Conjuntos residenciales', texto: 'En zonas comunes o el sótano, como servicio para residentes.', href: '/soluciones/conjuntos', icono: 'casa' },
+        { titulo: 'Universidades y colegios', texto: 'En campus, cerca de los accesos y bicicleteros.', href: '/soluciones/universidades', icono: 'graduacion' },
+        { titulo: 'Espacio público y comercio', texto: 'Estaciones visibles para ciclistas en rutas, parques y locales.', href: '/biciparqueaderos/mobiliario-urbano', icono: 'bici' },
+      ],
+    },
+    pasos: { titulo: 'Cómo trabajamos', items: PASOS_PROYECTO },
+    ventaCruzada: {
+      items: [
+        { label: 'Biciparqueaderos', texto: 'El complemento natural: dónde dejar la bici antes o después del ajuste.', href: '/biciparqueaderos' },
+        { label: 'Mantenimiento de bicicletas', texto: 'Para trabajos que van más allá de un ajuste básico.', href: '/mantenimiento' },
+        { label: 'Diseño e instalación', texto: 'Cómo analizamos el espacio antes de fabricar.', href: '/biciparqueaderos/diseno-instalacion' },
+      ],
+    },
+    faq: {
+      items: [
+        { pregunta: '¿Los bicitalleres ya están disponibles?', respuesta: 'Sí, los diseñamos y fabricamos bajo pedido. Algunos modelos siguen en proceso de diseño; mientras no haya fotos de instalaciones mostramos renders o esquemas identificados como propuesta.' },
+        { pregunta: '¿Se pueden comprar junto con el biciparqueadero?', respuesta: 'Sí. Pueden cotizarse en el mismo proyecto o por separado.' },
+        { pregunta: '¿Qué incluye cada estación?', respuesta: 'Depende del espacio y del uso. El detalle de cada configuración se define y queda por escrito en la cotización.' },
+      ],
+    },
+    cierre: {
+      titulo: 'Cuéntanos dónde lo necesitas',
+      texto: 'Cotiza un bicitaller y te respondemos con una propuesta adaptada al espacio.',
+      cta: { label: 'Cotizar un bicitaller', href: '/cotizar' },
+    },
   },
 };

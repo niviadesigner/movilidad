@@ -54,6 +54,7 @@ export const NAV_CORPORATIVO: NavItem[] = [
         {
           titulo: 'Explorar',
           links: [
+            { label: 'Bicitalleres', href: '/biciparqueaderos/bicitalleres' },
             { label: 'Ver todos los modelos', href: '/biciparqueaderos/modelos' },
             { label: 'Diseño e instalación', href: '/biciparqueaderos/diseno-instalacion' },
           ],

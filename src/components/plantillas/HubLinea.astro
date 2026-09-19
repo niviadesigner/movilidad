@@ -17,7 +17,7 @@ import FAQ from '../ui/FAQ.astro';
 import type { Paso } from '../ui/Pasos.astro';
 import type { ItemCruzada } from '../ui/VentaCruzada.astro';
 import type { ItemFAQ } from '../ui/FAQ.astro';
-import type { NombreIcono } from '../ui/Icono.astro';
+import Icono, { type NombreIcono } from '../ui/Icono.astro';
 
 interface EnlaceCTA {
   label: string;
@@ -43,7 +43,7 @@ interface Props {
   intro: string;
   ctaPrimario: EnlaceCTA;
   ctaSecundario?: EnlaceCTA;
-  imagenHero?: { src: string; alt: string };
+  imagenHero?: { src?: string; alt: string; icono?: NombreIcono };
 
   selector?: { titulo: string; items: TarjetaSelector[] };
   pasos?: { titulo?: string; items: Paso[] };
@@ -89,7 +89,7 @@ const {
         )}
       </div>
     </div>
-    {imagenHero && (
+    {imagenHero && (imagenHero.src ? (
       <img
         src={imagenHero.src}
         alt={imagenHero.alt}
@@ -99,7 +99,12 @@ const {
         decoding="async"
         class="hidden w-full rounded-[var(--radius-lg)] object-cover lg:block"
       />
-    )}
+    ) : (
+      <div class="hidden aspect-[4/3] w-full flex-col items-center justify-center gap-3 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-primary-50)] text-[var(--color-primary-700)] lg:flex">
+        <Icono nombre={imagenHero.icono ?? 'bici'} class="h-16 w-16" />
+        <p class="text-[var(--text-sm)] font-medium">Foto o render pendiente</p>
+      </div>
+    ))}
   </div>
 </Section>
 

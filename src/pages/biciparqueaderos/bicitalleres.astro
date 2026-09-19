@@ -1,0 +1,16 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import HubLinea from '../../components/plantillas/HubLinea.astro';
+import { SECTORES } from '../../data/biciparqueaderos';
+
+const seo = {
+  titulo: 'Bicitalleres: estaciones de mantenimiento para bicicletas',
+  descripcion:
+    'Diseñamos y fabricamos bicitalleres, estaciones de mantenimiento básico para empresas, conjuntos, universidades, espacio público y comercios.',
+  ruta: '/biciparqueaderos/bicitalleres',
+};
+---
+
+<SiteLayout seo={seo}>
+  <HubLinea {...SECTORES.bicitalleres} />
+</SiteLayout>

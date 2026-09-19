@@ -13,6 +13,7 @@ export const LABELS: Record<string, string> = {
   '/biciparqueaderos/institucional': 'Institucional y educativo',
   '/biciparqueaderos/residencial': 'Residencial y PH',
   '/biciparqueaderos/mobiliario-urbano': 'Mobiliario urbano',
+  '/biciparqueaderos/bicitalleres': 'Bicitalleres',
   '/biciparqueaderos/modelos': 'Modelos',
   '/biciparqueaderos/diseno-instalacion': 'Diseño e instalación',
 
