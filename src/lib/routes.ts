@@ -22,6 +22,8 @@ export const LABELS: Record<string, string> = {
   '/mantenimiento/flotas': 'Planes para flotas',
   '/mantenimiento/taller': 'Taller',
   '/mantenimiento/domicilio': 'A domicilio',
+  '/mantenimiento/laminado-ppf': 'Lámina PPF',
+  '/mantenimiento/suspensiones': 'Suspensiones (próximamente)',
   '/mantenimiento/planes': 'Planes y precios',
   '/mantenimiento/cobertura': 'Cobertura',
   '/mantenimiento/agendar': 'Agendar',

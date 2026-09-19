@@ -80,6 +80,7 @@ export const NAV_CORPORATIVO: NavItem[] = [
           links: [
             { label: 'Taller', href: '/mantenimiento/taller' },
             { label: 'A domicilio', href: '/mantenimiento/domicilio' },
+            { label: 'Lámina PPF', href: '/mantenimiento/laminado-ppf' },
             { label: 'Planes y precios', href: '/mantenimiento/planes' },
           ],
         },

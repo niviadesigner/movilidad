@@ -36,6 +36,7 @@ export default defineConfig({
         !page.includes('/tienda/carrito') &&
         !page.includes('/tienda/checkout') &&
         !page.includes('/gracias') &&
+        !page.includes('/mantenimiento/suspensiones') &&
         !page.includes('/pedido-confirmado') &&
         !page.includes('/mantenimiento/agendar/confirmado'),
     }),

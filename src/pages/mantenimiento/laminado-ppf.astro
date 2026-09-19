@@ -1,0 +1,16 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import ServicioAgendable from '../../components/plantillas/ServicioAgendable.astro';
+import { SERVICIOS } from '../../data/mantenimiento';
+
+const seo = {
+  titulo: 'Lámina PPF para bicicletas y motocicletas',
+  descripcion:
+    'Instalación de lámina protectora PPF (TPH y TPU) en cuadros de bicicleta y motocicletas, en taller o a domicilio.',
+  ruta: '/mantenimiento/laminado-ppf',
+};
+---
+
+<SiteLayout seo={seo}>
+  <ServicioAgendable contenido={SERVICIOS.ppf} />
+</SiteLayout>

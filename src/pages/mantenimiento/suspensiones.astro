@@ -1,0 +1,17 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import ServicioAgendable from '../../components/plantillas/ServicioAgendable.astro';
+import { SERVICIOS } from '../../data/mantenimiento';
+
+const seo = {
+  titulo: 'Suspensiones: próximamente',
+  descripcion:
+    'Servicio técnico especializado de suspensiones de bicicleta, en desarrollo. Avísanos si te interesa.',
+  ruta: '/mantenimiento/suspensiones',
+  noIndex: true,
+};
+---
+
+<SiteLayout seo={seo}>
+  <ServicioAgendable contenido={SERVICIOS.suspensiones} />
+</SiteLayout>

@@ -7,6 +7,7 @@
 import type { ContenidoHub } from './biciparqueaderos';
 import type { Paso } from '../components/ui/Pasos.astro';
 import type { ItemFAQ } from '../components/ui/FAQ.astro';
+import { whatsappUrl } from '../lib/site';
 
 const CTA_AGENDAR = { label: 'Agendar ahora', href: '/mantenimiento/agendar' };
 
@@ -64,6 +65,8 @@ export const HUB: ContenidoHub = {
   ventaCruzada: {
     titulo: 'Esto también te va a servir',
     items: [
+      { label: 'Lámina PPF', texto: 'Protege el cuadro de tu bicicleta o moto de rayones y golpes.', href: '/mantenimiento/laminado-ppf' },
+      { label: 'Suspensiones (próximamente)', texto: 'Servicio técnico especializado, en desarrollo. Avísanos si te interesa.', href: '/mantenimiento/suspensiones' },
       { label: 'Biciparqueaderos', texto: 'Si vas a promover la bici en la empresa, empieza por dónde guardarlas.', href: '/biciparqueaderos' },
       { label: 'Guayas y candados', texto: 'Seguridad para dejar la bici tranquila.', href: '/tienda/seguridad' },
       { label: 'Accesorios', texto: 'Luces, guardabarros e infladores para el día a día.', href: '/tienda/accesorios' },
@@ -178,6 +181,54 @@ export const SERVICIOS: Record<string, ContenidoServicio> = {
     ctaSecundario: { label: 'Ver zonas con cobertura', href: '/mantenimiento/cobertura' },
     aviso: 'La cobertura se valida ANTES de pedir cualquier dato personal.',
     faq: FAQ_HUB.slice(1, 4),
+  },
+
+  ppf: {
+    eyebrow: 'Mantenimiento · Protección',
+    titulo: 'Lámina PPF para cuadros de bicicleta y motocicleta',
+    intro:
+      'Instalamos lámina protectora PPF en cuadros de bicicleta y en motocicletas, en nuestro taller o a domicilio, para proteger la pintura de rayones y golpes del uso diario.',
+    paraQuien: 'Ciclistas y motociclistas que quieren proteger su cuadro o carrocería.',
+    incluye: [
+      'Revisión inicial de la pieza a proteger',
+      'Lámina de clase media TPH (híbrido de PVC y TPU)',
+      'Lámina de clase premium TPU',
+      'Instalación en taller, o recogida y entrega a domicilio',
+      'Confirmación del trabajo antes de empezar',
+    ],
+    tiempos: 'Se confirman en la revisión inicial, según la pieza y el tipo de lámina.',
+    cta: { label: 'Solicitar servicio PPF', href: '/cotizar' },
+    ctaSecundario: { label: 'Preguntar por WhatsApp', href: whatsappUrl('mantenimiento') },
+    pasos: [
+      { titulo: 'Nos cuentas', texto: 'Qué bicicleta o moto y qué zonas quieres proteger.' },
+      { titulo: 'Eliges la lámina', texto: 'Clase media (TPH) o premium (TPU).' },
+      { titulo: 'Confirmamos', texto: 'Alcance y valor por escrito antes de empezar.' },
+      { titulo: 'Instalamos', texto: 'En el taller, o con recogida y entrega a domicilio.' },
+    ],
+    faq: [
+      { pregunta: '¿Qué diferencia hay entre TPH y TPU?', respuesta: 'TPH es un híbrido de PVC y TPU (clase media); TPU es la clase premium. Te recomendamos según tu caso en la revisión inicial.' },
+      { pregunta: '¿Puedo dejar la bicicleta o la moto en el taller?', respuesta: 'Sí, o pedir recogida y entrega a domicilio.' },
+      { pregunta: '¿Cómo se agenda?', respuesta: 'Por ahora, con la solicitud o por WhatsApp; confirmamos el trabajo antes de empezar.' },
+    ],
+  },
+
+  suspensiones: {
+    eyebrow: 'Mantenimiento · Próximamente',
+    titulo: 'Mantenimiento especializado de suspensiones',
+    intro:
+      'Estamos preparando un servicio técnico para suspensiones de bicicleta. Todavía no lo ofrecemos; si te interesa, avísanos y te contamos cuando esté listo.',
+    paraQuien: 'Ciclistas con suspensión que quieren un servicio técnico especializado.',
+    incluye: [
+      'Marcas atendidas, tipos de servicio, tiempos y precios orientativos: por definir',
+      'Proceso de recepción: por definir',
+    ],
+    tiempos: 'Aún no disponible.',
+    aviso: 'Próximamente. Lo publicaremos cuando el servicio esté realmente listo.',
+    cta: { label: 'Avísame cuando esté listo', href: whatsappUrl('mantenimiento') },
+    ctaSecundario: { label: 'Ver mantenimiento disponible', href: '/mantenimiento' },
+    faq: [
+      { pregunta: '¿Ya puedo agendar este servicio?', respuesta: 'Todavía no. Es una línea en desarrollo; escríbenos y te avisamos.' },
+    ],
   },
 };
 
