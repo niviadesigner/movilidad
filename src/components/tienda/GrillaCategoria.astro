@@ -5,6 +5,7 @@
  */
 import Section from '../ui/Section.astro';
 import TarjetaProducto from './TarjetaProducto.astro';
+import EstadoBadge from '../ui/EstadoBadge.astro';
 import { categoriaMeta, getProductosPorCategoria, type CategoriaSlug } from '../../lib/tienda';
 
 interface Props {
@@ -34,7 +35,7 @@ const productos = await getProductosPorCategoria(slug);
     <div class="mt-14 grid gap-4 sm:grid-cols-2">
       {meta.proximamente.map((p) => (
         <div class="rounded-[var(--radius-lg)] border border-dashed border-[var(--color-border-strong)] p-6">
-          <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Próximamente</p>
+          <EstadoBadge estado={p.estado} />
           <h2 class="mt-2 text-[var(--text-lg)] font-semibold">{p.titulo}</h2>
           <p class="mt-2 text-[var(--text-sm)] text-[var(--color-text-muted)]">{p.texto}</p>
         </div>

@@ -14,7 +14,7 @@ export interface CategoriaMeta {
   /** Enlace de venta cruzada al sitio corporativo (regla de enlazado §8). */
   cruzada?: { label: string; href: string };
   /** Avisos de líneas que aún no se venden. Nunca se muestran como disponibles. */
-  proximamente?: { titulo: string; texto: string }[];
+  proximamente?: { titulo: string; texto: string; estado: 'proximamente' | 'desarrollo' }[];
 }
 
 export const CATEGORIAS: CategoriaMeta[] = [
@@ -35,11 +35,13 @@ export const CATEGORIAS: CategoriaMeta[] = [
     proximamente: [
       {
         titulo: 'Línea propia de bolsos para bicicleta',
+        estado: 'proximamente',
         texto:
           'Ya hemos fabricado bolsos de lona impermeable; la nueva línea de uso urbano busca mejorar diseño, funcionalidad, estanqueidad y presentación. Próximamente.',
       },
       {
         titulo: 'Equipamiento premium 100 % impermeable',
+        estado: 'desarrollo',
         texto:
           'Estamos trabajando en incorporar equipamiento premium impermeable para ciclismo y motocicleta. En desarrollo.',
       },
