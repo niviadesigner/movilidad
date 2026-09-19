@@ -13,6 +13,8 @@ export interface CategoriaMeta {
   descripcion: string;
   /** Enlace de venta cruzada al sitio corporativo (regla de enlazado §8). */
   cruzada?: { label: string; href: string };
+  /** Avisos de líneas que aún no se venden. Nunca se muestran como disponibles. */
+  proximamente?: { titulo: string; texto: string }[];
 }
 
 export const CATEGORIAS: CategoriaMeta[] = [
@@ -30,6 +32,18 @@ export const CATEGORIAS: CategoriaMeta[] = [
     slug: 'morrales-maletines',
     nombre: 'Morrales y maletines',
     descripcion: 'Morrales impermeables, maletines y alforjas para moverte con el equipo protegido.',
+    proximamente: [
+      {
+        titulo: 'Línea propia de bolsos para bicicleta',
+        texto:
+          'Ya hemos fabricado bolsos de lona impermeable; la nueva línea de uso urbano busca mejorar diseño, funcionalidad, estanqueidad y presentación. Próximamente.',
+      },
+      {
+        titulo: 'Equipamiento premium 100 % impermeable',
+        texto:
+          'Estamos trabajando en incorporar equipamiento premium impermeable para ciclismo y motocicleta. En desarrollo.',
+      },
+    ],
   },
   {
     slug: 'seguridad',

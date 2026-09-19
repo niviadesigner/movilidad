@@ -30,6 +30,18 @@ const productos = await getProductosPorCategoria(slug);
     </p>
   )}
 
+  {meta.proximamente && (
+    <div class="mt-14 grid gap-4 sm:grid-cols-2">
+      {meta.proximamente.map((p) => (
+        <div class="rounded-[var(--radius-lg)] border border-dashed border-[var(--color-border-strong)] p-6">
+          <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Próximamente</p>
+          <h2 class="mt-2 text-[var(--text-lg)] font-semibold">{p.titulo}</h2>
+          <p class="mt-2 text-[var(--text-sm)] text-[var(--color-text-muted)]">{p.texto}</p>
+        </div>
+      ))}
+    </div>
+  )}
+
   {meta.cruzada && (
     <div class="mt-14 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-primary-50)] p-6">
       <a href={meta.cruzada.href} class="font-semibold text-[var(--color-primary-700)] hover:underline">
