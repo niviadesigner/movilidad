@@ -1,0 +1,104 @@
+---
+/**
+ * Carrusel del hero del home: rota entre 2 (o más) banners con efecto de
+ * fundido. Autoplay respeta prefers-reduced-motion (solo navegación manual
+ * si el usuario prefiere menos movimiento). Sin dependencias externas.
+ */
+import CTA from './CTA.astro';
+---
+
+<div class="hero-carrusel relative w-full overflow-hidden rounded-[var(--radius-lg)] aspect-[4/5] sm:aspect-[16/9] lg:aspect-[21/9]">
+  <!-- Slide 1: foto + texto en HTML (editable, accesible) -->
+  <div class="hero-slide absolute inset-0 opacity-100 transition-opacity duration-1000" data-slide="0">
+    <img
+      src="/images/hero-home.jpg"
+      alt="Biciparqueadero corporativo instalado en el acceso de un edificio de oficinas"
+      width="1600"
+      height="1200"
+      fetchpriority="high"
+      decoding="async"
+      class="h-full w-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-[var(--color-primary-900)]/90 via-[var(--color-primary-900)]/50 to-transparent"></div>
+    <div class="absolute inset-0 flex items-center">
+      <div class="max-w-[34rem] px-6 sm:px-10 lg:px-14 text-[var(--color-text-inverse)]">
+        <h1 class="text-[var(--text-3xl)] sm:text-[var(--text-5xl)]">Soluciones para movernos mejor</h1>
+        <p class="mt-4 text-[var(--text-base)] sm:text-[var(--text-lg)] text-[var(--color-primary-100)]">
+          Diseñamos, fabricamos e implementamos soluciones para bicicletas y movilidad
+          sostenible, combinando experiencia técnica, funcionalidad y atención al detalle.
+        </p>
+        <div class="mt-6 flex flex-wrap items-center gap-4">
+          <CTA href="/cotizar" variante="primario" tamano="lg">Cotizar un proyecto</CTA>
+          <CTA href="/mantenimiento/agendar" variante="secundario" class="border-white text-white hover:border-white">Solicitar mantenimiento</CTA>
+        </div>
+        <p class="mt-4 font-mono text-[var(--text-xs)] text-[var(--color-primary-200)]">
+          Experiencia en proyectos instalados en más de 25 ciudades de Colombia.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2: banner diseñado, mensaje y logo ya incluidos en la imagen -->
+  <a
+    href="/biciparqueaderos"
+    class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000"
+    data-slide="1"
+    aria-label="Infraestructura y soluciones para una ciudad más en bici — ver biciparqueaderos"
+  >
+    <img
+      src="/images/banner-ciudad-mas-bici.jpg"
+      alt="Soluciones de Movilidad: infraestructura y soluciones para una ciudad más en bici. Biciparqueaderos, módulos de pared, instalación y personalización, soluciones para empresas, colegios y espacios públicos."
+      width="1600"
+      height="666"
+      loading="eager"
+      decoding="async"
+      class="h-full w-full object-cover"
+    />
+  </a>
+
+  <!-- Puntos de navegación -->
+  <div class="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+    <button type="button" class="hero-dot h-2.5 w-2.5 rounded-full bg-white/50 transition-colors" data-goto="0" aria-label="Ver banner 1"></button>
+    <button type="button" class="hero-dot h-2.5 w-2.5 rounded-full bg-white/50 transition-colors" data-goto="1" aria-label="Ver banner 2"></button>
+  </div>
+</div>
+
+<script>
+  function iniciarCarrusel(raiz: HTMLElement) {
+    const slides = Array.from(raiz.querySelectorAll<HTMLElement>('.hero-slide'));
+    const dots = Array.from(raiz.querySelectorAll<HTMLButtonElement>('.hero-dot'));
+    let activo = 0;
+    let intervalo: ReturnType<typeof setInterval> | undefined;
+
+    function mostrar(i: number) {
+      activo = i;
+      slides.forEach((s, idx) => {
+        s.classList.toggle('opacity-100', idx === i);
+        s.classList.toggle('opacity-0', idx !== i);
+        s.classList.toggle('pointer-events-none', idx !== i);
+      });
+      dots.forEach((d, idx) => d.classList.toggle('bg-white', idx === i));
+    }
+
+    function siguiente() {
+      mostrar((activo + 1) % slides.length);
+    }
+
+    const prefiereMenosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefiereMenosMovimiento) {
+      intervalo = setInterval(siguiente, 6000);
+    }
+
+    dots.forEach((d) => {
+      d.addEventListener('click', () => {
+        if (intervalo) clearInterval(intervalo);
+        mostrar(Number(d.dataset.goto));
+        if (!prefiereMenosMovimiento) intervalo = setInterval(siguiente, 6000);
+      });
+    });
+
+    mostrar(0);
+  }
+
+  document.querySelectorAll<HTMLElement>('.hero-carrusel').forEach(iniciarCarrusel);
+</script>

@@ -12,6 +12,7 @@ import CTA from '../components/ui/CTA.astro';
 import LogoBar from '../components/ui/LogoBar.astro';
 import Pasos from '../components/ui/Pasos.astro';
 import FormularioCotizacion from '../components/ui/FormularioCotizacion.astro';
+import HeroCarousel from '../components/ui/HeroCarousel.astro';
 import { SEGMENTOS } from '../lib/nav';
 import { whatsappUrl } from '../lib/site';
 import type { NombreIcono } from '../components/ui/Icono.astro';
@@ -39,36 +40,9 @@ const pasosTrabajo = [
 ---
 
 <SiteLayout seo={seo} sinMigas>
-  {/* 1 · Hero — promesa amplia (no solo biciparqueaderos) + prueba de experiencia + CTA */}
-  <Section fondo="subtle" espaciado="amplio">
-    <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,46rem)_1fr]">
-      <div>
-        <h1 class="text-[var(--text-5xl)]">Soluciones para movernos mejor</h1>
-        <p class="mt-5 text-[var(--text-lg)] text-[var(--color-text-muted)]">
-          Diseñamos, fabricamos e implementamos soluciones para bicicletas y movilidad
-          sostenible, combinando experiencia técnica, funcionalidad y atención al detalle.
-        </p>
-        <p class="mt-2 text-[var(--text-base)] text-[var(--color-text-muted)]">
-          Biciparqueaderos, bicitalleres, soportes para bicicletas y mantenimiento especializado.
-        </p>
-        <div class="mt-8 flex flex-wrap items-center gap-4">
-          <CTA href="/cotizar" variante="primario" tamano="lg">Cotizar un proyecto</CTA>
-          <CTA href="/mantenimiento/agendar" variante="secundario">Solicitar mantenimiento</CTA>
-        </div>
-        <p class="mt-4 font-mono text-[var(--text-xs)] text-[var(--color-text-muted)]">
-          Experiencia en proyectos instalados en más de 25 ciudades de Colombia.
-        </p>
-      </div>
-      <img
-        src="/images/hero-home.jpg"
-        alt="Biciparqueadero corporativo instalado en el acceso de un edificio de oficinas"
-        width="1200"
-        height="900"
-        fetchpriority="high"
-        decoding="async"
-        class="hidden w-full rounded-[var(--radius-lg)] object-cover lg:block"
-      />
-    </div>
+  {/* 1 · Hero — banner rotativo: foto+texto y el banner de marca, con fundido */}
+  <Section fondo="subtle" espaciado="compacto">
+    <HeroCarousel />
   </Section>
 
   {/* 2 · Tres líneas — qué hacemos, de un vistazo */}
