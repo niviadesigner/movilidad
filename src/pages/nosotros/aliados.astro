@@ -18,11 +18,11 @@ const ALIADOS: { nombre: string; tipo: string }[] = [];
 
 <SiteLayout seo={seo}>
   <Section espaciado="amplio">
-    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
+    <p class="font-mono text-xs uppercase tracking-wide text-[var(--color-text-muted)]">
       Nosotros · Aliados
     </p>
-    <h1 class="mt-3 text-[var(--text-4xl)]">Aliados y certificaciones</h1>
-    <p class="mt-4 max-w-[46rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+    <h1 class="mt-3 text-4xl">Aliados y certificaciones</h1>
+    <p class="mt-4 max-w-[46rem] text-lg text-[var(--color-text-muted)]">
       Esta página reúne los proveedores, aliados comerciales y certificaciones que respaldan
       la infraestructura que instalamos. Los mismos aparecen enlazados desde cada ficha de
       modelo y de producto, no solo aquí.
@@ -33,14 +33,14 @@ const ALIADOS: { nombre: string; tipo: string }[] = [];
         {ALIADOS.map((a) => (
           <li class="rounded-[var(--radius-lg)] border border-[var(--color-border)] p-5">
             <p class="font-semibold">{a.nombre}</p>
-            <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">{a.tipo}</p>
+            <p class="mt-1 text-sm text-[var(--color-text-muted)]">{a.tipo}</p>
           </li>
         ))}
       </ul>
     ) : (
       <div class="mt-10 rounded-[var(--radius-lg)] border border-dashed border-[var(--color-border-strong)] bg-[var(--color-bg-subtle)] p-6">
-        <p class="text-[var(--text-base)] font-semibold">Aún no publicamos aliados aquí.</p>
-        <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+        <p class="text-base font-semibold">Aún no publicamos aliados aquí.</p>
+        <p class="mt-1 text-sm text-[var(--color-text-muted)]">
           Cuando cerremos alianzas y certificaciones verificables, quedan listadas en esta
           página. No mostramos sellos decorativos ni logos sin autorización.
         </p>

@@ -20,11 +20,11 @@ export default function MisPedidos() {
     }
   }, []);
 
-  if (pedidos === null) return <p className="text-[var(--text-sm)] text-[var(--color-text-muted)]">Cargando…</p>;
+  if (pedidos === null) return <p className="text-sm text-[var(--color-text-muted)]">Cargando…</p>;
 
   return (
     <>
-      <p className="text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      <p className="text-sm text-[var(--color-text-muted)]">
         Se muestran los pedidos hechos en este dispositivo. La cuenta con historial completo llega más adelante.
       </p>
 
@@ -43,7 +43,7 @@ export default function MisPedidos() {
                 <a href={`/mi-cuenta/pedidos/detalle?ref=${p.ref}`} className="font-mono font-medium hover:underline">
                   {p.ref}
                 </a>
-                <p className="text-[var(--text-xs)] text-[var(--color-text-muted)]">
+                <p className="text-xs text-[var(--color-text-muted)]">
                   {new Intl.DateTimeFormat('es-CO', { dateStyle: 'medium' }).format(new Date(p.fecha))}
                   {p.modo === 'demo' && ' · pedido de prueba'}
                 </p>

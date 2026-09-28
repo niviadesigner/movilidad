@@ -32,7 +32,7 @@ import { NAV_CORPORATIVO, CTA_CORPORATIVO, PUERTA_TIENDA } from '../../lib/nav';
           <li class="py-1">
             {item.mega ? (
               <details class="group">
-                <summary class="flex cursor-pointer list-none items-center justify-between py-3 text-[var(--text-base)] font-semibold">
+                <summary class="flex cursor-pointer list-none items-center justify-between py-3 text-base font-semibold">
                   <a href={item.href}>{item.label}</a>
                   <span aria-hidden="true" class="transition-transform group-open:rotate-45">+</span>
                 </summary>
@@ -41,7 +41,7 @@ import { NAV_CORPORATIVO, CTA_CORPORATIVO, PUERTA_TIENDA } from '../../lib/nav';
                     <ul class="space-y-1 border-l border-[var(--color-border)] pl-3">
                       {col.links.map((l) => (
                         <li>
-                          <a href={l.href} class="block py-2 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+                          <a href={l.href} class="block py-2 text-sm text-[var(--color-text-muted)]">
                             {l.label}
                           </a>
                         </li>
@@ -50,14 +50,14 @@ import { NAV_CORPORATIVO, CTA_CORPORATIVO, PUERTA_TIENDA } from '../../lib/nav';
                   ))}
                   <a
                     href={item.mega.accion.href}
-                    class="mt-2 inline-block py-2 text-[var(--text-sm)] font-semibold text-[var(--color-link)]"
+                    class="mt-2 inline-block py-2 text-sm font-semibold text-[var(--color-link)]"
                   >
                     {item.mega.accion.label} &rarr;
                   </a>
                 </div>
               </details>
             ) : (
-              <a href={item.href} class="block py-3 text-[var(--text-base)] font-semibold">
+              <a href={item.href} class="block py-3 text-base font-semibold">
                 {item.label}
               </a>
             )}
@@ -74,7 +74,7 @@ import { NAV_CORPORATIVO, CTA_CORPORATIVO, PUERTA_TIENDA } from '../../lib/nav';
         </a>
         <a
           href={PUERTA_TIENDA.href}
-          class="flex min-h-11 items-center justify-center rounded-[var(--radius-md)] border border-[var(--color-border-strong)] px-5 py-3 text-[var(--text-sm)] font-semibold"
+          class="flex min-h-11 items-center justify-center rounded-[var(--radius-md)] border border-[var(--color-border-strong)] px-5 py-3 text-sm font-semibold"
         >
           {PUERTA_TIENDA.label} &rarr;
         </a>

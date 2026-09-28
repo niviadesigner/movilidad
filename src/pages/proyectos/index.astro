@@ -18,11 +18,11 @@ const proyectos = (await getCollection('proyectos')).filter(
 
 <SiteLayout seo={seo}>
   <Section espaciado="amplio">
-    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
+    <p class="font-mono text-xs uppercase tracking-wide text-[var(--color-text-muted)]">
       Proyectos
     </p>
-    <h1 class="mt-3 text-[var(--text-4xl)]">Casos con métricas verificables</h1>
-    <p class="mt-4 max-w-[52ch] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+    <h1 class="mt-3 text-4xl">Casos con métricas verificables</h1>
+    <p class="mt-4 max-w-[52ch] text-lg text-[var(--color-text-muted)]">
       Prueba social para la línea de biciparqueaderos. Cada caso enlaza a los modelos que usó.
     </p>
 
@@ -33,7 +33,7 @@ const proyectos = (await getCollection('proyectos')).filter(
         </Card>
       ))}
       {proyectos.length === 0 && (
-        <p class="text-[var(--text-sm)] text-[var(--color-text-muted)]">Aún no hay casos publicados.</p>
+        <p class="text-sm text-[var(--color-text-muted)]">Aún no hay casos publicados.</p>
       )}
     </div>
   </Section>

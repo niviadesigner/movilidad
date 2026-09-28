@@ -23,7 +23,7 @@ export default function BotonAgregar({ item, stock, compacto = false }: Props) {
 
   if (agotado) {
     return (
-      <span className="inline-flex min-h-11 items-center rounded-[var(--radius-md)] border border-[var(--color-border-strong)] px-4 text-[var(--text-sm)] font-semibold text-[var(--color-text-muted)]">
+      <span className="inline-flex min-h-11 items-center rounded-[var(--radius-md)] border border-[var(--color-border-strong)] px-4 text-sm font-semibold text-[var(--color-text-muted)]">
         Agotado
       </span>
     );
@@ -34,7 +34,7 @@ export default function BotonAgregar({ item, stock, compacto = false }: Props) {
       <button
         type="button"
         onClick={alAgregar}
-        className="inline-flex min-h-11 items-center rounded-[var(--radius-md)] bg-[var(--color-primary-700)] px-4 text-[var(--text-sm)] font-semibold text-white transition-colors hover:bg-[var(--color-primary-800)]"
+        className="inline-flex min-h-11 items-center rounded-[var(--radius-md)] bg-[var(--color-primary-700)] px-4 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-primary-800)]"
       >
         {agregado ? 'Agregado ✓' : 'Agregar'}
       </button>
@@ -47,7 +47,7 @@ export default function BotonAgregar({ item, stock, compacto = false }: Props) {
         <button
           type="button"
           aria-label="Quitar una unidad"
-          className="h-11 w-11 text-[var(--text-lg)]"
+          className="h-11 w-11 text-lg"
           onClick={() => setUnidades((u) => Math.max(1, u - 1))}
         >
           −
@@ -58,7 +58,7 @@ export default function BotonAgregar({ item, stock, compacto = false }: Props) {
         <button
           type="button"
           aria-label="Añadir una unidad"
-          className="h-11 w-11 text-[var(--text-lg)]"
+          className="h-11 w-11 text-lg"
           onClick={() => setUnidades((u) => Math.min(stock, u + 1))}
         >
           +

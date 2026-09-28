@@ -56,7 +56,7 @@ const familia = familias[data.familia];
       ) : (
         <div class="flex aspect-[4/3] w-full flex-col items-center justify-center gap-3 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-primary-50)] text-[var(--color-primary-700)]">
           <Icono nombre="edificio" class="h-16 w-16" />
-          <p class="text-[var(--text-sm)] font-medium">Foto del modelo pendiente</p>
+          <p class="text-sm font-medium">Foto del modelo pendiente</p>
         </div>
       )}
     </div>
@@ -64,41 +64,41 @@ const familia = familias[data.familia];
     <!-- Datos -->
     <div>
       {familia && (
-        <a href={familia.href} class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-link)] hover:underline">
+        <a href={familia.href} class="font-mono text-xs uppercase tracking-wide text-[var(--color-link)] hover:underline">
           {familia.label}
         </a>
       )}
-      <h1 class="mt-2 text-[var(--text-4xl)]">{data.nombre}</h1>
-      <p class="mt-1 font-mono text-[var(--text-sm)] text-[var(--color-text-muted)]">Código {data.codigo}</p>
-      <p class="mt-4 text-[var(--text-base)] text-[var(--color-text-muted)]">{data.resumen}</p>
+      <h1 class="mt-2 text-4xl">{data.nombre}</h1>
+      <p class="mt-1 font-mono text-sm text-[var(--color-text-muted)]">Código {data.codigo}</p>
+      <p class="mt-4 text-base text-[var(--color-text-muted)]">{data.resumen}</p>
 
       <dl class="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
         <div>
-          <dt class="font-mono text-[var(--text-xs)] uppercase text-[var(--color-text-muted)]">Cupos</dt>
-          <dd class="text-[var(--text-base)]">{data.cupos}</dd>
+          <dt class="font-mono text-xs uppercase text-[var(--color-text-muted)]">Cupos</dt>
+          <dd class="text-base">{data.cupos}</dd>
         </div>
         <div>
-          <dt class="font-mono text-[var(--text-xs)] uppercase text-[var(--color-text-muted)]">Material</dt>
-          <dd class="text-[var(--text-base)]">{data.material}</dd>
+          <dt class="font-mono text-xs uppercase text-[var(--color-text-muted)]">Material</dt>
+          <dd class="text-base">{data.material}</dd>
         </div>
         <div>
-          <dt class="font-mono text-[var(--text-xs)] uppercase text-[var(--color-text-muted)]">Dimensiones</dt>
-          <dd class="text-[var(--text-base)]">{data.dimensiones}</dd>
+          <dt class="font-mono text-xs uppercase text-[var(--color-text-muted)]">Dimensiones</dt>
+          <dd class="text-base">{data.dimensiones}</dd>
         </div>
         <div>
-          <dt class="font-mono text-[var(--text-xs)] uppercase text-[var(--color-text-muted)]">Normativa</dt>
-          <dd class="text-[var(--text-base)]">{data.normativa.length ? data.normativa.join(', ') : '—'}</dd>
+          <dt class="font-mono text-xs uppercase text-[var(--color-text-muted)]">Normativa</dt>
+          <dd class="text-base">{data.normativa.length ? data.normativa.join(', ') : '—'}</dd>
         </div>
       </dl>
 
       <div class="mt-6 rounded-[var(--radius-md)] border border-[var(--color-border)] p-4">
         {data.precioDesde ? (
-          <p class="text-[var(--text-base)]">
-            Desde <strong class="text-[var(--text-lg)]">{formatoCOP(data.precioDesde)}</strong>
-            <span class="text-[var(--text-sm)] text-[var(--color-text-muted)]"> + IVA, según cantidad e instalación</span>
+          <p class="text-base">
+            Desde <strong class="text-lg">{formatoCOP(data.precioDesde)}</strong>
+            <span class="text-sm text-[var(--color-text-muted)]"> + IVA, según cantidad e instalación</span>
           </p>
         ) : (
-          <p class="text-[var(--text-sm)] text-[var(--color-text-muted)]">
+          <p class="text-sm text-[var(--color-text-muted)]">
             El precio depende de la cantidad de cupos y la instalación. Te lo pasamos en la cotización.
           </p>
         )}
@@ -124,8 +124,8 @@ const familia = familias[data.familia];
 
   <!-- Enlazado interno obligatorio (docs/arquitectura §8) -->
   <nav aria-label="Relacionados" class="mt-14 border-t border-[var(--color-border)] pt-8">
-    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Relacionados</p>
-    <ul class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 text-[var(--text-sm)]">
+    <p class="font-mono text-xs uppercase tracking-wide text-[var(--color-text-muted)]">Relacionados</p>
+    <ul class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 text-sm">
       <li><a class="block rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-3 hover:border-[var(--color-primary-400)]" href="/biciparqueaderos/modelos">Ver todos los modelos</a></li>
       <li><a class="block rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-3 hover:border-[var(--color-primary-400)]" href="/biciparqueaderos/diseno-instalacion">Diseño e instalación</a></li>
       <li><a class="block rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-3 hover:border-[var(--color-primary-400)]" href="/mantenimiento/flotas">Mantenimiento para flotas</a></li>

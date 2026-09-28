@@ -24,7 +24,7 @@ const { mega, labelledby } = Astro.props;
       {mega.columnas.map((col) => (
         <div>
           {col.titulo && (
-            <p class="mb-2 text-[var(--text-xs)] font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
+            <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
               {col.titulo}
             </p>
           )}
@@ -33,7 +33,7 @@ const { mega, labelledby } = Astro.props;
               <li>
                 <a
                   href={l.href}
-                  class="block rounded-[var(--radius-sm)] py-1 text-[var(--text-sm)] text-[var(--color-text)] hover:text-[var(--color-link-hover)] hover:underline"
+                  class="block rounded-[var(--radius-sm)] py-1 text-sm text-[var(--color-text)] hover:text-[var(--color-link-hover)] hover:underline"
                 >
                   {l.label}
                 </a>
@@ -45,7 +45,7 @@ const { mega, labelledby } = Astro.props;
       <div class="flex items-end">
         <a
           href={mega.accion.href}
-          class="inline-flex items-center gap-1 text-[var(--text-sm)] font-semibold text-[var(--color-link)] hover:text-[var(--color-link-hover)]"
+          class="inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-link)] hover:text-[var(--color-link-hover)]"
         >
           {mega.accion.label}
           <span aria-hidden="true">&rarr;</span>

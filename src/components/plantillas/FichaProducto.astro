@@ -43,7 +43,7 @@ const tramos = d.descuentoVolumen ? TRAMOS_VOLUMEN.filter((t) => t.descuento > 0
       ) : (
         <div class="flex aspect-square w-full flex-col items-center justify-center gap-3 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-primary-50)] text-[var(--color-primary-700)]">
           <Icono nombre={ICONO_CATEGORIA[d.categoria] ?? 'carrito'} class="h-16 w-16" />
-          <p class="text-[var(--text-sm)] font-medium">Foto del producto pendiente</p>
+          <p class="text-sm font-medium">Foto del producto pendiente</p>
         </div>
       )}
     </div>
@@ -51,26 +51,26 @@ const tramos = d.descuentoVolumen ? TRAMOS_VOLUMEN.filter((t) => t.descuento > 0
     <!-- Datos -->
     <div>
       {cat && (
-        <a href={`/tienda/${cat.slug}`} class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-link)] hover:underline">
+        <a href={`/tienda/${cat.slug}`} class="font-mono text-xs uppercase tracking-wide text-[var(--color-link)] hover:underline">
           {cat.nombre}
         </a>
       )}
-      <h1 class="mt-2 text-[var(--text-4xl)]">{d.nombre}</h1>
-      <p class="mt-1 font-mono text-[var(--text-sm)] text-[var(--color-text-muted)]">SKU {d.sku}</p>
+      <h1 class="mt-2 text-4xl">{d.nombre}</h1>
+      <p class="mt-1 font-mono text-sm text-[var(--color-text-muted)]">SKU {d.sku}</p>
 
       <div class="mt-4 flex items-baseline gap-3">
-        <span class="font-display text-[var(--text-3xl)] font-bold tabular-nums">{formatoCOP(d.precio)}</span>
+        <span class="font-display text-3xl font-bold tabular-nums">{formatoCOP(d.precio)}</span>
         {d.precioAntes && (
-          <span class="text-[var(--text-base)] text-[var(--color-text-muted)] line-through tabular-nums">{formatoCOP(d.precioAntes)}</span>
+          <span class="text-base text-[var(--color-text-muted)] line-through tabular-nums">{formatoCOP(d.precioAntes)}</span>
         )}
-        {dto && <span class="rounded-[var(--radius-sm)] bg-[var(--color-accent-300)] px-1.5 py-0.5 text-[var(--text-xs)] font-bold text-[var(--color-neutral-900)]">−{dto}%</span>}
+        {dto && <span class="rounded-[var(--radius-sm)] bg-[var(--color-accent-300)] px-1.5 py-0.5 text-xs font-bold text-[var(--color-neutral-900)]">−{dto}%</span>}
       </div>
-      <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">Precio sin IVA. El IVA se suma en el carrito.</p>
-      <p class:list={['mt-1 text-[var(--text-sm)]', agotado ? 'text-[var(--color-text-muted)]' : 'text-[var(--color-success-500)]']}>
+      <p class="mt-1 text-sm text-[var(--color-text-muted)]">Precio sin IVA. El IVA se suma en el carrito.</p>
+      <p class:list={['mt-1 text-sm', agotado ? 'text-[var(--color-text-muted)]' : 'text-[var(--color-success-500)]']}>
         {agotado ? 'Sin stock por ahora' : `Disponible · ${d.stock} en inventario`}
       </p>
 
-      <p class="mt-4 text-[var(--text-base)] text-[var(--color-text-muted)]">{d.resumen}</p>
+      <p class="mt-4 text-base text-[var(--color-text-muted)]">{d.resumen}</p>
 
       <div class="mt-6">
         <BotonAgregar client:load stock={d.stock} item={{ sku: d.sku, nombre: d.nombre, precio: d.precio, categoria: d.categoria, ruta }} />
@@ -78,8 +78,8 @@ const tramos = d.descuentoVolumen ? TRAMOS_VOLUMEN.filter((t) => t.descuento > 0
 
       {tramos.length > 0 && (
         <div class="mt-6 rounded-[var(--radius-md)] border border-[var(--color-border)] p-4">
-          <p class="text-[var(--text-sm)] font-semibold">Descuento por cantidad</p>
-          <ul class="mt-2 grid gap-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+          <p class="text-sm font-semibold">Descuento por cantidad</p>
+          <ul class="mt-2 grid gap-1 text-sm text-[var(--color-text-muted)]">
             {tramos.map((t) => (
               <li class="flex justify-between">
                 <span>Desde {t.desde} unidades</span>
@@ -87,7 +87,7 @@ const tramos = d.descuentoVolumen ? TRAMOS_VOLUMEN.filter((t) => t.descuento > 0
               </li>
             ))}
           </ul>
-          <p class="mt-2 text-[var(--text-xs)] text-[var(--color-text-muted)]">
+          <p class="mt-2 text-xs text-[var(--color-text-muted)]">
             El mismo motor de precios que la <a class="underline" href="/tienda/corporativo">compra por volumen</a>.
           </p>
         </div>
@@ -97,8 +97,8 @@ const tramos = d.descuentoVolumen ? TRAMOS_VOLUMEN.filter((t) => t.descuento > 0
         <dl class="mt-6 grid gap-x-8 gap-y-2 sm:grid-cols-2">
           {d.specs.map((s) => (
             <div>
-              <dt class="font-mono text-[var(--text-xs)] uppercase text-[var(--color-text-muted)]">{s.etiqueta}</dt>
-              <dd class="text-[var(--text-sm)]">{s.valor}</dd>
+              <dt class="font-mono text-xs uppercase text-[var(--color-text-muted)]">{s.etiqueta}</dt>
+              <dd class="text-sm">{s.valor}</dd>
             </div>
           ))}
         </dl>
@@ -120,8 +120,8 @@ const tramos = d.descuentoVolumen ? TRAMOS_VOLUMEN.filter((t) => t.descuento > 0
 
   {relacionados.length > 0 && (
     <nav aria-label="Relacionados" class="mt-14 border-t border-[var(--color-border)] pt-8">
-      <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Relacionados</p>
-      <ul class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 text-[var(--text-sm)]">
+      <p class="font-mono text-xs uppercase tracking-wide text-[var(--color-text-muted)]">Relacionados</p>
+      <ul class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 text-sm">
         {relacionados.map((r) => (
           <li>
             <a class="block rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-3 hover:border-[var(--color-primary-400)]" href={rutaProducto(r)}>

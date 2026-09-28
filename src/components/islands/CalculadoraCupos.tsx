@@ -54,7 +54,7 @@ export default function CalculadoraCupos() {
   return (
     <div className="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8">
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-1.5 text-[var(--text-sm)] font-semibold">
+        <label className="grid gap-1.5 text-sm font-semibold">
           Tipo de espacio
           <select
             value={tipo}
@@ -62,7 +62,7 @@ export default function CalculadoraCupos() {
               setTipo(e.target.value as TipoEspacio);
               setCalculado(false);
             }}
-            className="h-11 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-[var(--text-base)]"
+            className="h-11 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-base"
           >
             {TIPOS_ESPACIO.map((t) => (
               <option key={t.id} value={t.id}>
@@ -71,7 +71,7 @@ export default function CalculadoraCupos() {
             ))}
           </select>
         </label>
-        <label className="grid gap-1.5 text-[var(--text-sm)] font-semibold">
+        <label className="grid gap-1.5 text-sm font-semibold">
           Número de {opcion.unidad}
           <input
             type="number"
@@ -81,7 +81,7 @@ export default function CalculadoraCupos() {
               setPersonas(e.target.value);
               setCalculado(false);
             }}
-            className="h-11 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-[var(--text-base)]"
+            className="h-11 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-base"
           />
         </label>
       </div>
@@ -97,13 +97,13 @@ export default function CalculadoraCupos() {
 
       {calculado && resultado && (
         <div className="mt-8 border-t border-[var(--color-border)] pt-6">
-          <p className="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
+          <p className="font-mono text-xs uppercase tracking-wide text-[var(--color-text-muted)]">
             Estimado orientativo
           </p>
-          <p className="mt-2 text-[var(--text-3xl)] font-bold text-[var(--color-primary-700)]">
+          <p className="mt-2 text-3xl font-bold text-[var(--color-primary-700)]">
             {resultado.minimo}–{resultado.recomendado} cupos
           </p>
-          <p className="mt-2 max-w-[38rem] text-[var(--text-sm)] text-[var(--color-text-muted)]">
+          <p className="mt-2 max-w-[38rem] text-sm text-[var(--color-text-muted)]">
             Para {personas} {opcion.unidad} en un {opcion.label.toLowerCase()}. Esta es una
             proporción de referencia para planear, no la cifra oficial del POT de tu municipio —
             esa se confirma en la cotización.
@@ -131,9 +131,9 @@ export default function CalculadoraCupos() {
                   placeholder="tucorreo@empresa.com"
                   value={correo}
                   onChange={(e) => setCorreo(e.target.value)}
-                  className="h-11 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-[var(--text-base)]"
+                  className="h-11 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-base"
                 />
-                {error && <p className="mt-1 text-[var(--text-xs)] text-[var(--color-danger-500)]">{error}</p>}
+                {error && <p className="mt-1 text-xs text-[var(--color-danger-500)]">{error}</p>}
               </div>
               <button
                 type="submit"
@@ -143,7 +143,7 @@ export default function CalculadoraCupos() {
               </button>
             </form>
           ) : (
-            <p className="mt-6 text-[var(--text-sm)] font-medium text-[var(--color-success-500)]">
+            <p className="mt-6 text-sm font-medium text-[var(--color-success-500)]">
               Listo, te enviamos el detalle. Un ingeniero también puede confirmarte el número
               exacto que exige tu municipio.
             </p>
@@ -151,7 +151,7 @@ export default function CalculadoraCupos() {
 
           <a
             href={`/cotizar?cupos=${resultado.recomendado}`}
-            className="mt-4 inline-block text-[var(--text-sm)] font-semibold text-[var(--color-link)] hover:underline"
+            className="mt-4 inline-block text-sm font-semibold text-[var(--color-link)] hover:underline"
           >
             Cotizar con este estimado &rarr;
           </a>

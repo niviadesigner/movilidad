@@ -21,8 +21,8 @@ const destacados = await getDestacados(4);
   <Section espaciado="amplio">
     <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,46rem)_1fr]">
       <div>
-        <h1 class="text-[var(--text-4xl)]">Tienda</h1>
-        <p class="mt-4 max-w-[52rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+        <h1 class="text-4xl">Tienda</h1>
+        <p class="mt-4 max-w-[52rem] text-lg text-[var(--color-text-muted)]">
           Todo para moverte y dejar la bici segura. Precio público, compra como invitado y
           envío gratis desde {formatoCOP(UMBRAL_ENVIO_GRATIS)}.
         </p>
@@ -38,12 +38,12 @@ const destacados = await getDestacados(4);
       />
     </div>
 
-    <h2 class="mt-12 font-display text-[var(--text-2xl)] font-bold">Destacados</h2>
+    <h2 class="mt-12 font-display text-2xl font-bold">Destacados</h2>
     <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {destacados.map((p) => <TarjetaProducto producto={p} />)}
     </div>
 
-    <h2 class="mt-14 font-display text-[var(--text-2xl)] font-bold">Categorías</h2>
+    <h2 class="mt-14 font-display text-2xl font-bold">Categorías</h2>
     <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {CATEGORIAS.map((c) => (
         <Card href={`/tienda/${c.slug}`} titulo={c.nombre}>{c.descripcion}</Card>
@@ -56,7 +56,7 @@ const destacados = await getDestacados(4);
       </Card>
     </div>
 
-    <nav aria-label="Ayuda de la tienda" class="mt-12 border-t border-[var(--color-border)] pt-6 text-[var(--text-sm)]">
+    <nav aria-label="Ayuda de la tienda" class="mt-12 border-t border-[var(--color-border)] pt-6 text-sm">
       <ul class="flex flex-wrap gap-x-6 gap-y-2">
         <li><a class="hover:underline" href="/tienda/envios">Envíos y entregas</a></li>
         <li><a class="hover:underline" href="/tienda/devoluciones">Cambios y devoluciones</a></li>

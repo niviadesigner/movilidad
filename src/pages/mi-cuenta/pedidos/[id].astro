@@ -19,11 +19,11 @@ const seo = {
 
 <TiendaLayout seo={seo} migasOverrides={{ '/mi-cuenta/pedidos/detalle': 'Detalle' }}>
   <Section espaciado="amplio">
-    <h1 class="text-[var(--text-3xl)]">Detalle del pedido</h1>
+    <h1 class="text-3xl">Detalle del pedido</h1>
     <div class="mt-8">
       <DetallePedido client:load />
     </div>
-    <a href="/mi-cuenta/pedidos" class="mt-8 inline-block text-[var(--text-sm)] font-semibold hover:underline">
+    <a href="/mi-cuenta/pedidos" class="mt-8 inline-block text-sm font-semibold hover:underline">
       &larr; Volver a mis pedidos
     </a>
   </Section>

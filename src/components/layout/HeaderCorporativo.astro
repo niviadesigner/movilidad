@@ -29,7 +29,7 @@ const activo = (href: string) => aqui === href || aqui.startsWith(href + '/');
                 href={item.href}
                 aria-current={activo(item.href) ? 'page' : undefined}
                 class:list={[
-                  'inline-flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-[var(--text-sm)] font-medium',
+                  'inline-flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium',
                   activo(item.href)
                     ? 'text-[var(--color-primary-700)]'
                     : 'text-[var(--color-text)] hover:text-[var(--color-link-hover)]',
@@ -47,7 +47,7 @@ const activo = (href: string) => aqui === href || aqui.startsWith(href + '/');
       <div class="flex items-center gap-2">
         <a
           href={CTA_CORPORATIVO.href}
-          class="hidden min-h-11 items-center rounded-[var(--radius-md)] bg-[var(--color-accent-300)] px-5 py-2.5 text-[var(--text-sm)] font-semibold text-[var(--color-neutral-900)] transition-colors hover:bg-[var(--color-accent-400)] sm:inline-flex"
+          class="hidden min-h-11 items-center rounded-[var(--radius-md)] bg-[var(--color-accent-300)] px-5 py-2.5 text-sm font-semibold text-[var(--color-neutral-900)] transition-colors hover:bg-[var(--color-accent-400)] sm:inline-flex"
         >
           {CTA_CORPORATIVO.label}
         </a>

@@ -17,10 +17,10 @@ const { modeloId, modeloNombre, pdfUrl } = Astro.props;
 
 <div class="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-subtle)] p-6" data-captura data-modelo-id={modeloId}>
   <div data-captura-ok hidden>
-    <p class="text-[var(--text-base)] font-semibold text-[var(--color-primary-700)]">
+    <p class="text-base font-semibold text-[var(--color-primary-700)]">
       Listo, te enviamos la ficha técnica a tu correo.
     </p>
-    <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+    <p class="mt-1 text-sm text-[var(--color-text-muted)]">
       Revisa también la carpeta de spam.
       {pdfUrl && (
         <>
@@ -32,13 +32,13 @@ const { modeloId, modeloNombre, pdfUrl } = Astro.props;
 
   <form method="post" action="/api/ficha-tecnica" class="grid gap-3" data-captura-form>
     <div>
-      <p class="text-[var(--text-base)] font-semibold">Descarga la ficha técnica</p>
-      <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      <p class="text-base font-semibold">Descarga la ficha técnica</p>
+      <p class="mt-1 text-sm text-[var(--color-text-muted)]">
         {modeloNombre} — PDF con dimensiones, materiales y normativa. Te lo enviamos al correo.
       </p>
     </div>
 
-    <p role="alert" hidden data-captura-error class="text-[var(--text-sm)] text-[var(--color-danger-500)]">
+    <p role="alert" hidden data-captura-error class="text-sm text-[var(--color-danger-500)]">
       No pudimos procesar la solicitud. Revisa el correo e inténtalo de nuevo.
     </p>
 
@@ -57,7 +57,7 @@ const { modeloId, modeloNombre, pdfUrl } = Astro.props;
         required
         autocomplete="email"
         placeholder="tucorreo@empresa.com"
-        class="h-11 flex-1 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-[var(--text-base)]"
+        class="h-11 flex-1 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-base"
       />
       <button
         type="submit"
@@ -66,7 +66,7 @@ const { modeloId, modeloNombre, pdfUrl } = Astro.props;
         Enviarme la ficha
       </button>
     </div>
-    <p class="text-[var(--text-xs)] text-[var(--color-text-muted)]">
+    <p class="text-xs text-[var(--color-text-muted)]">
       Al enviar aceptas la <a class="underline" href="/legal/tratamiento-datos">política de tratamiento de datos</a>.
     </p>
   </form>

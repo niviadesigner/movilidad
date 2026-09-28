@@ -6,8 +6,8 @@ import { ZONAS_ENVIO, calcularEnvio, UMBRAL_ENVIO_GRATIS } from '../../lib/envio
 const RE_CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const RE_TEL = /^[+()\d\s-]{7,20}$/;
 const inputCls =
-  'h-11 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-[var(--text-base)]';
-const labelCls = 'grid gap-1.5 text-[var(--text-sm)] font-semibold';
+  'h-11 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-base';
+const labelCls = 'grid gap-1.5 text-sm font-semibold';
 
 export default function Checkout() {
   const [items, setItems] = useState<ItemCarrito[] | null>(null);
@@ -91,12 +91,12 @@ export default function Checkout() {
     }
   }
 
-  if (items === null) return <p className="text-[var(--text-sm)] text-[var(--color-text-muted)]">Cargando…</p>;
+  if (items === null) return <p className="text-sm text-[var(--color-text-muted)]">Cargando…</p>;
 
   if (items.length === 0) {
     return (
       <div className="rounded-[var(--radius-lg)] border border-[var(--color-border)] p-8 text-center">
-        <p className="text-[var(--text-lg)] font-semibold">No hay nada para pagar</p>
+        <p className="text-lg font-semibold">No hay nada para pagar</p>
         <a href="/tienda" className="mt-4 inline-flex min-h-11 items-center rounded-[var(--radius-md)] bg-[var(--color-primary-700)] px-5 font-semibold text-white">
           Ver productos
         </a>
@@ -108,8 +108,8 @@ export default function Checkout() {
     <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
       <form className="grid gap-4" onSubmit={pagar}>
         <input type="text" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" value={honey} onChange={(e) => setHoney(e.target.value)} />
-        <h2 className="font-display text-[var(--text-xl)] font-bold">Datos de entrega</h2>
-        <p className="text-[var(--text-sm)] text-[var(--color-text-muted)]">Compra como invitado. La cuenta es opcional al final.</p>
+        <h2 className="font-display text-xl font-bold">Datos de entrega</h2>
+        <p className="text-sm text-[var(--color-text-muted)]">Compra como invitado. La cuenta es opcional al final.</p>
 
         <label className={labelCls}>Nombre completo
           <input type="text" autoComplete="name" className={inputCls} value={nombre} onChange={(e) => setNombre(e.target.value)} />
@@ -135,7 +135,7 @@ export default function Checkout() {
           </select>
         </label>
 
-        {error && <p role="alert" className="text-[var(--text-sm)] text-[var(--color-danger-500)]">{error}</p>}
+        {error && <p role="alert" className="text-sm text-[var(--color-danger-500)]">{error}</p>}
 
         <button
           type="submit"
@@ -144,14 +144,14 @@ export default function Checkout() {
         >
           {enviando ? 'Procesando…' : `Pagar ${formatoCOP(total)}`}
         </button>
-        <p className="text-[var(--text-xs)] text-[var(--color-text-muted)]">
+        <p className="text-xs text-[var(--color-text-muted)]">
           Al pagar aceptas la <a className="underline" href="/legal/tratamiento-datos">política de tratamiento de datos</a>.
         </p>
       </form>
 
       <aside className="h-fit rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-subtle)] p-6">
-        <h2 className="font-display text-[var(--text-lg)] font-bold">Tu pedido</h2>
-        <ul className="mt-4 grid gap-2 text-[var(--text-sm)]">
+        <h2 className="font-display text-lg font-bold">Tu pedido</h2>
+        <ul className="mt-4 grid gap-2 text-sm">
           {items.map((i) => (
             <li key={i.sku} className="flex justify-between gap-3">
               <span>{i.unidades} × {i.nombre}</span>
@@ -159,7 +159,7 @@ export default function Checkout() {
             </li>
           ))}
         </ul>
-        <dl className="mt-4 grid gap-1.5 border-t border-[var(--color-border)] pt-4 text-[var(--text-sm)]">
+        <dl className="mt-4 grid gap-1.5 border-t border-[var(--color-border)] pt-4 text-sm">
           {totales.descuento > 0 && (
             <div className="flex justify-between text-[var(--color-success-500)]">
               <dt>Descuento por volumen</dt><dd className="tabular-nums">−{formatoCOP(totales.descuento)}</dd>
@@ -171,12 +171,12 @@ export default function Checkout() {
             <dt>Envío</dt>
             <dd className="tabular-nums">{envio.gratis ? 'Gratis' : formatoCOP(envio.costo)}</dd>
           </div>
-          <div className="mt-2 flex justify-between border-t border-[var(--color-border)] pt-2 text-[var(--text-base)] font-bold">
+          <div className="mt-2 flex justify-between border-t border-[var(--color-border)] pt-2 text-base font-bold">
             <dt>Total</dt><dd className="tabular-nums">{formatoCOP(total)}</dd>
           </div>
         </dl>
         {!envio.gratis && (
-          <p className="mt-3 text-[var(--text-xs)] text-[var(--color-text-muted)]">
+          <p className="mt-3 text-xs text-[var(--color-text-muted)]">
             Te faltan {formatoCOP(envio.falta)} para envío gratis (desde {formatoCOP(UMBRAL_ENVIO_GRATIS)}).
           </p>
         )}

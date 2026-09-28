@@ -42,7 +42,7 @@ const campos: Campo[] = [
 ---
 
 <div data-formulario-cotizacion>
-  <p role="alert" hidden data-fc-error class="mb-6 rounded-[var(--radius-md)] border border-[var(--color-danger-500)] bg-[var(--color-danger-50)] px-4 py-3 text-[var(--text-sm)] text-[var(--color-danger-500)]">
+  <p role="alert" hidden data-fc-error class="mb-6 rounded-[var(--radius-md)] border border-[var(--color-danger-500)] bg-[var(--color-danger-50)] px-4 py-3 text-sm text-[var(--color-danger-500)]">
     Faltó algún dato o hubo un error. Revisa los campos e inténtalo de nuevo.
   </p>
 
@@ -53,7 +53,7 @@ const campos: Campo[] = [
 
     {campos.map((c) => (
       <div class="grid gap-1.5">
-        <label for={`${idPrefijo}-${c.id}`} class="text-[var(--text-sm)] font-semibold">{c.label}</label>
+        <label for={`${idPrefijo}-${c.id}`} class="text-sm font-semibold">{c.label}</label>
         <input
           id={`${idPrefijo}-${c.id}`}
           name={c.id}
@@ -63,9 +63,9 @@ const campos: Campo[] = [
           required
           min={c.type === 'number' ? '1' : undefined}
           data-fc-campo={c.id}
-          class="h-11 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-[var(--text-base)]"
+          class="h-11 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-base"
         />
-        {c.hint && <p class="text-[var(--text-xs)] text-[var(--color-text-muted)]">{c.hint}</p>}
+        {c.hint && <p class="text-xs text-[var(--color-text-muted)]">{c.hint}</p>}
       </div>
     ))}
 
@@ -76,7 +76,7 @@ const campos: Campo[] = [
       Enviar solicitud
     </button>
 
-    <p class="text-[var(--text-xs)] text-[var(--color-text-muted)]">
+    <p class="text-xs text-[var(--color-text-muted)]">
       Al enviar aceptas la
       <a class="underline" href="/legal/tratamiento-datos">política de tratamiento de datos</a>.
       Un ingeniero te contactará por correo o teléfono.

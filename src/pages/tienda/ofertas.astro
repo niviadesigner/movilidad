@@ -15,9 +15,9 @@ const ofertas = await getOfertas();
 
 <TiendaLayout seo={seo}>
   <Section espaciado="amplio">
-    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">Tienda</p>
-    <h1 class="mt-3 text-[var(--text-4xl)]">Ofertas</h1>
-    <p class="mt-4 max-w-[52rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+    <p class="font-mono text-xs uppercase tracking-wide text-[var(--color-text-muted)]">Tienda</p>
+    <h1 class="mt-3 text-4xl">Ofertas</h1>
+    <p class="mt-4 max-w-[52rem] text-lg text-[var(--color-text-muted)]">
       Solo entran productos con un precio anterior real. Nada de descuentos inventados (regla §8).
     </p>
 
@@ -26,7 +26,7 @@ const ofertas = await getOfertas();
         {ofertas.map((p) => <TarjetaProducto producto={p} />)}
       </div>
     ) : (
-      <p class="mt-10 text-[var(--text-sm)] text-[var(--color-text-muted)]">No hay ofertas activas ahora mismo.</p>
+      <p class="mt-10 text-sm text-[var(--color-text-muted)]">No hay ofertas activas ahora mismo.</p>
     )}
   </Section>
 </TiendaLayout>

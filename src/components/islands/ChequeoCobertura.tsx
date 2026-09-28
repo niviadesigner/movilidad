@@ -11,7 +11,7 @@ export default function ChequeoCobertura() {
 
   return (
     <div className="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-subtle)] p-6">
-      <label className="grid gap-1.5 text-[var(--text-sm)] font-semibold" htmlFor="cob-q">
+      <label className="grid gap-1.5 text-sm font-semibold" htmlFor="cob-q">
         Escribe tu localidad, barrio o municipio
         <div className="flex gap-2">
           <input
@@ -23,7 +23,7 @@ export default function ChequeoCobertura() {
               setRes(null);
             }}
             placeholder="Ej.: Chapinero, Usaquén, Cajicá"
-            className="h-11 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-[var(--text-base)]"
+            className="h-11 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-base"
           />
           <button
             type="button"
@@ -34,7 +34,7 @@ export default function ChequeoCobertura() {
           </button>
         </div>
       </label>
-      <p aria-live="polite" className="mt-3 text-[var(--text-sm)]">
+      <p aria-live="polite" className="mt-3 text-sm">
         {res?.cubierto && (
           <span className="text-[var(--color-success-500)]">
             Sí llegamos a {res.match}.{' '}

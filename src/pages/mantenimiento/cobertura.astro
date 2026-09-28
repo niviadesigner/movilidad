@@ -14,11 +14,11 @@ const seo = {
 
 <SiteLayout seo={seo}>
   <Section espaciado="amplio">
-    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
+    <p class="font-mono text-xs uppercase tracking-wide text-[var(--color-text-muted)]">
       Mantenimiento · Cobertura
     </p>
-    <h1 class="mt-3 text-[var(--text-4xl)]">¿Llegamos a tu zona?</h1>
-    <p class="mt-4 max-w-[46rem] text-[var(--text-lg)] text-[var(--color-text-muted)]">
+    <h1 class="mt-3 text-4xl">¿Llegamos a tu zona?</h1>
+    <p class="mt-4 max-w-[46rem] text-lg text-[var(--color-text-muted)]">
       El servicio a domicilio opera en las zonas listadas abajo. Si no ves la tuya, el taller
       está disponible para todos.
     </p>
@@ -30,15 +30,15 @@ const seo = {
     <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {COBERTURA.map((c) => (
         <div>
-          <h2 class="font-display text-[var(--text-lg)] font-bold">{c.ciudad}</h2>
-          <ul class="mt-2 grid gap-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+          <h2 class="font-display text-lg font-bold">{c.ciudad}</h2>
+          <ul class="mt-2 grid gap-1 text-sm text-[var(--color-text-muted)]">
             {c.zonas.map((z) => <li>{z}</li>)}
           </ul>
         </div>
       ))}
     </div>
 
-    <p class="mt-10 font-mono text-[var(--text-xs)] text-[var(--color-text-muted)]">
+    <p class="mt-10 font-mono text-xs text-[var(--color-text-muted)]">
       Zonas de ejemplo. La cobertura definitiva se confirma con el cliente.
     </p>
   </Section>

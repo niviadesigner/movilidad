@@ -17,7 +17,7 @@ const activo = (href: string) => aqui === href || aqui.startsWith(href + '/');
 
 <div class="bg-[var(--color-primary-800)] text-[var(--color-text-inverse)]">
   <Container>
-    <p class="py-1.5 text-center text-[var(--text-xs)] text-white/90">
+    <p class="py-1.5 text-center text-xs text-white/90">
       Envío gratis desde {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(UMBRAL_ENVIO_GRATIS)}
       <span class="text-white/60">· dato provisional</span>
     </p>
@@ -29,12 +29,12 @@ const activo = (href: string) => aqui === href || aqui.startsWith(href + '/');
     <div class="flex h-[var(--spacing-header)] items-center gap-4">
       <a href="/tienda" class="flex items-center gap-2" aria-label={`Tienda ${SITE.nombre}`}>
         <img src="/logo/isotipo.png" alt={SITE.nombre} width="250" height="162" class="h-8 w-auto" />
-        <span class="font-display text-[var(--text-sm)] font-semibold text-[var(--color-primary-700)]">Tienda</span>
+        <span class="font-display text-sm font-semibold text-[var(--color-primary-700)]">Tienda</span>
       </a>
 
       <a
         href={VOLVER_AL_SITIO.href}
-        class="hidden items-center gap-1 border-l border-[var(--color-border)] pl-4 text-[var(--text-xs)] text-[var(--color-text-muted)] hover:text-[var(--color-text)] sm:inline-flex"
+        class="hidden items-center gap-1 border-l border-[var(--color-border)] pl-4 text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] sm:inline-flex"
       >
         <span aria-hidden="true">&larr;</span> {VOLVER_AL_SITIO.label}
       </a>
@@ -47,7 +47,7 @@ const activo = (href: string) => aqui === href || aqui.startsWith(href + '/');
                 href={item.href}
                 aria-current={activo(item.href) ? 'page' : undefined}
                 class:list={[
-                  'inline-flex items-center rounded-[var(--radius-sm)] px-3 py-2 text-[var(--text-sm)] font-medium',
+                  'inline-flex items-center rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium',
                   activo(item.href)
                     ? 'text-[var(--color-primary-700)]'
                     : 'text-[var(--color-text)] hover:text-[var(--color-link-hover)]',
@@ -67,7 +67,7 @@ const activo = (href: string) => aqui === href || aqui.startsWith(href + '/');
           name="q"
           type="search"
           placeholder="Buscar productos"
-          class="h-10 w-56 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg)] px-3 text-[var(--text-sm)]"
+          class="h-10 w-56 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg)] px-3 text-sm"
         />
       </form>
 
@@ -78,7 +78,7 @@ const activo = (href: string) => aqui === href || aqui.startsWith(href + '/');
         <a href="/mi-cuenta" class="inline-flex h-11 w-11 items-center justify-center" aria-label="Mi cuenta">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" /><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
         </a>
-        <a href="/tienda/carrito" class="relative inline-flex h-11 min-w-11 items-center justify-center gap-1.5 rounded-[var(--radius-md)] px-2 text-[var(--text-sm)] font-semibold" aria-label="Carrito">
+        <a href="/tienda/carrito" class="relative inline-flex h-11 min-w-11 items-center justify-center gap-1.5 rounded-[var(--radius-md)] px-2 text-sm font-semibold" aria-label="Carrito">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
           <CarritoContador client:idle />
         </a>
@@ -89,7 +89,7 @@ const activo = (href: string) => aqui === href || aqui.startsWith(href + '/');
       <ul class="flex gap-1 overflow-x-auto">
         {NAV_TIENDA.map((item) => (
           <li>
-            <a href={item.href} class="inline-flex whitespace-nowrap rounded-[var(--radius-sm)] px-3 py-1.5 text-[var(--text-sm)]">
+            <a href={item.href} class="inline-flex whitespace-nowrap rounded-[var(--radius-sm)] px-3 py-1.5 text-sm">
               {item.label}
             </a>
           </li>

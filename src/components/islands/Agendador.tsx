@@ -40,8 +40,8 @@ const hoyISO = () => new Date().toISOString().slice(0, 10);
 const RE_TEL = /^[+()\d\s-]{7,20}$/;
 
 const inputCls =
-  'h-11 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-[var(--text-base)]';
-const labelCls = 'grid gap-1.5 text-[var(--text-sm)] font-semibold';
+  'h-11 w-full rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-3 text-base';
+const labelCls = 'grid gap-1.5 text-sm font-semibold';
 
 export default function Agendador({ modalidadInicial = null, tel, whatsappHref, whatsappNumero }: Props) {
   const [paso, setPaso] = useState(modalidadInicial ? 2 : 1);
@@ -181,7 +181,7 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
 
   return (
     <div className="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8">
-      <p className="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-text-muted)]">
+      <p className="font-mono text-xs uppercase tracking-wide text-[var(--color-text-muted)]">
         Paso {paso} de {totalPasos}
       </p>
       <div className="mt-2 flex gap-1.5" aria-hidden="true">
@@ -197,7 +197,7 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
       {/* ---------- Paso 1 · Modalidad ---------- */}
       {paso === 1 && (
         <fieldset className="mt-6">
-          <legend className="text-[var(--text-xl)] font-bold" tabIndex={-1} id="agendador-paso-titulo">
+          <legend className="text-xl font-bold" tabIndex={-1} id="agendador-paso-titulo">
             ¿Dónde necesitas el servicio?
           </legend>
           <div className="mt-4 grid gap-3">
@@ -219,7 +219,7 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
                 />
                 <span>
                   <span className="block font-semibold">{m.titulo}</span>
-                  <span className="block text-[var(--text-sm)] text-[var(--color-text-muted)]">{m.desc}</span>
+                  <span className="block text-sm text-[var(--color-text-muted)]">{m.desc}</span>
                 </span>
               </label>
             ))}
@@ -230,7 +230,7 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
       {/* ---------- Paso 2 · Datos de la ruta ---------- */}
       {paso === 2 && (
         <div className="mt-6 grid gap-4">
-          <h2 className="text-[var(--text-xl)] font-bold" tabIndex={-1} id="agendador-paso-titulo">
+          <h2 className="text-xl font-bold" tabIndex={-1} id="agendador-paso-titulo">
             {modalidad === 'empresa' && 'Datos de la jornada'}
             {modalidad === 'taller' && 'Qué necesita tu bicicleta'}
             {modalidad === 'domicilio' && '¿Llegamos a tu zona?'}
@@ -255,9 +255,9 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
 
           {modalidad === 'taller' && (
             <fieldset className="grid gap-2">
-              <legend className="text-[var(--text-sm)] font-semibold">Tipo de servicio</legend>
+              <legend className="text-sm font-semibold">Tipo de servicio</legend>
               {TIPOS_SERVICIO.map((t) => (
-                <label key={t} className="flex items-center gap-2 text-[var(--text-sm)]">
+                <label key={t} className="flex items-center gap-2 text-sm">
                   <input type="radio" name="tipoServicio" checked={tipoServicio === t} onChange={() => setTipoServicio(t)} />
                   {t}
                 </label>
@@ -289,7 +289,7 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
                   </button>
                 </div>
               </label>
-              <p aria-live="polite" className="text-[var(--text-sm)]">
+              <p aria-live="polite" className="text-sm">
                 {cobertura.estado === 'ok' && (
                   <span className="text-[var(--color-success-500)]">
                     Sí llegamos a {cobertura.zona}. Continúa para elegir fecha.
@@ -305,7 +305,7 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
                   </span>
                 )}
               </p>
-              <p className="text-[var(--text-xs)] text-[var(--color-text-muted)]">
+              <p className="text-xs text-[var(--color-text-muted)]">
                 No pedimos tus datos hasta confirmar que hay cobertura.
               </p>
             </>
@@ -316,7 +316,7 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
       {/* ---------- Paso 3 · Fecha y hora ---------- */}
       {paso === 3 && (
         <div className="mt-6 grid gap-4">
-          <h2 className="text-[var(--text-xl)] font-bold" tabIndex={-1} id="agendador-paso-titulo">
+          <h2 className="text-xl font-bold" tabIndex={-1} id="agendador-paso-titulo">
             {modalidad === 'empresa' ? 'Fecha tentativa' : 'Fecha y hora'}
           </h2>
           <label className={labelCls}>
@@ -325,9 +325,9 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
           </label>
           {modalidad !== 'empresa' && (
             <fieldset className="grid gap-2">
-              <legend className="text-[var(--text-sm)] font-semibold">Franja horaria</legend>
+              <legend className="text-sm font-semibold">Franja horaria</legend>
               {FRANJAS.map((f) => (
-                <label key={f} className="flex items-center gap-2 text-[var(--text-sm)]">
+                <label key={f} className="flex items-center gap-2 text-sm">
                   <input type="radio" name="franja" checked={franja === f} onChange={() => setFranja(f)} />
                   {f}
                 </label>
@@ -335,7 +335,7 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
             </fieldset>
           )}
           {modalidad === 'empresa' && (
-            <p className="text-[var(--text-xs)] text-[var(--color-text-muted)]">
+            <p className="text-xs text-[var(--color-text-muted)]">
               Confirmamos el cronograma definitivo según el número de bicicletas inscritas.
             </p>
           )}
@@ -345,7 +345,7 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
       {/* ---------- Paso 4 · Contacto ---------- */}
       {paso === 4 && (
         <div className="mt-6 grid gap-4">
-          <h2 className="text-[var(--text-xl)] font-bold" tabIndex={-1} id="agendador-paso-titulo">
+          <h2 className="text-xl font-bold" tabIndex={-1} id="agendador-paso-titulo">
             Tus datos
           </h2>
           <input
@@ -378,7 +378,7 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
             </label>
           )}
 
-          <p className="text-[var(--text-xs)] text-[var(--color-text-muted)]">
+          <p className="text-xs text-[var(--color-text-muted)]">
             Se abre WhatsApp con el resumen para que solo lo envíes. Al enviarlo aceptas la{' '}
             <a className="underline" href="/legal/tratamiento-datos">
               política de tratamiento de datos
@@ -432,7 +432,7 @@ export default function Agendador({ modalidadInicial = null, tel, whatsappHref, 
         </div>
       )}
 
-      <p className="mt-6 border-t border-[var(--color-border)] pt-4 text-[var(--text-xs)] text-[var(--color-text-muted)]">
+      <p className="mt-6 border-t border-[var(--color-border)] pt-4 text-xs text-[var(--color-text-muted)]">
         ¿Prefieres hablar con alguien? Llama al {tel} o escríbenos por{' '}
         <a className="underline" href={whatsappHref} target="_blank" rel="noopener noreferrer">
           WhatsApp

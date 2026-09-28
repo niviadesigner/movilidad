@@ -14,19 +14,19 @@ const seo = {
 
 <SiteLayout seo={seo} migasOverrides={{ '/mantenimiento/agendar/confirmado': 'Confirmación' }}>
   <Section espaciado="amplio" ancho="estrecho">
-    <p class="font-mono text-[var(--text-xs)] uppercase tracking-wide text-[var(--color-primary-700)]">
+    <p class="font-mono text-xs uppercase tracking-wide text-[var(--color-primary-700)]">
       Solicitud enviada
     </p>
-    <h1 class="mt-3 text-[var(--text-4xl)]">Termina el envío en WhatsApp</h1>
+    <h1 class="mt-3 text-4xl">Termina el envío en WhatsApp</h1>
 
-    <p class="mt-4 text-[var(--text-lg)] text-[var(--color-text-muted)]" data-mensaje>
+    <p class="mt-4 text-lg text-[var(--color-text-muted)]" data-mensaje>
       Abrimos WhatsApp con el resumen de tu solicitud. Envía ese mensaje y te respondemos para
       cerrar los detalles.
     </p>
 
     <div class="mt-8 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-subtle)] p-6">
-      <p class="text-[var(--text-base)] font-semibold">¿No se abrió WhatsApp?</p>
-      <p class="mt-1 text-[var(--text-sm)] text-[var(--color-text-muted)]">
+      <p class="text-base font-semibold">¿No se abrió WhatsApp?</p>
+      <p class="mt-1 text-sm text-[var(--color-text-muted)]">
         Escríbenos por
         <a class="underline" href={whatsappUrl('mantenimiento')} target="_blank" rel="noopener noreferrer">WhatsApp</a>
         o llama al {SITE.tel} con los datos de tu solicitud.

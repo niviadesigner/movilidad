@@ -28,7 +28,7 @@ const {
 
 <div>
   {titulo && (
-    <p class="text-center text-[var(--text-xs)] font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
+    <p class="text-center text-xs font-semibold uppercase tracking-wide text-[var(--color-text-muted)]">
       {titulo}
     </p>
   )}
@@ -38,7 +38,7 @@ const {
         {l.src ? (
           <img src={l.src} alt={`Logo de ${l.nombre}`} height="28" class="h-7 w-auto opacity-70" loading="lazy" />
         ) : (
-          <span class="rounded-[var(--radius-sm)] bg-[var(--color-bg-muted)] px-3 py-1.5 text-[var(--text-xs)] text-[var(--color-text-muted)]">
+          <span class="rounded-[var(--radius-sm)] bg-[var(--color-bg-muted)] px-3 py-1.5 text-xs text-[var(--color-text-muted)]">
             {l.nombre} <span class="opacity-60">· logo pendiente</span>
           </span>
         )}

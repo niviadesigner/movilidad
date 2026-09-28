@@ -22,7 +22,7 @@ export default function CarritoContador() {
       className={
         n > 0
           ? 'inline-flex min-w-5 items-center justify-center rounded-full bg-[var(--color-accent-300)] px-1.5 text-[0.7rem] font-bold text-[var(--color-neutral-900)] tabular-nums'
-          : 'text-[var(--text-sm)] tabular-nums'
+          : 'text-sm tabular-nums'
       }
     >
       {n}
